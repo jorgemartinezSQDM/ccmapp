@@ -4,7 +4,7 @@ import {  Routes } from '@angular/router';
 import { UsersComponent } from '../components/users/users.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/index', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'campaigns', component: CampaignsComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'users', component: UsersComponent }

@@ -8,6 +8,8 @@ import { HttpServiceService } from '../../services/httpService/http-service.serv
 })
 export class UsersComponent implements OnInit {
 
+  users:any
+
   constructor(private HttpService: HttpServiceService) { }
 
   ngOnInit(): void {
@@ -17,8 +19,8 @@ export class UsersComponent implements OnInit {
   getAll(): void {
     
     this.HttpService.getAll('users')
-      .subscribe(hero => {
-        console.log(JSON.stringify(hero))
+      .subscribe(users => {
+        this.users = users
       });
   }
 }

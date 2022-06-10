@@ -1,1 +1,38 @@
-<p>customers works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Tipo Documento</th>
+      <th>Numero Documento</th>
+      <th>En Lista Negra</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.Id }}</td>
+      <td>{{ customer.Nombres }}</td>
+      <td>{{ customer.Apellidos }}</td>
+      <td>{{ customer.Tipo_Documento }}</td>
+      <td>{{ customer.Numero_Documento }}</td>
+      <td>
+        <div class="switch" *ngIf="customer.ListaNegra">
+          <label>
+            <input checked disabled type="checkbox" />
+            <span class="lever"></span>
+          </label>
+        </div>
+
+        <!-- Disabled Switch -->
+        <div class="switch" *ngIf="!customer.ListaNegra">
+          <label>
+            <input disabled type="checkbox" />
+            <span class="lever"></span>
+          </label>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

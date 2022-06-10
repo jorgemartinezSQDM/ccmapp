@@ -1,1 +1,15 @@
-<p>users works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre Usuario</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.Id }}</td>
+      <td>{{ user.NombreUsuario }}</td>
+    </tr>
+  </tbody>
+</table>

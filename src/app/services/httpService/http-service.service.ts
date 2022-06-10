@@ -9,8 +9,9 @@ import { catchError, retry, map, tap } from 'rxjs/operators';
 })
 export class HttpServiceService {
 
+  token: String = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemF0aW9uIjoiTVRFeE5ERXlNV1JrTVdSa01UcEtNSEpuUlVCTU1WUTMiLCJpYXQiOjE2NTQ4ODkxNDIsImV4cCI6MTY1NDkxNzk0Mn0.m0fd_IgqKSWsvX_Oa8hCdHLBWQldHemv7TDzq3X5mok'
   constructor(private http: HttpClient) { }
-
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -27,7 +28,7 @@ export class HttpServiceService {
       headers: new HttpHeaders(
         { 
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemF0aW9uIjoiTVRFeE5ERXlNV1JrTVdSa01UcEtNSEpuUlVCTU1WUTMiLCJpYXQiOjE2NTQ3MTQyMDksImV4cCI6MTY1NDc0MzAwOX0.OKXH9K3x4Rl6MNwcAldISlJMAKNPN7iDayM0YwYb4Ks' 
+          'Authorization': 'Bearer ' + this.token
         })
     })
       .pipe(

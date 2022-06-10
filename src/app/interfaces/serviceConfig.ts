@@ -1,6 +1,4 @@
 export const configs = {
-    BaseUri: 'https://claroccmapi.herokuapp.com/api/v1/',
+    BaseUri: 'http://localhost:3000/api/v1/',
     retreiveEndpoint: '/retrieve'
-
-
 }

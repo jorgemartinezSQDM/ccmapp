@@ -1,1 +1,19 @@
-<p>campaigns works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>ExternalId</th>
+      <th>Nombre</th>
+      <th>numeroVecesClientesDia</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let campaing of campaings">
+      <td>{{ campaing.Id }}</td>
+      <td>{{ campaing.ExternalId }}</td>
+      <td>{{ campaing["Nombre_Campaña"] }}</td>
+      <td>{{ campaing.numeroVecesClientesDia }}</td>
+    </tr>
+  </tbody>
+</table>

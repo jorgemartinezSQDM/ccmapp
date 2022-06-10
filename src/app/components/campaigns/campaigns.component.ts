@@ -7,9 +7,21 @@ import { HttpServiceService } from '../../services/httpService/http-service.serv
 })
 export class CampaignsComponent implements OnInit {
 
+
+  campaings:any
+
   constructor(private HttpService: HttpServiceService) { }
 
   ngOnInit(): void {
+    this.getAll()
+  }
+
+  getAll(): void {
+    
+    this.HttpService.getAll('campaigns')
+      .subscribe(campaings => {
+        this.campaings = campaings
+      });
   }
 
 }
