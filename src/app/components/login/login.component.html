@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <form class="custom-form" method="post">
+      <h1>Login</h1>
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        placeholder="username"
+        required="required"
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        required="required"
+      />
+      <button type="submit" (click)="login()">Log in</button>
+    </form>
+  </div>
+</div>

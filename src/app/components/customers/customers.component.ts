@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../../services/httpService/http-service.service'
-import {Customer} from '../../interfaces/datamodel/customer'
+import { Customer } from '../../interfaces/datamodel/customer'
+import { Router } from '@angular/router';
+import { SessionServiceService } from '../../services/sessionService/session-service.service'
+
 
 @Component({
   selector: 'app-customers',
@@ -9,9 +12,20 @@ import {Customer} from '../../interfaces/datamodel/customer'
 })
 export class CustomersComponent implements OnInit {
 
-  customers:any
+  customerResponse:any
+  customers: Customer[] = []
+  token: string = ''
+  
+  constructor(
+    private HttpService: HttpServiceService,
+    private router: Router,
+    private SessionService: SessionServiceService
+  ) {
 
-  constructor(private HttpService: HttpServiceService) { }
+    this.token = this.SessionService.getToken()
+    console.log('token => ', this.token)
+    if (!this.token) this.router.navigateByUrl('/login')
+  }
 
   ngOnInit(): void {
     this.getAll()
@@ -19,11 +33,20 @@ export class CustomersComponent implements OnInit {
 
   getAll(): void {
     
-    this.HttpService.getAll('customers')
+    this.HttpService.getAll('customers', this.token)
       .subscribe(customers => {
-        this.customers = customers
-        console.log(this.customers)
+
+        
+        this.customerResponse = customers
+        this.customers = this.customerResponse
+        
+        if (this.customers.length === undefined) {
+          this.router.navigateByUrl('/login');
+        } 
+        
       });
   }
+
+
 
 }

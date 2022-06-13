@@ -7,12 +7,16 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { UsersComponent } from './components/users/users.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { CookieService } from 'ngx-cookie-service';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CustomersComponent,
     UsersComponent,
-    CampaignsComponent
+    CampaignsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,7 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
