@@ -16,9 +16,18 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script async src="assets/js/MAK_universalsmoothscroll_2022-06-22_VR1.js"></script>
+    <script async src="assets/js/MAK_universalsmoothscroll-ease-functions_2022-06-22_VR1.js"></script>
   </head>
-  <body>
+  <body onload="init()">
     <app-root></app-root>
+    <script>
+      function init() {
+        uss.hrefSetup();
+        uss.setStepLengthCalculator(EASE_IN_OUT_QUART(1000), window);
+        window.addEventListener("wheel", () => uss.stopScrolling(window));
+      }
+    </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var elems = document.querySelectorAll(".sidenav");

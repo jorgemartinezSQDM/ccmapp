@@ -1,1 +1,213 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(./assets/fonts/fonts.css);
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  transform-origin: 50% 50%;
+  transition: all 0.2s ease-in-out;
+  animation-duration: 0.2s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: both;
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  box-sizing: initial !important;
+  font-family: 'Segoe UI';
+}
+
+/*Color variables for dark and illuminated modes*/
+body,
+body.light {
+  --color1: #E12E20;
+  --color2: #FADDDB;
+  --color3: #FCF2F2;
+  --color4: #FFF7F7;
+  --color5: #F4F4F4;
+  --color6: #F9FAFC;
+  --texts: #4B4B4B;
+  --first: #4B4B4B;
+  --second: #D8DBE2;
+  --third: #F9F9FC;
+  --bgDisabled: #F8F8F8;
+  --disabled: #D6D6D6;
+  --black: #231F20;
+  --red: #ED343E;
+  --bg: #FCFCFC;
+  --pureBlack: #000000;
+  --pureWhite: #FFFFFF;
+  --lightBox: rgba(0, 0, 0, 0.64);
+}
+
+body.dark {
+  --color1: #E12E20;
+  --color2: #F19E98;
+  --color3: #EEB4B4;
+  --color4: #FFABAB;
+  --color5: #CDCDCD;
+  --color6: #C6D0E3;
+  --texts: #c9c9c9;
+  --first: #c9c9c9;
+  --second: #ACB3C1;
+  --third: #C6C6E3;
+  --bgDisabled: #D1D1D1;
+  --disabled: #AFAFAF;
+  --black: #F0F0F0;
+  --red: #ED343E;
+  --bg: #232B32;
+  --pureBlack: #000000;
+  --pureWhite: #FFFFFF;
+  --lightBox: rgba(0, 0, 0, 0.64);
+}
+
+body.dark img,
+body.dark video,
+body.dark .img,
+body.dark .vid {
+  filter: brightness(0.8) contrast(1.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --color1: #E12E20;
+    --color2: #F19E98;
+    --color3: #EEB4B4;
+    --color4: #FFABAB;
+    --color5: #CDCDCD;
+    --color6: #C6D0E3;
+    --texts: #c9c9c9;
+    --first: #c9c9c9;
+    --second: #ACB3C1;
+    --third: #C6C6E3;
+    --bgDisabled: #D1D1D1;
+    --disabled: #AFAFAF;
+    --black: #F0F0F0;
+    --red: #ED343E;
+    --bg: #232B32;
+    --pureBlack: #000000;
+    --pureWhite: #FFFFFF;
+    --lightBox: rgba(0, 0, 0, 0.64);
+  }
+
+  img,
+  video,
+  .img,
+  .vid {
+    filter: brightness(0.8) contrast(1.2);
+  }
+
+  body.light {
+    --color1: #E12E20;
+    --color2: #FADDDB;
+    --color3: #FCF2F2;
+    --color4: #FFF7F7;
+    --color5: #F4F4F4;
+    --color6: #F9FAFC;
+    --texts: #4B4B4B;
+    --first: #4B4B4B;
+    --second: #D8DBE2;
+    --third: #F9F9FC;
+    --bgDisabled: #F8F8F8;
+    --disabled: #D6D6D6;
+    --black: #231F20;
+    --red: #ED343E;
+    --bg: #FCFCFC;
+    --pureBlack: #000000;
+    --pureWhite: #FFFFFF;
+    --lightBox: rgba(0, 0, 0, 0.64);
+  }
+}
+
+/*End--------------------------------------------------------------------------------------------------------*/
+
+/*Custom scroll*/
+::-webkit-scrollbar {
+  width: 8px;
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 500px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color1);
+  border-radius: 100vw;
+  border: 2px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color1);
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 1204px) {
+  ::-webkit-scrollbar {
+    display: block;
+  }
+}
+
+/*End--------------------------------------------------------------------------------------------------------*/
+
+/*Types of typefaces*/
+.normTit {
+  font-family: 'Azo Sans';
+  font-weight: bold;
+  font-style: normal;
+}
+
+.boldTit {
+  font-family: 'Azo Sans';
+  font-weight: normal;
+  font-style: normal;
+}
+
+.norm {
+  font-family: 'Segoe UI';
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bold {
+  font-family: 'Segoe UI';
+  font-weight: bold;
+  font-style: normal;
+}
+
+p {
+  white-space: pre-wrap;
+}
+
+p::first-letter {
+  text-transform: uppercase;
+}
+
+/*End--------------------------------------------------------------------------------------------------------*/
+
+/*Responsive structural container classes*/
+.flexBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/*End--------------------------------------------------------------------------------------------------------*/
+
+html {
+  width: calc(100% - 0px);
+  height: calc(100% - 0px);
+}
+
+body {
+  width: 100%;
+  height: auto;
+  background-color: var(--bg);
+}
