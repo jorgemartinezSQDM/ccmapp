@@ -75,7 +75,7 @@ export class CustomersComponent implements OnInit {
     this.getAll(this.actualPage, this.size);
     for (let a = 0; a < this.lists.length; a++) {
       const itemList: ID_Menu = this.lists[a];
-      itemList.selected = itemList.id === '02' ? true : false;
+      itemList.selected = itemList.id === '03' ? true : false;
     }
   }
 
