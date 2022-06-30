@@ -1,0 +1,533 @@
+.campaigns {
+  width: calc(100% - 82px);
+  max-height: calc(100vh - 210px);
+  margin: 98px 24px 80px;
+  padding: 16px;
+  background-color: var(--bg);
+  border: 1px solid var(--second);
+  border-radius: 16px;
+}
+
+.campaigns.modeOpen {
+  position: relative;
+  background-color: var(--color4);
+  border-color: var(--color2);
+}
+
+.campaigns .dialogContent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.campaigns .dialogContent .dialog {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.campaigns .dialogContent .dialog .appDialog {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.campaigns .navigator {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.campaigns .navigator .breadCrumb {
+  width: calc(100% - 112px);
+  margin-right: 16px;
+}
+
+.campaigns .navigator .breadCrumb .navItem {
+  margin-right: 8px;
+}
+
+.campaigns .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.campaigns .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: block;
+}
+
+.campaigns .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.campaigns .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: none;
+}
+
+.campaigns.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.campaigns.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: none;
+}
+
+.campaigns.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.campaigns.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: block;
+}
+
+.campaigns .navigator .breadCrumb .navItem:last-child {
+  margin-right: 0px;
+}
+
+.campaigns .navigator .specialActions {
+  width: 96px;
+  justify-content: flex-end;
+}
+
+.campaigns .navigator .specialActions .action {
+  margin-right: 8px;
+}
+
+.campaigns .navigator .specialActions .action:last-child {
+  margin-right: 0px;
+}
+
+.campaigns .navigator .specialActions .action .appButton {
+  display: block;
+}
+
+.campaigns.modeOpen .navigator .specialActions .action .appButton,
+.campaigns.modeEdit .navigator .specialActions .action .appButton {
+  display: none;
+}
+
+.campaigns .titulation {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+  text-align: left;
+  z-index: 1;
+}
+
+.campaigns.modeOpen .titulation,
+.campaigns.modeEdit .titulation {
+  display: none;
+}
+
+.campaigns .titulation .title {
+  width: 100%;
+  color: var(--texts);
+  font-size: 24px;
+}
+
+.campaigns .titulation .description {
+  width: 100%;
+  margin-top: 8px;
+  color: var(--texts);
+  font-size: 16px;
+}
+
+.campaigns .table {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 306px);
+  margin-top: 16px;
+  z-index: 1;
+}
+
+.campaigns .table.pagination {
+  max-height: calc(100vh - 362px);
+}
+
+.campaigns.modeOpen .table,
+.campaigns.modeEdit .table {
+  display: none;
+}
+
+.campaigns .cardItem {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 250px);
+  z-index: 1;
+}
+
+.campaigns .cardItem.pagination {
+  max-height: calc(100vh - 250px);
+}
+
+.campaigns.modeOpen #modeOpen,
+.campaigns.modeEdit #modeEdit {
+  display: block;
+}
+
+.campaigns.modeOpen #modeEdit,
+.campaigns.modeEdit #modeOpen {
+  display: none;
+}
+
+.campaigns .cardItem .values {
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-height: calc(100vh - 322px);
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.campaigns .cardItem.pagination .values {
+  max-height: calc(100vh - 322px);
+}
+
+.campaigns .cardItem .values .data {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.campaigns .cardItem .values .data.edit {
+  text-align: center;
+}
+
+.campaigns .cardItem .values .data .label {
+  width: calc(100% - 32px);
+  margin-right: 16px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.campaigns .cardItem .values .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.campaigns .cardItem .values .data .input {
+  width: 100%;
+}
+
+.campaigns .cardItem .values .data .frequencies {
+  width: auto;
+  max-width: calc(100% - 2px);
+  max-height: 198px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--color2);
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.campaigns .cardItem .values .data .frequencies table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  width: 100%;
+}
+
+.campaigns .cardItem .values .data .frequencies table tr {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--second);
+}
+
+.campaigns .cardItem .values .data .frequencies table tr:nth-child(1) {
+  background-color: var(--color5);
+}
+
+.campaigns .cardItem .values .data .frequencies table tr:last-child {
+  border-bottom: none;
+}
+
+.campaigns .cardItem .values .data .frequencies table th,
+.campaigns .cardItem .values .data .frequencies table td {
+  min-width: 168px;
+  padding: 4px 8px;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+}
+
+.campaigns .cardItem .values .data .frequencies table th {
+  position: sticky;
+  top: 0px;
+}
+
+.campaigns .cardItem .values #idOpen {
+  margin-bottom: 8px;
+}
+
+.campaigns .cardItem .values #nameOpen .value {
+  font-size: 24px;
+}
+
+.campaigns .cardItem .values #externalIdOpen {
+  justify-content: center;
+}
+
+.campaigns .cardItem .values #externalIdOpen .value {
+  width: auto;
+  padding: 8px;
+  color: var(--color1);
+  font-size: 14px;
+  background-color: var(--color2);
+  border-radius: 8px;
+}
+
+.campaigns .cardItem #sendByDays .value {
+  color: var(--blackSqdm);
+  font-size: 112px;
+}
+
+.campaigns .cardItem .values .dates {
+  width: 100%;
+}
+
+.campaigns .cardItem .values .dates .data {
+  width: calc(50% - 16px);
+  margin-bottom: 16px;
+}
+
+.campaigns .cardItem .values .dates .data:nth-child(2n+1) {
+  margin-right: 8px;
+  text-align: left;
+}
+
+.campaigns .cardItem .values .dates .data:nth-child(2n) {
+  margin-left: 8px;
+  text-align: right;
+}
+
+.campaigns .cardItem .values .dates .data .label {
+  width: 100%;
+  margin-right: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.campaigns .cardItem .values .dates .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.campaigns .cardItem .actions {
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+  text-align: center;
+  border-radius: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.campaigns .cardItem .actions.spinner {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.campaigns .cardItem .actions .btnAction {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.campaigns .cardItem .actions .btnAction:last-child {
+  margin-right: 0px;
+}
+
+.campaigns .cardItem .actions #btnCloseOpenCampaign,
+.campaigns .cardItem .actions #btnCloseEditCampaign {
+  display: none;
+}
+
+.campaigns .pagination {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+}
+
+.campaigns.modeOpen .pagination,
+.campaigns.modeEdit .pagination {
+  display: none;
+}
+
+.campaigns .pagination .btnPage {
+  margin-right: 8px;
+}
+
+.campaigns .pagination .btnPage:last-child {
+  margin-right: 0px;
+}
+
+@media (min-width: 768px) {
+  .campaigns {
+    width: calc(100% - 170px);
+    max-height: calc(100vh - 82px);
+    margin: 24px 24px 24px 112px;
+  }
+
+  .campaigns.modeOpen,
+  .campaigns.modeEdit {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .campaigns.modeOpen,
+  .campaigns.modeEdit {
+    position: relative;
+    background-color: var(--bg);
+    border-color: var(--second);
+  }
+
+  .campaigns.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+  .campaigns.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+    display: block;
+  }
+
+  .campaigns.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+  .campaigns.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+    display: none;
+  }
+
+  .campaigns.modeOpen .navigator .specialActions .action .appButton,
+  .campaigns.modeEdit .navigator .specialActions .action .appButton {
+    display: block;
+  }
+
+  .campaigns.modeOpen .titulation,
+  .campaigns.modeEdit .titulation {
+    display: block;
+  }
+
+  .campaigns .table {
+    max-height: calc(100vh - 180px);
+  }
+
+  .campaigns .table.pagination {
+    max-height: calc(100vh - 236px);
+  }
+
+  .campaigns.modeOpen .table,
+  .campaigns.modeEdit .table {
+    display: block !important;
+    width: calc(50% - 8px);
+    margin-right: 8px;
+  }
+
+  .campaigns .cardItem .values {
+    max-height: calc(100vh - 248px);
+    margin-top: 0px;
+  }
+
+  .campaigns .cardItem.pagination .values {
+    max-height: calc(100vh - 324px);
+  }
+
+  .campaigns .cardItem .values .data,
+  .campaigns .cardItem .values .data.edit {
+    text-align: right;
+  }
+
+  .campaigns .cardItem .values #externalIdOpen {
+    justify-content: flex-end;
+  }
+
+  .campaigns .cardItem .actions {
+    text-align: right;
+  }
+
+  .campaigns .cardItem .actions #btnCloseOpenCampaign,
+  .campaigns .cardItem .actions #btnCloseEditCampaign {
+    display: inline-block;
+  }
+
+  .campaigns.modeOpen #modeOpen,
+  .campaigns.modeEdit #modeEdit {
+    display: block;
+    width: calc(50% - 42px);
+    max-height: calc(100vh - 194px);
+    margin-left: 8px;
+    padding: 16px;
+    background-color: var(--color4);
+    border: 1px solid var(--color2);
+    border-radius: 16px;
+  }
+
+  .campaigns.modeOpen #modeOpen.pagination,
+  .campaigns.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 268px);
+  }
+
+  .campaigns.modeOpen #modeEdit,
+  .campaigns.modeEdit #modeOpen {
+    display: none;
+  }
+
+  .campaigns .pagination {
+    justify-content: flex-end;
+  }
+
+  .campaigns.modeOpen .pagination,
+  .campaigns.modeEdit .pagination {
+    display: flex;
+  }
+}
+
+@media (min-width: 1081px) {
+  .campaigns {
+    width: calc(100% - 158px);
+    max-height: calc(100vh - 66px);
+    margin: 16px 24px 16px 106px;
+  }
+
+  .campaigns .table {
+    max-height: calc(100vh - 160px);
+  }
+
+  .campaigns .table.pagination {
+    max-height: calc(100vh - 216px);
+  }
+
+  .campaigns.modeOpen .table,
+  .campaigns.modeEdit .table {
+    width: calc(100% - 458px);
+  }
+
+  .campaigns.modeOpen #modeOpen,
+  .campaigns.modeEdit #modeEdit {
+    width: 408px;
+    max-height: calc(100vh - 180px);
+  }
+
+  .campaigns.modeOpen #modeOpen.pagination,
+  .campaigns.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 252px);
+  }
+
+  .campaigns.modeOpen .cardItem .values,
+  .campaigns.modeEdit .cardItem .values {
+    max-height: calc(100vh - 236px);
+  }
+
+  .campaigns .cardItem .values {
+    max-height: calc(100vh - 236px);
+  }
+
+  .campaigns .cardItem.pagination .values {
+    max-height: calc(100vh - 308px);
+  }
+}

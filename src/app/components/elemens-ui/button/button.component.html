@@ -1,0 +1,15 @@
+<button id="{{id}}" class="button flexBox"
+  [ngClass]="{icon: icon, hover: hover, primary: primary, secondary: secondary, tertiary: tertiary, block: block, onlyIcon: onlyIcon, on: switch, right: right, full: full, selected: selected}"
+  (mouseover)="hover=true;" (mouseout)="hover=false;" (click)="modeClick($event);">
+  <div class=" icon icon_{{icon}}r" *ngIf="(!modeSwitch && icon) && (!hover && !click) || block"></div>
+  <div class="icon icon_{{icon}}f" *ngIf="(!modeSwitch && icon) && (hover || click) && !block"></div>
+  <div class="icon switch icon_{{icon}}r" *ngIf="modeSwitch && icon && (!hover && !click) && !switch && !block"></div>
+  <div class="icon switch icon_{{icon}}f" *ngIf="modeSwitch && icon && (hover || click) && !switch && !block"></div>
+  <div class="icon switch icon_{{iconSwitch}}f" *ngIf="modeSwitch && icon && (!hover && !click) && switch && !block">
+  </div>
+  <div class="icon switch icon_{{iconSwitch}}f" *ngIf="modeSwitch && icon && (hover || click) && switch && !block">
+  </div>
+  <p class=" text bold" *ngIf="!onlyIcon && !switch">{{label}}</p>
+  <p class=" text switch bold" *ngIf="!onlyIcon && switch">{{labelSwitch}}</p>
+  <div class="fill"></div>
+</button>

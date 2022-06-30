@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(./assets/fonts/fonts.css);
+@import url(./assets/fonts/css/icons.css);
+@import url(./assets/fonts/css/icons-codes.css);
+@import url(./assets/fonts/css/icons-embedded.css);
+@import url(./assets/fonts/css/icons-ie7.css);
+@import url(./assets/fonts/css/icons-ie7-codes.css);
 
 * {
   padding: 0;
@@ -7,7 +12,7 @@
   outline: none;
   border: none;
   transform-origin: 50% 50%;
-  transition: all 0.2s ease-in-out;
+  transition: all .2s ease-in-out;
   animation-duration: 0.2s;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-fill-mode: both;
@@ -31,35 +36,74 @@ body.light {
   --first: #4B4B4B;
   --second: #D8DBE2;
   --third: #F9F9FC;
-  --bgDisabled: #F8F8F8;
-  --disabled: #D6D6D6;
+  --bgDisabled: rgba(0, 0, 0, 0.016);
+  --disabled: rgba(0, 0, 0, 0.08);
+  --white: #FFFFFF;
   --black: #231F20;
   --red: #ED343E;
   --bg: #FCFCFC;
   --pureBlack: #000000;
   --pureWhite: #FFFFFF;
   --lightBox: rgba(0, 0, 0, 0.64);
+
+  /*Colors for user login status*/
+  --statusOffline: #D6D6D6;
+  --statusOnline: #92C352;
+  --statusAbsent: #FDB913;
+  /*End ------------------------------------------*/
+
+  /*Input fields*/
+  --bgInput: #FFFFFF;
+  --brInput: #D8DBE2;
+  --plInput: #898c92;
+  --txInput: #4B4B4B;
+  /*End ------------------------------------------*/
+
+  /*Estados de control de excepciones*/
+  --txError: #BC392F;
+  --error: #EF4338;
+  --txWarning: #BC962F;
+  --warning: #EFBE38;
+  --txSuccess: #1F8656;
+  --success: #2FBE77;
+  /*End ------------------------------------------*/
+
+  /*Loaders*/
+  --loader: linear-gradient(90deg, #dbdbdb, #a8a8a8);
+  /*End ------------------------------------------*/
 }
 
 body.dark {
   --color1: #E12E20;
   --color2: #F19E98;
   --color3: #EEB4B4;
-  --color4: #FFABAB;
-  --color5: #CDCDCD;
-  --color6: #C6D0E3;
+  --color4: #554444;
+  --color5: #2b2b2b;
+  --color6: #313438;
   --texts: #c9c9c9;
   --first: #c9c9c9;
-  --second: #ACB3C1;
+  --second: #3f434b;
   --third: #C6C6E3;
-  --bgDisabled: #D1D1D1;
-  --disabled: #AFAFAF;
+  --bgDisabled: rgba(255, 255, 255, 0.016);
+  --disabled: rgba(255, 255, 255, 0.08);
+  --white: #231F20;
   --black: #F0F0F0;
   --red: #ED343E;
   --bg: #232B32;
   --pureBlack: #000000;
   --pureWhite: #FFFFFF;
   --lightBox: rgba(0, 0, 0, 0.64);
+
+  /*Input fields*/
+  --bgInput: #000000;
+  --brInput: #3f434b;
+  --plInput: #63666B;
+  --txInput: #242424;
+  /*End ------------------------------------------*/
+
+  /*Loaders*/
+  --loader: linear-gradient(90deg, #dbdbdb, #a8a8a8);
+  /*End ------------------------------------------*/
 }
 
 body.dark img,
@@ -74,21 +118,29 @@ body.dark .vid {
     --color1: #E12E20;
     --color2: #F19E98;
     --color3: #EEB4B4;
-    --color4: #FFABAB;
-    --color5: #CDCDCD;
-    --color6: #C6D0E3;
+    --color4: #554444;
+    --color5: #2b2b2b;
+    --color6: #313438;
     --texts: #c9c9c9;
     --first: #c9c9c9;
-    --second: #ACB3C1;
+    --second: #3f434b;
     --third: #C6C6E3;
-    --bgDisabled: #D1D1D1;
-    --disabled: #AFAFAF;
+    --bgDisabled: rgba(255, 255, 255, 0.016);
+    --disabled: rgba(255, 255, 255, 0.08);
+    --white: #231F20;
     --black: #F0F0F0;
     --red: #ED343E;
     --bg: #232B32;
     --pureBlack: #000000;
     --pureWhite: #FFFFFF;
     --lightBox: rgba(0, 0, 0, 0.64);
+
+    /*Input fields*/
+    --bgInput: #000000;
+    --brInput: #3f434b;
+    --plInput: #63666B;
+    --txInput: #242424;
+    /*End ------------------------------------------*/
   }
 
   img,
@@ -109,14 +161,22 @@ body.dark .vid {
     --first: #4B4B4B;
     --second: #D8DBE2;
     --third: #F9F9FC;
-    --bgDisabled: #F8F8F8;
-    --disabled: #D6D6D6;
+    --bgDisabled: rgba(0, 0, 0, 0.016);
+    --disabled: rgba(0, 0, 0, 0.08);
+    --white: #FFFFFF;
     --black: #231F20;
     --red: #ED343E;
     --bg: #FCFCFC;
     --pureBlack: #000000;
     --pureWhite: #FFFFFF;
     --lightBox: rgba(0, 0, 0, 0.64);
+
+    /*Input fields*/
+    --bgInput: #FFFFFF;
+    --brInput: #D8DBE2;
+    --plInput: #898c92;
+    --txInput: #4B4B4B;
+    /*End ------------------------------------------*/
   }
 }
 
@@ -124,7 +184,8 @@ body.dark .vid {
 
 /*Custom scroll*/
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
   display: none;
 }
 
@@ -160,13 +221,13 @@ body.dark .vid {
 /*Types of typefaces*/
 .normTit {
   font-family: 'Azo Sans';
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
 }
 
 .boldTit {
   font-family: 'Azo Sans';
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -211,3 +272,36 @@ body {
   height: auto;
   background-color: var(--bg);
 }
+
+input {
+  background-color: transparent !important;
+}
+
+.loader {
+  background: var(--loader);
+  background-size: 400% 400%;
+  animation: load 4s ease infinite;
+}
+
+.header .navigator .lists::-webkit-scrollbar {
+  display: none;
+}
+
+/*Animaciones*/
+
+
+@keyframes load {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*End---------------------------------------------------------------------------------------------------------*/

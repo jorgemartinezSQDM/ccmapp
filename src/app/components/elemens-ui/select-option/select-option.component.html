@@ -1,0 +1,20 @@
+<div class="selectOption {{class}} flexBox" [ngClass]="{icon: icon, hover: hover}" (mouseover)="hover=true;"
+  (mouseout)="hover=false;">
+  <div class="icon icon_{{icon}}r" *ngIf="icon && !hover" (click)="onOffOptions($event);"></div>
+  <div class="icon icon_{{icon}}f" *ngIf="icon && hover" (click)="onOffOptions($event);"></div>
+  <div id="{{id}}" class="default" (click)="onOffOptions($event);">Seleccione {{default}}</div>
+  <div class="arrow normal icon_008r" *ngIf="!showOptions && !hover" (click)="onOffOptions($event);"></div>
+  <div class="arrow normal icon_008f" *ngIf="!showOptions && hover" (click)="onOffOptions($event);"></div>
+  <div class="arrow drop icon_009r" *ngIf="showOptions && !hover" (click)="onOffOptions($event);"></div>
+  <div class="arrow drop icon_009f" *ngIf="showOptions && hover" (click)="onOffOptions($event);"></div>
+  <div class="options optionsSelectOptions" [ngClass]="{fadeInDown: showOptions, fadeOutUp: !showOptions}"
+    *ngIf="showOptions">
+    <div class="option flexBox" id="{{option.id}}_opt" [ngClass]="{iconOption: option.icon}"
+      *ngFor="let option of listOptions" (mouseover)="hoverOption=true;" (mouseout)="hoverOption=false;"
+      (click)="selected(option, $event);">
+      <div class="iconOption icon_{{option.icon}}r" *ngIf="option.icon && !hoverOption && !clickOption"></div>
+      <div class="iconOption icon_{{option.icon}}f" *ngIf="option.icon && hoverOption && clickOption"></div>
+      <p class="value norm" [innerHTML]="option.value"></p>
+    </div>
+  </div>
+</div>

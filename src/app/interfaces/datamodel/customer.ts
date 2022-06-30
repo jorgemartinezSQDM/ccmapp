@@ -1,12 +1,14 @@
 
 export interface Customer {
-    Nombres: String,
-    Apellidos: String,
-    Id: Number,
-    Tipo_Documento: String,
-    Numero_Documento: String,
-    llaveUnicaCliente: String,
-    ListaNegra: String,
-    createdAt: Date,
-    updatedAt: Date
+  Apellidos: String,
+  createdAt: any,
+  Id: Number,
+  ListaNegra: boolean,
+  llaveUnicaCliente: String,
+  Nombres: String,
+  Numero_Documento: String,
+  selected: boolean,
+  show: boolean,
+  Tipo_Documento: String,
+  updatedAt: any
 }

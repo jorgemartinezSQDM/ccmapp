@@ -1,0 +1,5 @@
+<label class="checkBox {{class}}" title="{{placeholder}}" (mouseover)="hover=true;" (mouseout)="hover=false;">
+  <input id="{{id}}" name="{{id}}" type="checkbox" [(ngModel)]="selected" (change)="onOffChecked($event);"
+    placeholder="{{placeholder}}">
+  <span class="checkmark" [ngClass]="{icon_021r: selected && !hover, icon_021f: selected && hover}"></span>
+</label>

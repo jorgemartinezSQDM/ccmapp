@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ID_Responsive } from 'src/app/interfaces/datamodel/responsive';
+import { CommonService } from '../common/common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ResponsiveService {
 
   constructor(
     private deviceService: DeviceDetectorService,
+    private commonService: CommonService,
   ) {
     //console.log(this.device);
   }
@@ -59,6 +61,7 @@ export class ResponsiveService {
       responsive.tablet = false;
     }
     this.deviceInfo = responsive;
+    this.commonService.shareData({ responsive: responsive });
     return responsive;
   }
 

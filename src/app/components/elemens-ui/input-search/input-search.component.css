@@ -1,0 +1,58 @@
+.inputSearch {
+  align-content: center;
+  align-items: center;
+  min-width: 38px;
+  width: auto;
+  height: 38px;
+  padding: 0px 8px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--brInput);
+  border-radius: 12px;
+}
+
+.inputSearch.expandable {
+  justify-content: center;
+  width: 38px;
+  padding: 0px;
+}
+
+.inputSearch .icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  color: var(--texts);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.inputSearch .icon:active,
+.inputSearch .icon.active {
+  transform: scale(0.96);
+}
+
+.inputSearch.expandable .icon {
+  margin-right: 0px;
+}
+
+.inputSearch.focus .icon,
+.inputSearch.hover .icon,
+.inputSearch:hover .icon {
+  color: var(--texts);
+  font-size: 22px;
+}
+
+.inputSearch input {
+  width: calc(100% - 34px);
+  height: auto !important;
+  margin: 0px !important;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+  border: none !important;
+}
+
+.inputSearch input::placeholder {
+  color: var(--plInput);
+  font-size: 16px;
+  text-align: left;
+}

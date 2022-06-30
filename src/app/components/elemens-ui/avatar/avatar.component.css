@@ -1,0 +1,58 @@
+.avatar {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 500px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.avatar img {
+  position: relative;
+  min-width: 32px;
+  width: calc(100% - 8px);
+  width: calc(100% - 8px);
+  min-height: 32px;
+  border-radius: 500px;
+  z-index: 2;
+}
+
+.avatar .status {
+  position: absolute;
+  top: 0px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: transparent;
+  border: 2px solid var(--statusOffline);
+  border-radius: 500px;
+}
+
+.avatar .status.offline {
+  border-color: var(--statusOffline);
+}
+
+.avatar .status.online {
+  border-color: var(--statusOnline);
+}
+
+.avatar .status.absent {
+  border-color: var(--statusAbsent);
+}
+
+.avatar:active,
+.avatar.active {
+  transform: scale(0.96);
+}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1081px) {
+
+  .avatar:hover img,
+  .avatar.hover img {
+    opacity: 0.64;
+  }
+}

@@ -1,0 +1,410 @@
+.table {
+  width: 100%;
+  height: 100%;
+}
+
+.table .filters {
+  width: 100%;
+  max-width: calc(100% - 32px);
+  margin-bottom: 8px;
+  padding: 16px;
+  background-color: var(--color6);
+  border-radius: 16px;
+}
+
+.table .filters .search {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.table .filters .search .name {
+  width: calc(100% - 16px);
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.table .filters .others {
+  width: 100%;
+}
+
+.table .filters .others .btnFilters {
+  margin-bottom: 0px;
+}
+
+.table .filters .others .btnFilters.showFilters {
+  margin-bottom: 8px;
+}
+
+.table .filters .others .listFilters {
+  width: 100%;
+  height: 68px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.table .filters .others .listFilters.date {
+  height: 142px;
+}
+
+.table .filters .others .listFilters.columns {
+  height: 190px;
+}
+
+.table .filters .others .listFilters .filter {
+  display: inline-block;
+  width: auto;
+  margin-right: 8px;
+}
+
+.table .filters .others .listFilters .filter:last-child {
+  margin-right: 0px;
+}
+
+.table .filters .others .listFilters .filter .name {
+  width: calc(100% - 16px);
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.table .list {
+  position: relative;
+  width: calc(100% - 2px);
+  max-height: calc(100vh - 468px);
+  background-color: var(--white);
+  border: 1px solid var(--second);
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.table.pagination .list {
+  max-height: calc(100vh - 524px);
+}
+
+.table .list.showFilters {
+  max-height: calc(100vh - 544px);
+}
+
+.table.pagination .list.showFilters {
+  max-height: calc(100vh - 600px);
+}
+
+.table .list.date {
+  max-height: calc(100vh - 618px);
+}
+
+.table.pagination .list.date {
+  max-height: calc(100vh - 674px);
+}
+
+.table .list.columns {
+  max-height: calc(100vh - 664px);
+}
+
+.table.pagination .list.columns {
+  max-height: calc(100vh - 720px);
+}
+
+.table .list .titles {
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  height: 42px;
+  padding: 8px;
+  background-color: var(--color5);
+  border-bottom: 1px solid var(--second);
+  z-index: 2;
+}
+
+.table .list .titles .clmn {
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.table .list .titles .clmn:last-child {
+  margin-right: 0px;
+}
+
+.table .list .titles #selectAll {
+  width: 22px;
+  height: 22px;
+}
+
+.table .list .titles #crudTitle {
+  justify-content: flex-end;
+  width: 184px;
+}
+
+.table .list .titles #crudTitle .crud {
+  margin-right: 8px;
+}
+
+.table .list .titles #crudTitle .crud:last-child {
+  margin-right: 0px;
+}
+
+.table .list .values {
+  position: relative;
+  min-height: calc(100% - 58px);
+  z-index: 1;
+}
+
+.table .list .values .value {
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  padding: 8px;
+  height: 42px;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--second);
+  z-index: 1;
+}
+
+.table .list .values .value.hide {
+  display: none;
+}
+
+.table .list .values .value:last-child {
+  border: none !important;
+}
+
+.table .list .values .value .fill {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.table .list .values .value .clmn {
+  position: relative;
+  width: 170px;
+  margin-right: 8px;
+  padding: 8px;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.table .list .values .value .clmn.sends {
+  text-align: center;
+}
+
+.table .list .values .value #selectRow {
+  width: 24px;
+  height: 24px;
+  padding: 0px;
+}
+
+.table .list .values .value #crud {
+  justify-content: flex-end;
+  width: 182px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+.table .list .values .value #crud .crud {
+  margin-right: 6px;
+}
+
+.table .list .values .value #crud .crud:last-child {
+  margin-right: 0px;
+}
+
+.table .list .values .value .clmn:last-child {
+  margin-right: 0px;
+}
+
+.table .list .values .value.selected .fill {
+  background-color: var(--color4);
+  border-color: var(--color2);
+}
+
+.table .list .values .value.loads .checkbox {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  border-radius: 8px;
+}
+
+.table .list .values .value.loads .clmnLoad {
+  position: relative;
+  width: 170px;
+  padding: 8px;
+  margin-right: 8px;
+  z-index: 2;
+}
+
+.table .list .values .value.loads .clmnLoad .val {
+  max-width: 100%;
+  height: 16px;
+  border-radius: 6px;
+}
+
+.table .list .values .value.loads .crudLoad {
+  justify-content: flex-end;
+  position: relative;
+  width: 180px;
+  z-index: 2;
+}
+
+.table .list .values .value.loads .crudLoad .btnCrud {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  border-radius: 12px;
+}
+
+.table .list .values .value.loads .crudLoad .btnCrud:last-child {
+  margin-right: 0px;
+}
+
+.table .pagination {
+  width: 100%;
+  margin-top: 8px;
+}
+
+
+@media (min-width: 768px) {
+  .table .filters {
+    width: auto;
+  }
+
+  .table .filters .search {
+    width: auto;
+    max-width: 364px;
+  }
+
+  .table .filters .others {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .table .list {
+    max-height: calc(100vh - 28px);
+  }
+
+  .table.pagination .list {
+    max-height: calc(100vh - 84px);
+  }
+
+  .table .list.showFilters {
+    max-height: calc(100vh - 362px);
+  }
+
+  .table.pagination .list.showFilters {
+    max-height: calc(100vh - 418px);
+  }
+
+  .table .list.date {
+    max-height: calc(100vh - 438px);
+  }
+
+  .table.pagination .list.date {
+    max-height: calc(100vh - 494px);
+  }
+
+  .table .list.columns {
+    max-height: calc(100vh - 492px);
+  }
+
+  .table.pagination .list.columns {
+    max-height: calc(100vh - 548px);
+  }
+}
+
+@media (min-width: 1081px) {
+  .table .filters {
+    max-width: calc(100% - 32px);
+  }
+
+  .table .filters .search {
+    display: inline-block;
+    width: 296px;
+    max-width: 296px;
+    margin-bottom: 0px;
+    vertical-align: top;
+  }
+
+  .table .filters .others {
+    display: inline-flex;
+    max-width: calc(100% - 312px);
+    margin-left: 16px;
+    vertical-align: top;
+  }
+
+  .table .list {
+    max-height: calc(100vh - 18px);
+    max-width: 1394px;
+    /*margin: 0px calc(calc(100% - 1394px) / 2);*/
+  }
+
+  .table.pagination .list {
+    max-height: calc(100vh - 74px);
+  }
+
+  .table .list.showFilters {
+    max-height: calc(100vh - 272px);
+  }
+
+  .table.pagination .list.showFilters {
+    max-height: calc(100vh - 328px);
+  }
+
+  .table .list.date {
+    max-height: calc(100vh - 340px);
+  }
+
+  .table.pagination .list.date {
+    max-height: calc(100vh - 402px);
+  }
+
+  .table .list.columns {
+    max-height: calc(100vh - 394px);
+  }
+
+  .table.pagination .list.columns {
+    max-height: calc(100vh - 450px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .table .list {
+    max-width: calc(100% - 2px);
+  }
+
+  .table .list .values .value .clmn {
+    width: 131.4px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .table .list {
+    max-width: calc(100% - 2px);
+  }
+
+  .table .list .values .value .clmn {
+    width: 144.8px;
+  }
+}

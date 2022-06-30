@@ -1,0 +1,12 @@
+<div class="inputText flexBox {{class}}"
+  [ngClass]="{icon: icon, focus: focus, hover: hover, block: block, error: error, warning: warning, success: success, password: password, left: left, right: right, center: center, responsive: responsive}"
+  (mouseover)="hover=true;" (mouseout)="hover=false;">
+  <div class="icon icon_{{icon}}r" *ngIf="icon && !focus && !hover"></div>
+  <div class="icon icon_{{icon}}f" *ngIf="icon && focus && hover"></div>
+  <input id="{{id}}" type="{{type}}" name="{{id}}" placeholder="{{placeholder}}" [(ngModel)]="value"
+    disabled="{{block}}" (focus)="focus=true;" (blur)="focus=false;" required="{{required}}">
+  <div class="icon password icon_036r" *ngIf="password && !showPass && !focus" (click)="passOn();"></div>
+  <div class="icon password icon_036f" *ngIf="password && !showPass && focus" (click)="passOn();"></div>
+  <div class="icon password icon_038r" *ngIf="password && showPass && !focus" (click)="passOn();"></div>
+  <div class="icon password icon_038f" *ngIf="password && showPass && focus" (click)="passOn();"></div>
+</div>

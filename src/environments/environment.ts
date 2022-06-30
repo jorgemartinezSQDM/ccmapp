@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  avatarDefault: "../assets/images/avatar/defautl.png",
+  logoClaro: "../assets/images/logos/claro.svg",
+  isoClaro: "../assets/images/logos/claro_isotipo.svg",
+  banner1: "../assets/images/login/banner1.gif",
+  banner2: "../assets/images/login/banner2.png"
 };
 
 /*

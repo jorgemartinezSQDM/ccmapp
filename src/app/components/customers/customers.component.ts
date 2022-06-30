@@ -3,6 +3,12 @@ import { HttpServiceService } from '../../services/httpService/http-service.serv
 import { Customer } from '../../interfaces/datamodel/customer'
 import { Router } from '@angular/router';
 import { SessionServiceService } from '../../services/sessionService/session-service.service'
+import { ID_Menu } from 'src/app/interfaces/datamodel/menu';
+import { CommonService } from 'src/app/services/common/common.service';
+import { ID_rCustomers } from 'src/app/interfaces/datamodel/response/customers';
+import { ID_xCustomers } from 'src/app/interfaces/datamodel/excel/customers';
+import * as moment from 'moment';
+import { Frequency } from 'src/app/interfaces/datamodel/frequency';
 
 
 @Component({
@@ -11,42 +17,564 @@ import { SessionServiceService } from '../../services/sessionService/session-ser
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
+  title: string = "Clientes";
+  description: string = "";
+  modeOpen: boolean = false;
+  modeEdit: boolean = false;
+  customerOpen = <Customer>{};
+  customerEdit = <Customer>{};
+  elems: any = {};
+  spinner!: boolean;
+  feedback = {
+    show: false,
+    code: "",
+    error: false,
+    warning: false,
+    success: false,
+  };
+  dialog!: boolean;
+  feedbackCode!: string;
+  dialogStates = {
+    error: false,
+    warning: false,
+    success: false,
+  }
+  showFeedbackDialog!: boolean;
+  idCustomerDelete!: any;
+  messageDialog!: string;
+  deleteAll!: boolean;
+  deleteSingle!: boolean;
+  deleteSingleCard!: boolean;
+  deleteSelected!: boolean;
+  customersToDelete!: Customer[];
+  lists!: ID_Menu[];
 
-  customerResponse:any
+  customerResponse: any
   customers: Customer[] = []
   token: string = ''
-  
+  actualPage: any = 1;
+  size = 100;
+  pagination: boolean = true;
+  lasted: boolean = false;
+  showFrequency!: boolean;
+  frequencies!: Frequency[];
+  formatDate: string = "DD/MM/YYYY hh:mm A";
+
   constructor(
     private HttpService: HttpServiceService,
     private router: Router,
-    private SessionService: SessionServiceService
+    private SessionService: SessionServiceService,
+    private commonService: CommonService,
   ) {
-
-    this.token = this.SessionService.getToken()
-    console.log('token => ', this.token)
-    if (!this.token) this.router.navigateByUrl('/login')
+    this.lists = this.commonService.getDataLocal("menu");
+    this.token = this.SessionService.getToken();
+    if (!this.token) { this.router.navigateByUrl('/login') }
   }
 
   ngOnInit(): void {
-    this.getAll()
+    this.getAll(this.actualPage, this.size);
+    for (let a = 0; a < this.lists.length; a++) {
+      const itemList: ID_Menu = this.lists[a];
+      itemList.selected = itemList.id === '02' ? true : false;
+    }
   }
 
-  getAll(): void {
-    
-    this.HttpService.getAll('customers', this.token)
-      .subscribe(customers => {
-
-        
-        this.customerResponse = customers
-        this.customers = this.customerResponse
-        
-        if (this.customers.length === undefined) {
-          this.router.navigateByUrl('/login');
-        } 
-        
+  getAll(page: any, size: any): void {
+    this.HttpService.getAll('customers', this.token, page, size)
+      .subscribe(response => {
+        let formatCustomers: Customer[] = [];
+        let customersResponse: ID_rCustomers = response;
+        if (customersResponse) {
+          if (customersResponse.Records.length > 0) {
+            let customers = customersResponse.Records;
+            this.pagination = customers.length < this.size && this.actualPage == 1 ? false : true;
+            this.lasted = customers.length < this.size && this.actualPage != 1 ? true : false;
+            for (let a = 0; a < customers.length; a++) {
+              const customer = customers[a];
+              let created = customer.createdAt ? moment(customer.createdAt).local(true).format(this.formatDate) : "";
+              let updated = customer.updatedAt ? moment(customer.updatedAt).local(true).format(this.formatDate) : "";
+              let item: Customer = {
+                Apellidos: customer.Apellidos ? customer.Apellidos : "",
+                createdAt: created,
+                Id: customer.Id ? customer.Id : "",
+                ListaNegra: customer.ListaNegra ? customer.ListaNegra : "",
+                llaveUnicaCliente: customer.llaveUnicaCliente ? customer.llaveUnicaCliente : "",
+                Nombres: customer.Nombres ? customer.Nombres : "",
+                Numero_Documento: customer.Numero_Documento ? customer.Numero_Documento : "",
+                Tipo_Documento: customer.Tipo_Documento ? customer.Tipo_Documento : "",
+                selected: false,
+                show: true,
+                updatedAt: updated,
+              };
+              formatCustomers.push(item);
+            }
+            this.customers = formatCustomers;
+          } else {
+            this.commonService.goTo("/login", null);
+          }
+        } else {
+          this.commonService.goTo("/login", null);
+        }
       });
   }
 
+  back() {
+    setTimeout(() => {
+      window.history.back();
+    }, 400);
+  }
 
+  exportCsv() {
+    setTimeout(() => {
+      let customersCSV: ID_xCustomers[] = [];
+      for (let a = 0; a < this.customers.length; a++) {
+        const customer: Customer = this.customers[a];
+        let item: ID_xCustomers = {
+          "Id": customer.Id,
+          "Llave única del cliente": customer.llaveUnicaCliente,
+          "Nombres": customer.Nombres,
+          "Apellidos": customer.Apellidos,
+          "Tipo de documento de identidad": customer.Tipo_Documento,
+          "Numero del documento de identidad": customer.Numero_Documento,
+          "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
+          "Fecha de creación": customer.createdAt,
+          "Fecha de modificación": customer.updatedAt,
+        }
+        customersCSV.push(item);
+      };
+      this.commonService.exportAsExcelFile(customersCSV, "Clientes");
+    }, 400);
+  }
 
+  openDialogDelete(data: any) {
+    setTimeout(() => {
+      this.dialog = true;
+      if (data.deleteAll) {
+        this.messageDialog = "¿está seguro de eliminar todos los elementos de esta lista?";
+        this.deleteAll = true;
+        this.deleteSelected = false;
+        this.deleteSingle = false;
+        this.deleteSingleCard = false;
+        this.customersToDelete = data.customers;
+      } else if (data.deleteSelected) {
+        this.messageDialog = "¿está seguro de eliminar el o los elemento(s) seleccionado(s)?";
+        this.deleteAll = false;
+        this.deleteSelected = true;
+        this.deleteSingle = false;
+        this.deleteSingleCard = false;
+        this.customersToDelete = data.customers;
+      } else if (data.deleteSingle) {
+        this.messageDialog = "¿está seguro de eliminar este elemento?";
+        this.deleteAll = false;
+        this.deleteSelected = false;
+        this.deleteSingle = true;
+        this.deleteSingleCard = false;
+        this.idCustomerDelete = data.customer.id;
+      }
+    }, 400);
+  }
+
+  cancelDelete(data: any) {
+    this.dialog = data.close ? false : true;
+    this.close();
+    this.commonService.shareData({ unSelected: true });
+  }
+
+  open(data: any) {
+    this.modeOpen = true;
+    this.modeEdit = false;
+    this.customerOpen = data.customer;
+    this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
+    this.HttpService.getAllFrecuencies(this.token, 1, 100, "clienteId", this.customerOpen.Id).subscribe((response) => {
+      if (response) {
+        if (response.results.length > 0) {
+          let frequencies = response.results;
+          let frequenciesFormat: Frequency[] = [];
+          for (let a = 0; a < frequencies.length; a++) {
+            const frequency: any | Frequency = frequencies[a];
+            let created = frequency.createdAt ? moment(frequency.createdAt).local(true).format(this.formatDate) : "";
+            let updated = frequency.updatedAt ? moment(frequency.updatedAt).local(true).format(this.formatDate) : "";
+            let item: Frequency = {
+              createdAt: created,
+              CampanaId: frequency.CampanaId ? frequency.CampanaId : "",
+              Campanas_Nombre: frequency.Campanas_Nombre ? frequency.Campanas_Nombre : "",
+              ClienteId: frequency.ClienteId ? frequency.ClienteId : "",
+              Clientes_Apellidos: frequency.Clientes_Apellidos ? frequency.Clientes_Apellidos : "",
+              Clientes_Nombres: frequency.Clientes_Nombres ? frequency.Clientes_Nombres : "",
+              Id: frequency.Id ? frequency.Id : "",
+              selected: false,
+              show: true,
+              ToquesDia: frequency.ToquesDia ? frequency.ToquesDia : "",
+              updatedAt: updated,
+            }
+            frequenciesFormat.push(item);
+          }
+          this.frequencies = frequenciesFormat;
+          this.showFrequency = true;
+        } else {
+          this.showFrequency = false;
+        }
+      } else {
+        this.showFrequency = false;
+      }
+    });
+    setTimeout(() => {
+      if (this.elems.table) {
+        this.elems.table.scrollLeft = 1264;
+      }
+    }, 400);
+  }
+
+  editFromOpen(customer: Customer) {
+    this.spinner = true;
+    setTimeout(() => {
+      this.spinner = false;
+      this.customerEdit = customer;
+      this.modeOpen = false;
+      this.modeEdit = true;
+      this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
+      setTimeout(() => {
+        this.elems.table.scrollLeft = 1264;
+      }, 400);
+    }, 400);
+  }
+
+  close() {
+    setTimeout(() => {
+      this.modeOpen = false;
+      this.modeEdit = false;
+      this.commonService.shareData({ unSelected: true });
+    }, 400);
+  }
+
+  edit(data: any) {
+    this.modeOpen = false;
+    this.modeEdit = true;
+    let created = data ? data.cusotmer ? moment(data.cusotmer.createdAt).format("YYYY-MM-DDTkk:mm") : "" : "";
+    let update = data ? data.cusotmer ? moment(data.cusotmer.updatedAt).format("YYYY-MM-DDTkk:mm") : "" : "";
+    data.cusotmer.createdAt = created;
+    data.cusotmer.updatedAt = update;
+    this.customerEdit = data.cusotmer;
+    this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
+    setTimeout(() => {
+      this.elems.table.scrollLeft = 1264;
+    }, 400);
+  }
+
+  cancel() {
+    this.spinner = true;
+    setTimeout(() => {
+      this.spinner = false;
+      this.modeOpen = false;
+      this.modeEdit = false;
+      this.commonService.shareData({ unSelected: true });
+    }, 400);
+  }
+
+  update() {
+    this.spinner = true;
+    this.elems.name = document.getElementById("name") ? document.getElementById("name") : null;
+    this.elems.lastname = document.getElementById("lastname") ? document.getElementById("lastname") : null;
+    setTimeout(() => {
+      let item: any = {}
+      let request = [];
+      request.push(item);
+      this.HttpService.updateCustomer(request, this.token).subscribe((response) => {
+        if (response) {
+          this.spinner = false;
+          this.feedback.code = "s0000";
+          this.feedback.error = false;
+          this.feedback.warning = false;
+          this.feedback.success = true;
+          this.feedback.show = true;
+          setTimeout(() => {
+            this.feedback.code = "";
+            this.feedback.error = false;
+            this.feedback.warning = false;
+            this.feedback.success = false;
+            this.feedback.show = false;
+            this.close();
+          }, 4000);
+        } else {
+          this.spinner = false;
+          this.feedback.code = "e0004";
+          this.feedback.error = true;
+          this.feedback.warning = false;
+          this.feedback.success = false;
+          this.feedback.show = true;
+          setTimeout(() => {
+            this.feedback.code = "";
+            this.feedback.error = false;
+            this.feedback.warning = false;
+            this.feedback.success = false;
+            this.feedback.show = false;
+            this.close();
+          }, 4000);
+        }
+      }, (error) => {
+        this.spinner = false;
+        this.feedback.code = "e0004";
+        this.feedback.error = true;
+        this.feedback.warning = false;
+        this.feedback.success = false;
+        this.feedback.show = true;
+        setTimeout(() => {
+          this.feedback.code = "";
+          this.feedback.error = false;
+          this.feedback.warning = false;
+          this.feedback.success = false;
+          this.feedback.show = false;
+          this.close();
+        }, 4000);
+      });
+    }, 400);
+  }
+
+  openDialogDeleteCard(customer: Customer) {
+    setTimeout(() => {
+      this.messageDialog = "¿está seguro de eliminar este elemento?"
+      this.dialog = true;
+      this.deleteAll = false;
+      this.deleteSelected = false;
+      this.deleteSingle = false;
+      this.deleteSingleCard = true;
+      this.idCustomerDelete = customer.Id;
+    }, 400);
+  }
+
+  deleteCustomers(data: any) {
+    if (data.action) {
+      if (this.deleteAll) {
+        let allDelete = 0;
+        for (let a = 0; a < this.customersToDelete.length; a++) {
+          const customer: Customer = this.customersToDelete[a];
+          this.HttpService.deleteCustomer(customer.Id, this.token).subscribe((response) => {
+            if (response) {
+              allDelete = allDelete + 1;
+            } else {
+              allDelete = 0;
+            }
+          }, (error) => {
+            allDelete = 0;
+          });
+        }
+        if (allDelete > 0) {
+          this.feedbackCode = "s0002";
+          this.dialogStates.error = false;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = true;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        } else {
+          this.feedbackCode = "e0003";
+          this.dialogStates.error = true;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = false;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        }
+      } else if (this.deleteSelected) {
+        let deletes = 0;
+        for (let b = 0; b < this.customersToDelete.length; b++) {
+          const customer: Customer = this.customersToDelete[b];
+          this.HttpService.deleteCustomer(customer.Id, this.token).subscribe((response) => {
+            if (response) {
+              deletes = deletes + 1;
+            } else {
+              deletes = 0;
+            }
+          }, (error) => {
+            deletes = 0;
+          });
+        }
+        if (deletes > 0) {
+          this.feedbackCode = "s0003";
+          this.dialogStates.error = false;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = true;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        } else {
+          this.feedbackCode = "e0003";
+          this.dialogStates.error = true;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = false;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        }
+      } else if (this.deleteSingle) {
+        this.HttpService.deleteCustomer(this.idCustomerDelete, this.token).subscribe((response) => {
+          if (response) {
+            this.feedbackCode = "s0001";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
+          this.feedbackCode = "e0003";
+          this.dialogStates.error = true;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = false;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        });
+      } else if (this.deleteSingleCard) {
+        this.HttpService.deleteCustomer(this.idCustomerDelete, this.token).subscribe((response) => {
+          if (response) {
+            this.feedbackCode = "s0001";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
+          this.feedbackCode = "e0003";
+          this.dialogStates.error = true;
+          this.dialogStates.warning = false;
+          this.dialogStates.success = false;
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
+        });
+      }
+    }
+  }
+
+  downloadCustomer(customer: Customer) {
+    setTimeout(() => {
+      let customersCSV: ID_xCustomers[] = [];
+      let item: ID_xCustomers = {
+        "Id": customer.Id,
+        "Llave única del cliente": customer.llaveUnicaCliente,
+        "Nombres": customer.Nombres,
+        "Apellidos": customer.Apellidos,
+        "Tipo de documento de identidad": customer.Tipo_Documento,
+        "Numero del documento de identidad": customer.Numero_Documento,
+        "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
+        "Fecha de creación": customer.createdAt,
+        "Fecha de modificación": customer.updatedAt,
+      }
+      customersCSV.push(item);
+      this.commonService.exportAsExcelFile(customersCSV, 'Cliente');
+      this.close();
+    }, 400);
+  }
+
+  backPage() {
+    setTimeout(() => {
+      this.actualPage = this.actualPage <= 1 ? 1 : this.actualPage - 1;
+      this.getAll(this.actualPage, this.size);
+      this.close();
+      this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
+      this.elems.table.scrollTop = 0;
+      this.elems.table.scrollLeft = 0;
+    }, 400);
+  }
+
+  nextPage() {
+    setTimeout(() => {
+      this.actualPage = this.actualPage + 1;
+      this.getAll(this.actualPage, this.size);
+      this.close();
+      this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
+      this.elems.table.scrollTop = 0;
+      this.elems.table.scrollLeft = 0;
+    }, 400);
+  }
 }

@@ -1,0 +1,206 @@
+{
+  "pCampaigns": [
+    {
+      "id": "id",
+      "name": "Id",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "externalId",
+      "name": "Código de la campaña",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "nameCampaign",
+      "name": "Nombre de la campaña",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "numberSendsCustomersDays",
+      "name": "Envíos por días a clientes",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "createdAt",
+      "name": "Creada",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "updatedAt",
+      "name": "Modificada",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    }
+  ],
+  "pCustomers": [
+    {
+      "id": "Id",
+      "name": "Id",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "llaveUnicaCliente",
+      "name": "Llave única del cliente",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Nombres",
+      "name": "Nombres",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Apellidos",
+      "name": "Apellidos",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Tipo_Documento",
+      "name": "Tipo de documento de identidad",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Numero_Documento",
+      "name": "Número del documento de identidad",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "ListaNegra",
+      "name": "¿en lista negra?",
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
+    },
+    {
+      "id": "createdAt",
+      "name": "Creado",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "updatedAt",
+      "name": "Modificado",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    }
+  ],
+  "pUsers": [
+    {
+      "id": "Id",
+      "name": "Id",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "NombreUsuario",
+      "name": "Nombre del usuario",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "createdAt",
+      "name": "Creado",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "updatedAt",
+      "name": "Modificado",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    }
+  ],
+  "pFrequencies": [
+    {
+      "id": "Id",
+      "name": "Id",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "ClienteId",
+      "name": "Id del cliente",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Clientes_Nombres",
+      "name": "Nombre del cliente",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Clientes_Apellidos",
+      "name": "Apellidos del cliente",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "CampanaId",
+      "name": "Id de la camapaña",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "Campanas_Nombre",
+      "name": "Nombre de la camapaña",
+      "iconAscendent": "041",
+      "iconDecendent": "040",
+      "order": true
+    },
+    {
+      "id": "ToquesDia",
+      "name": "Toques del día",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "createdAt",
+      "name": "Creada",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    },
+    {
+      "id": "updatedAt",
+      "name": "Modificada",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
+      "order": true
+    }
+  ]
+}

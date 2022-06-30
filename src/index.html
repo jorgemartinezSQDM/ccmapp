@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>CCMApp</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- Compiled and minified CSS -->
-    <link
+
+<head>
+  <meta charset="utf-8" />
+  <title>CCMApp</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="assets/css/MAK_animate_2022-02-01_VR01.css">
+  <!-- Compiled and minified CSS -->
+  <!--<link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <!-- We need jquery first -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    />-->
+  <!-- We need jquery first -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script async src="assets/js/MAK_universalsmoothscroll_2022-06-22_VR1.js"></script>
-    <script async src="assets/js/MAK_universalsmoothscroll-ease-functions_2022-06-22_VR1.js"></script>
-  </head>
-  <body onload="init()">
-    <app-root></app-root>
-    <script>
-      function init() {
-        uss.hrefSetup();
-        uss.setStepLengthCalculator(EASE_IN_OUT_QUART(1000), window);
-        window.addEventListener("wheel", () => uss.stopScrolling(window));
-      }
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll(".sidenav");
-        var instances = M.Sidenav.init(elems, options);
-      });
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script async src="assets/js/MAK_universalsmoothscroll_2022-06-22_VR1.js"></script>
+  <script async src="assets/js/MAK_universalsmoothscroll-ease-functions_2022-06-22_VR1.js"></script>
+</head>
 
-      // Or with jQuery
+<body onload="init()">
+  <app-root></app-root>
+  <script>
+    function init() {
+      uss.hrefSetup();
+      uss.setStepLengthCalculator(EASE_IN_OUT_QUART(1000), window);
+      window.addEventListener("wheel", () => uss.stopScrolling(window));
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".sidenav");
+      var instances = M.Sidenav.init(elems, options);
+    });
 
-      $(document).ready(function () {
-        $(".sidenav").sidenav();
-      });
-    </script>
-  </body>
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $(".sidenav").sidenav();
+    });
+  </script>
+</body>
+
 </html>

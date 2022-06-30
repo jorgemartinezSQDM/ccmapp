@@ -1,5 +1,5 @@
 <div (window:resize)="onResize($event);">
-  <nav>
+  <!--<nav>
     <div class="nav-wrapper red darken-1">
       <a routerLink="/index" class="brand-logo">{{ title }}</a>
       <a routerLink="/index" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -12,11 +12,71 @@
         </li>
       </ul>
     </div>
-  </nav>
-
-  <div class="container">
-    <div class="row">
-      <router-outlet></router-outlet>
+  </nav>-->
+  <div class="header flexBox" [ngClass]="{expand: !collapse, modeDialog: modeDialog}" *ngIf="login">
+    <div class="logo" (click)="goToHome();">
+      <img src="{{logo}}" alt="Claro" *ngIf="!hide || !collapse">
+      <img src="{{isotipo}}" alt="Claro" *ngIf="hide && collapse">
     </div>
+    <div class="avatar" *ngIf="!hide">
+      <app-avatar class="appAvatar" [status]="stateProfile"></app-avatar>
+    </div>
+    <div class="search" *ngIf="hide">
+      <app-input-search class="appInpSearch" [expandable]="true" (collapse)="expandLateralMenuSearch($event)">
+      </app-input-search>
+    </div>
+    <div class="btnMenu" *ngIf="!hide">
+      <app-button [id]="'mainHeader'" class="appButton" [onlyIcon]="true" [modeSwitch]="true" [icon]="'005'"
+        [iconSwitch]="'006'" (on)="showMenu($event);">
+      </app-button>
+    </div>
+    <div class="navigator" *ngIf="showNavigation">
+      <div class="lists">
+        <div class="search" *ngIf="!hide">
+          <app-input-search class="appInpSearch"></app-input-search>
+        </div>
+        <div class="itemsNav fadeInUp" *ngFor="let itemNav of listMenu">
+          <app-button class="appButton" [modeSwitch]="true" [icon]="itemNav.iconcode" [right]="true"
+            [label]="itemNav.name" [full]="fullItemsNav" (click)="goToComponent(itemNav)" [onlyIcon]="collapse"
+            [selected]="itemNav.selected">
+          </app-button>
+        </div>
+      </div>
+      <div class="profile fadeInUp">
+        <div class="itemsNav flexBox" *ngIf="hide">
+          <app-button class="appButton" [icon]="'014'" [label]="'Expandir'" [onlyIcon]="collapse" *ngIf="collapse"
+            (click)="expandLateralMenu();">
+          </app-button>
+          <app-button class="appButton" [icon]="'015'" [label]="'Contraer'" [onlyIcon]="collapse" *ngIf="!collapse"
+            (click)="contracLateralMenu();">
+          </app-button>
+        </div>
+        <div class="itemsNav" *ngFor="let itemActPro of listActionsProfile">
+          <app-button class="appButton" [icon]="itemActPro.iconcode" [right]="true" [label]="itemActPro.name"
+            [full]="fullItemsNav" [onlyIcon]="collapse">
+          </app-button>
+        </div>
+        <div id="login" class="itemsNav flexBox" *ngIf="!login">
+          <app-button class="appButton" [icon]="'002'" [label]="'Iniciar sesión'" [primary]="true" [onlyIcon]="collapse"
+            (click)="goToHome();">
+          </app-button>
+        </div>
+        <div id="logout" class="itemsNav flexBox" *ngIf="login">
+          <app-button class="appButton" [icon]="'012'" [label]="'Cerrar sesión'" [primary]="true" [onlyIcon]="collapse"
+            (click)="logOut();">
+          </app-button>
+        </div>
+        <div class="infoProfile flexBox" *ngIf="hide">
+          <app-avatar class="appAvatar" [status]="stateProfile"></app-avatar>
+          <div class="information" *ngIf="!collapse">
+            <p class="name bold">Lorem ipsum</p>
+            <p class="other norm">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
 </div>

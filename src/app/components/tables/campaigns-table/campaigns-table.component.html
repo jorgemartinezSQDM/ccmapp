@@ -1,0 +1,102 @@
+<div class="table flexBox" [ngClass]="{pagination: pagination}">
+  <div class="filters">
+    <div class="search">
+      <p class="name norm">Buscar por <span class="bold">{{filterName}}:</span></p>
+      <app-input-search class="appInpSearch" (search)="search($event);"></app-input-search>
+    </div>
+    <div class="others flexBox">
+      <div class="btnFilters" [ngClass]="{showFilters: showFilters}" *ngIf="!noBtnFilters">
+        <app-button class="appButton" [icon]="'018'" [iconSwitch]="'039'" [label]="'Mostrar filtros'"
+          [labelSwitch]="'Ocultar filtros'" [primary]="true" [modeSwitch]="true" (on)="onOffFilters($event);">
+        </app-button>
+      </div>
+      <div class="listFilters" *ngIf="showFilters" [ngClass]="{date: modeFilterDate, columns: modeFilterColumns}">
+        <div id="forId" class="filter">
+          <p class="name norm">Columnas</p>
+          <app-select-option class="appSelectOption" [default]="'un parametro'" [options]="filters"
+            (select)="getSelect($event)" (event)="onOffModeFilterColumns($event);">
+          </app-select-option>
+        </div>
+        <div id="dateCreated" class="filter">
+          <p class="name norm">Fecha</p>
+          <app-select-option class="appSelectOption" [default]="'fecha'" [options]="optDateFilter"
+            (select)="getSelect($event)" (event)="onOffModeFilterDate($event);">
+          </app-select-option>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list" [ngClass]="{showFilters: showFilters, date: modeFilterDate, columns: modeFilterColumns}">
+    <div class="titles">
+      <div id="selectAll" class="clmn">
+        <app-checkbox (checked)="onOffSelectedAll($event);" [selected]="selectedAll"></app-checkbox>
+      </div>
+      <div class="clmn" *ngFor="let title of listTitles">
+        <app-text-table [value]="title.name" [order]="true" [iconAscendent]="title.iconAscendent"
+          [iconDecendent]="title.iconDecendent" (click)="sort(title);" [table]="'campaigns'"></app-text-table>
+      </div>
+      <div id="crudTitle" class="clmn flexBox">
+        <div id="deleteAll" class="crud">
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" [block]="!selectedAll && !campaignSelected"
+            (click)="deleteAll();">
+          </app-button>
+        </div>
+        <div id="downloadAll" class="crud">
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" [block]="!selectedAll && !campaignSelected"
+            (click)="downloadAll();"></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="values">
+      <ng-container *ngIf="campaigns; else loaders">
+        <div class="value" *ngFor="let campaing of campaigns; let i = index"
+          [ngClass]="{selected: campaing.selected, hide: !campaing.show}" title="{{campaing.nameCampaign}}">
+          <div id="selectRow" class="clmn selector">
+            <app-checkbox (checked)="onOffSelected($event, campaing, i)" [selected]="selectedAll || campaing.selected">
+            </app-checkbox>
+          </div>
+          <p id="" class="clmn" [innerHTML]="campaing.id" title="{{campaing.id}}"></p>
+          <p id="" class="clmn" [innerHTML]="campaing.externalId" title="{{campaing.externalId}}"></p>
+          <p id="" class="clmn" [innerHTML]="campaing.nameCampaign" title="{{campaing.nameCampaign}}"></p>
+          <p id="" class="clmn sends" [innerHTML]="campaing.numberSendsCustomersDays"
+            title="{{campaing.numberSendsCustomersDays}}"></p>
+          <p id="" class="clmn" [innerHTML]="campaing.createdAt" title="{{campaing.createdAt}}"></p>
+          <p id="" class="clmn" [innerHTML]="campaing.updatedAt" title="{{campaing.updatedAt}}"></p>
+          <div id="crud" class="clmn flexBox">
+            <div id="open" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openCampaign(campaing, i);">
+              </app-button>
+            </div>
+            <div id="edit" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'025'" (click)="editCampaign(campaing, i);">
+              </app-button>
+            </div>
+            <div id="delete" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" (click)="deleteCampaign(campaing, i);">
+              </app-button>
+            </div>
+            <div id="download" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" (click)="downloadCampaign(campaing, i);">
+              </app-button>
+            </div>
+          </div>
+          <div class="fill"></div>
+        </div>
+      </ng-container>
+      <ng-template #loaders>
+        <div class="value loads" *ngFor="let item of itemsLoaders">
+          <div class="checkbox loader"></div>
+          <div class="clmnLoad" *ngFor="let clmn of numClmns">
+            <div class="val loader" [ngStyle]="{width: clmn.width}"></div>
+          </div>
+          <div class="crudLoad flexBox">
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

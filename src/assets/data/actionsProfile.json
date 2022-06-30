@@ -1,0 +1,16 @@
+{
+  "actionsProfile":[
+    {
+      "id": "00",
+      "slug": "",
+      "name": "Configuración",
+      "iconcode": "011"
+    },
+    {
+      "id": "01",
+      "slug": "",
+      "name": "Soporte",
+      "iconcode": "013"
+    }
+  ]
+}

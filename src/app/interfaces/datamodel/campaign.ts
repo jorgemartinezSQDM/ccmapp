@@ -1,9 +1,11 @@
 
 export interface Campaign {
-    Nombre_Campaña: String,
-    ExternalId: String,
-    Id: Number,
-    numeroVecesClientesDia: Number,
-    createdAt: Date,
-    updatedAt: Date
+  createdAt: any;
+  externalId: string;
+  id: string;
+  nameCampaign: string;
+  numberSendsCustomersDays: string;
+  show: boolean;
+  selected: boolean;
+  updatedAt: any;
 }

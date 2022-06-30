@@ -1,0 +1,105 @@
+{
+  "fCampaigns": [
+    {
+      "id": "id",
+      "icon": "",
+      "value": "id"
+    },
+    {
+      "id": "externalId",
+      "icon": "",
+      "value": "código de campaña"
+    },
+    {
+      "id": "nameCampaign",
+      "icon": "",
+      "value": "nombre de la campaña"
+    },
+    {
+      "id": "numberSendsCustomersDays",
+      "icon": "",
+      "value": "número de envíos por días a clientes"
+    }
+  ],
+  "fCustomers": [
+    {
+      "id": "Id",
+      "icon": "",
+      "value": "id"
+    },
+    {
+      "id": "llaveUnicaCliente",
+      "icon": "",
+      "value": "llave única del cliente"
+    },
+    {
+      "id": "Nombres",
+      "icon": "",
+      "value": "nombres"
+    },
+    {
+      "id": "Apellidos",
+      "icon": "",
+      "value": "apellidos"
+    },
+    {
+      "id": "Tipo_Documento",
+      "icon": "",
+      "value": "tipo de documento de identidad"
+    },
+    {
+      "id": "Numero_Documento",
+      "icon": "",
+      "value": "número del documento de identidad"
+    }
+  ],
+  "fUsers": [
+    {
+      "id": "Id",
+      "icon": "",
+      "value": "id"
+    },
+    {
+      "id": "NombreUsuario",
+      "icon": "",
+      "value": "nombre de usuario"
+    }
+  ],
+  "fFrequencies": [
+    {
+      "id": "Id",
+      "icon": "",
+      "value": "id"
+    },
+    {
+      "id": "ClienteId",
+      "icon": "",
+      "value": "Id del cliente"
+    },
+    {
+      "id": "Clientes_Nombres",
+      "icon": "",
+      "value": "Nombre del cliente"
+    },
+    {
+      "id": "Clientes_Apellidos",
+      "icon": "",
+      "value": "Apellidos del cliente"
+    },
+    {
+      "id": "CampanaId",
+      "icon": "",
+      "value": "Id de la camapaña"
+    },
+    {
+      "id": "Campanas_Nombre",
+      "icon": "",
+      "value": "Nombre de la camapaña"
+    },
+    {
+      "id": "ToquesDia",
+      "icon": "",
+      "value": "Toques del día"
+    }
+  ]
+}

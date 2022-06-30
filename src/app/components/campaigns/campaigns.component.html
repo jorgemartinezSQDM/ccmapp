@@ -1,4 +1,4 @@
-<table>
+<!--<table>
   <thead>
     <tr>
       <th>Id</th>
@@ -16,4 +16,153 @@
       <td>{{ campaing.numeroVecesClientesDia }}</td>
     </tr>
   </tbody>
-</table>
+</table>-->
+<div class="campaigns" [ngClass]="{modeOpen: modeOpen, modeEdit: modeEdit}">
+  <div class="dialogContent" *ngIf="dialog">
+    <div class="dialog">
+      <app-dialog class="appDialog" [actions]="true" [title]="'Eliminar'" [description]="messageDialog"
+        [nameAction]="'Eliminar'" (close)="cancelDelete($event);" (action)="deleteCampaign($event);" [radius]="true"
+        [feedbackcCode]="feedbackCode" [error]="dialogStates.error" [warning]="dialogStates.warning"
+        [success]="dialogStates.success"></app-dialog>
+    </div>
+  </div>
+  <div class="navigator flexBox">
+    <div class="breadCrumb">
+      <div class="navItem flexBox">
+        <app-button class="appButton" [icon]="'016'" [label]="'Volver'" (click)="back();">
+        </app-button>
+        <app-button class="appButton" [icon]="'016'" [label]="'Cerrar'" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+    <div class="specialActions flexBox">
+      <div class="action flexBox">
+        <app-button class="appButton" [icon]="'017'" [label]="'CSV'" [secondary]="true" (click)="exportCsv();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div class="titulation" *ngIf="title">
+    <p class="title boldTit" [innerHTML]="title"></p>
+    <p class="description norm" [innerHTML]="description" *ngIf="description"></p>
+  </div>
+  <div class="table" [ngClass]="{pagination: pagination}">
+    <app-campaigns-table class="appCampaignsTable" [numberColumnsLoader]="6" [campaigns]="campaigns"
+      (open)="open($event);" (edit)="edit($event);" (delete)="openDialogDelete($event);" [pagination]="pagination">
+    </app-campaigns-table>
+  </div>
+  <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">
+    <div class="values flexBox">
+      <div id="idOpen" class="data">
+        <p class="value norm" [innerHTML]="campaignOpen.id"></p>
+      </div>
+      <div id="nameOpen" class="data">
+        <p class="value bold" [innerHTML]="campaignOpen.nameCampaign"></p>
+      </div>
+      <div id="externalIdOpen" class="data flexBox">
+        <p class="label norm">Código de campaña:</p>
+        <p class="value bold" [innerHTML]="campaignOpen.externalId"></p>
+      </div>
+      <div id="sendByDays" class="data">
+        <p class="label norm">Envios a clientes por días:</p>
+        <p class="value boldTit" [innerHTML]="campaignOpen.numberSendsCustomersDays"></p>
+      </div>
+      <div class="data" id="frecuencias" *ngIf="showFrequency">
+        <p class="label norm">Frecuencias de la campaña:</p>
+        <div class="frequencies">
+          <table>
+            <tr>
+              <th class="bold">Id</th>
+              <th class="bold">Nombre del cliente</th>
+              <th class="bold">Toques generados</th>
+              <th class="bold">Creada</th>
+              <th class="bold">Modificada</th>
+            </tr>
+            <tr *ngFor="let frequency of frequencies">
+              <td class="norm">{{frequency.Id}}</td>
+              <td class="norm">{{frequency.Clientes_Nombres}} {{frequency.Clientes_Apellidos}}</td>
+              <td class="norm">{{frequency.ToquesDia}}</td>
+              <td class="norm">{{frequency.createdAt}}</td>
+              <td class="norm">{{frequency.updatedAt}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="dates flexBox">
+        <div id="created" class="data flexBox" title="{{campaignOpen.createdAt}}">
+          <p class="label norm">Creada:</p>
+          <p class="value bold" [innerHTML]="campaignOpen.createdAt"></p>
+        </div>
+        <div id="updatedAt" class="data flexBox" title="{{campaignOpen.updatedAt}}">
+          <p class="label norm">Modificada:</p>
+          <p class="value bold" [innerHTML]="campaignOpen.updatedAt"></p>
+        </div>
+      </div>
+    </div>
+    <div class="actions" [ngClass]="{spinner: spinner}">
+      <app-spinner class="appSpinner" *ngIf="spinner"></app-spinner>
+      <div id="btnEditOpenCampaign" class="btnAction">
+        <app-button class="appButton" [label]="'Editar'" [primary]="true" (click)="editFromOpen(campaignOpen);"
+          *ngIf="!spinner">
+        </app-button>
+      </div>
+      <div id="btnDeleteOpenCampaign" class="btnAction">
+        <app-button class="appButton" [label]="'Eliminar'" [primary]="true" *ngIf="!spinner"
+          (click)="openDialogDeleteCard(campaignOpen);"></app-button>
+      </div>
+      <div id="btnDownloadOpenCampaign" class="btnAction">
+        <app-button class="appButton" [label]="'Descargar'" *ngIf="!spinner" (click)="downloadCampaign(campaignOpen)">
+        </app-button>
+      </div>
+      <div id="btnCloseOpenCampaign" class="btnAction">
+        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div id="modeEdit" class="cardItem" [ngClass]="{pagination: pagination}">
+    <div class="values flexBox">
+      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Código de campaña:</p>
+        <app-input-text class="input" [id]="'externalIdEdit'" [placeholder]="'Código de campaña'" [type]="'text'"
+          [responsive]="true" [value]="campaignEdit.externalId">
+        </app-input-text>
+      </div>
+      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Nombre de la campaña:</p>
+        <app-input-text class="input" [id]="'nameCampaignEdit'" [placeholder]="'Nombre de la campaña'" [type]="'text'"
+          [responsive]="true" [value]="campaignEdit.nameCampaign">
+        </app-input-text>
+      </div>
+      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Envíos por días a clientes:</p>
+        <app-input-text class="input" [id]="'sendsByDaysEdit'" [placeholder]="'Envíos por días a clientes'"
+          [type]="'text'" [responsive]="true" [value]="campaignEdit.numberSendsCustomersDays">
+        </app-input-text>
+      </div>
+    </div>
+    <div class="actions" [ngClass]="{spinner: spinner}">
+      <app-spinner class="appSpinner" *ngIf="spinner && !feedback.show"></app-spinner>
+      <app-feedback class="appFeedback" [responsive]="true" [code]="feedback.code" [error]="feedback.error"
+        [warning]="feedback.warning" [success]="feedback.success" *ngIf="!spinner && feedback.show"></app-feedback>
+      <div id="btnEditEditCampaign" class="btnAction right" *ngIf="!spinner && !feedback.show">
+        <app-button class="appButton" [label]="'Actualizar'" [primary]="true" (click)="update();"></app-button>
+      </div>
+      <div id="btnCancelEditCampaign" class="btnAction right" *ngIf="!spinner && !feedback.show">
+        <app-button class="appButton" [label]="'Cancelar'" (click)="cancel();"></app-button>
+      </div>
+      <div id="btnCloseEditCampaign" class="btnAction">
+        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner && !feedback.show" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div class="pagination flexBox" *ngIf="pagination">
+    <div class="btnPage" *ngIf="this.actualPage != 1">
+      <app-button class="appButton" [label]="'Anterior'" [secondary]="true" (click)="backPage();"></app-button>
+    </div>
+    <div class="btnPage" *ngIf="!lasted">
+      <app-button class="appButton" [label]="'Siguiente'" [secondary]="true" (click)="nextPage();"></app-button>
+    </div>
+  </div>
+</div>

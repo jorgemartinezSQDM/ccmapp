@@ -1,0 +1,54 @@
+.feedback {
+  width: auto;
+  margin: 8px;
+  padding: 8px 16px;
+  background-color: var(--second);
+  border-radius: 8px;
+}
+
+.feedback.error {
+  background-color: var(--error);
+}
+
+.feedback.warning {
+  background-color: var(--warning);
+}
+
+.feedback.success {
+  background-color: var(--success);
+}
+
+.feedback .message {
+  width: 100%;
+  color: var(--texts);
+  font-size: 12px;
+  text-align: center;
+}
+
+.feedback.error .message,
+.feedback.warning .message,
+.feedback.success .message {
+  color: var(--pureWhite);
+}
+
+.feedback.center .message {
+  text-align: center !important;
+}
+
+.feedback.responsive .message {
+  text-align: center;
+}
+
+.feedback.left .message {
+  text-align: left !important;
+}
+
+.feedback.right .message {
+  text-align: right !important;
+}
+
+@media (min-width: 768px) {
+  .feedback.responsive .message {
+    text-align: right;
+  }
+}

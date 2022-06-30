@@ -1,0 +1,87 @@
+.textTable {
+  width: 170px;
+  padding: 4px 8px;
+  color: var(--texts);
+  text-align: left;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.textTable:active,
+.textTable.active {
+  background-color: var(--color6);
+  transform: scale(0.98);
+}
+
+.textTable.block:active,
+.textTable.block.active {
+  background-color: transparent;
+  transform: scale(1);
+}
+
+.textTable .text {
+  width: auto;
+  margin-top: -1px;
+  font-size: 14px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.textTable .text::first-letter {
+  text-transform: uppercase;
+}
+
+.textTable.order .text {
+  width: calc(100% - 18px);
+}
+
+.textTable .icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+@media (min-width: 1081px) {
+  .textTable.users {
+    width: 217.4px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .textTable.campaigns {
+    width: 211px;
+  }
+
+  .textTable.customers {
+    width: 131.4px;
+  }
+
+  .textTable.users {
+    width: 326px;
+  }
+
+  .textTable.frequencies {
+    width: 326px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .textTable.campaigns {
+    width: 229.4px;
+  }
+
+  .textTable.customers {
+    width: 144.8px;
+  }
+
+  .textTable.users {
+    width: 356px;
+  }
+
+  .textTable.frequencies {
+    width: 356px;
+  }
+}

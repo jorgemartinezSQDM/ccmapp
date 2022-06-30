@@ -1,0 +1,483 @@
+.users {
+  width: calc(100% - 82px);
+  max-height: calc(100vh - 210px);
+  margin: 98px 24px 80px;
+  padding: 16px;
+  background-color: var(--bg);
+  border: 1px solid var(--second);
+  border-radius: 16px;
+}
+
+.users.modeOpen {
+  position: relative;
+  background-color: var(--color4);
+  border-color: var(--color2);
+}
+
+.users .dialogContent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.users .dialogContent .dialog {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.users .dialogContent .dialog .appDialog {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.users .navigator {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.users .navigator .breadCrumb {
+  width: calc(100% - 112px);
+  margin-right: 16px;
+}
+
+.users .navigator .breadCrumb .navItem {
+  margin-right: 8px;
+}
+
+.users .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.users .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: block;
+}
+
+.users .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.users .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: none;
+}
+
+.users.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.users.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: none;
+}
+
+.users.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.users.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: block;
+}
+
+.users .navigator .breadCrumb .navItem:last-child {
+  margin-right: 0px;
+}
+
+.users .navigator .specialActions {
+  width: 96px;
+  justify-content: flex-end;
+}
+
+.users .navigator .specialActions .action {
+  margin-right: 8px;
+}
+
+.users .navigator .specialActions .action:last-child {
+  margin-right: 0px;
+}
+
+.users .navigator .specialActions .action .appButton {
+  display: block;
+}
+
+.users.modeOpen .navigator .specialActions .action .appButton,
+.users.modeEdit .navigator .specialActions .action .appButton {
+  display: none;
+}
+
+.users .titulation {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+  text-align: left;
+  z-index: 1;
+}
+
+.users.modeOpen .titulation,
+.users.modeEdit .titulation {
+  display: none;
+}
+
+.users .titulation .title {
+  width: 100%;
+  color: var(--texts);
+  font-size: 24px;
+}
+
+.users .titulation .description {
+  width: 100%;
+  margin-top: 8px;
+  color: var(--texts);
+  font-size: 16px;
+}
+
+.users .table {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 306px);
+  margin-top: 16px;
+  z-index: 1;
+}
+
+.users .table.pagination {
+  max-height: calc(100vh - 362px);
+}
+
+.users.modeOpen .table,
+.users.modeEdit .table {
+  display: none;
+}
+
+.users .cardItem {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 250px);
+  z-index: 1;
+}
+
+.users .cardItem.pagination {
+  max-height: calc(100vh - 250px);
+}
+
+.users.modeOpen #modeOpen,
+.users.modeEdit #modeEdit {
+  display: block;
+}
+
+.users.modeOpen #modeEdit,
+.users.modeEdit #modeOpen {
+  display: none;
+}
+
+.users .cardItem .values {
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-height: calc(100vh - 322px);
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.users .cardItem.pagination .values {
+  max-height: calc(100vh - 322px);
+}
+
+.users .cardItem .values .data {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.users .cardItem .values .data.edit {
+  text-align: center;
+}
+
+.users .cardItem .values .data .label {
+  width: calc(100% - 32px);
+  margin-right: 16px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.users .cardItem .values .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.users .cardItem .values .data .input {
+  width: 100%;
+}
+
+.users .cardItem .values #idOpen {
+  margin-bottom: 8px;
+}
+
+.users .cardItem .values #nameOpen .value {
+  font-size: 24px;
+}
+
+.users .cardItem .values #externalIdOpen {
+  justify-content: center;
+}
+
+.users .cardItem .values #externalIdOpen .value {
+  width: auto;
+  padding: 8px;
+  color: var(--color1);
+  font-size: 14px;
+  background-color: var(--color2);
+  border-radius: 8px;
+}
+
+.users .cardItem .values #inBlacklist .value {
+  font-size: 72px;
+}
+
+.users .cardItem .values .dates {
+  width: 100%;
+}
+
+.users .cardItem .values .dates .data {
+  width: calc(50% - 16px);
+  margin-bottom: 16px;
+}
+
+.users .cardItem .values .dates .data:nth-child(2n+1) {
+  margin-right: 8px;
+  text-align: left;
+}
+
+.users .cardItem .values .dates .data:nth-child(2n) {
+  margin-left: 8px;
+  text-align: right;
+}
+
+.users .cardItem .values .dates .data .label {
+  width: 100%;
+  margin-right: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.users .cardItem .values .dates .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.users .cardItem .actions {
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+  text-align: center;
+  border-radius: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.users .cardItem .actions.spinner {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.users .cardItem .actions .btnAction {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.users .cardItem .actions .btnAction:last-child {
+  margin-right: 0px;
+}
+
+.users .cardItem .actions #btnCloseOpenCustomer,
+.users .cardItem .actions #btnCloseEditCustomer {
+  display: none;
+}
+
+.users .pagination {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+}
+
+.users.modeOpen .pagination,
+.users.modeEdit .pagination {
+  display: none;
+}
+
+.users .pagination .btnPage {
+  margin-right: 8px;
+}
+
+.users .pagination .btnPage:last-child {
+  margin-right: 0px;
+}
+
+@media (min-width: 768px) {
+  .users {
+    width: calc(100% - 170px);
+    max-height: calc(100vh - 82px);
+    margin: 24px 24px 24px 112px;
+  }
+
+  .users.modeOpen,
+  .users.modeEdit {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .users.modeOpen,
+  .users.modeEdit {
+    position: relative;
+    background-color: var(--bg);
+    border-color: var(--second);
+  }
+
+  .users.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+  .users.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+    display: block;
+  }
+
+  .users.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+  .users.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+    display: none;
+  }
+
+  .users.modeOpen .navigator .specialActions .action .appButton,
+  .users.modeEdit .navigator .specialActions .action .appButton {
+    display: block;
+  }
+
+  .users.modeOpen .titulation,
+  .users.modeEdit .titulation {
+    display: block;
+  }
+
+  .users .table {
+    max-height: calc(100vh - 180px);
+  }
+
+  .users .table.pagination {
+    max-height: calc(100vh - 236px);
+  }
+
+  .users.modeOpen .table,
+  .users.modeEdit .table {
+    display: block !important;
+    width: calc(50% - 8px);
+    margin-right: 8px;
+  }
+
+  .users .cardItem .values {
+    max-height: calc(100vh - 248px);
+    margin-top: 0px;
+  }
+
+  .users .cardItem.pagination .values {
+    max-height: calc(100vh - 324px);
+  }
+
+  .users .cardItem .values .data,
+  .users .cardItem .values .data.edit {
+    text-align: right;
+  }
+
+  .users .cardItem .values #externalIdOpen {
+    justify-content: flex-end;
+  }
+
+  .users .cardItem .actions {
+    text-align: right;
+  }
+
+  .users .cardItem .actions #btnCloseOpenCustomer,
+  .users .cardItem .actions #btnCloseEditCustomer {
+    display: inline-block;
+  }
+
+  .users.modeOpen #modeOpen,
+  .users.modeEdit #modeEdit {
+    display: block;
+    width: calc(50% - 42px);
+    max-height: calc(100vh - 194px);
+    margin-left: 8px;
+    padding: 16px;
+    background-color: var(--color4);
+    border: 1px solid var(--color2);
+    border-radius: 16px;
+  }
+
+  .users.modeOpen #modeOpen.pagination,
+  .users.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 268px);
+  }
+
+  .users.modeOpen #modeEdit,
+  .users.modeEdit #modeOpen {
+    display: none;
+  }
+
+  .users .pagination {
+    justify-content: flex-end;
+  }
+
+  .users.modeOpen .pagination,
+  .users.modeEdit .pagination {
+    display: flex;
+  }
+}
+
+@media (min-width: 1081px) {
+  .users {
+    width: calc(100% - 158px);
+    max-height: calc(100vh - 66px);
+    margin: 16px 24px 16px 106px;
+  }
+
+  .users .table {
+    max-height: calc(100vh - 160px);
+  }
+
+  .users .table.pagination {
+    max-height: calc(100vh - 216px);
+  }
+
+  .users.modeOpen .table,
+  .users.modeEdit .table {
+    width: calc(100% - 458px);
+  }
+
+  .users.modeOpen #modeOpen,
+  .users.modeEdit #modeEdit {
+    width: 408px;
+    max-height: calc(100vh - 180px);
+  }
+
+  .users.modeOpen #modeOpen.pagination,
+  .users.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 252px);
+  }
+
+  .users .cardItem .values {
+    max-height: calc(100vh - 236px);
+  }
+
+  .users .cardItem.pagination .values {
+    max-height: calc(100vh - 308px);
+  }
+}

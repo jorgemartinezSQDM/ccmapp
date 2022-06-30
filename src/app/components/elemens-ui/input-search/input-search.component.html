@@ -1,0 +1,8 @@
+<div class="inputSearch flexBox {{class}}"
+  [ngClass]="{focus: focus, hover: hover, block: block, expandable: expandable}" (mouseover)="hover=true;"
+  (mouseout)="hover=false;">
+  <div class="icon icon_{{icon}}r" *ngIf="!focus && !hover" (click)="expand();"></div>
+  <div class="icon icon_{{icon}}f" *ngIf="focus || hover" (click)="expand();"></div>
+  <input id="{{id}}" type="search" name="{{id}}" placeholder="{{placeholder}}" [(ngModel)]="value" disabled="{{block}}"
+    (focus)="focus=true;" (blur)="focus=false;" (keyup)="keyValue($event);" *ngIf="!expandable">
+</div>

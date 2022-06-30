@@ -1,0 +1,527 @@
+.customers {
+  width: calc(100% - 82px);
+  max-height: calc(100vh - 210px);
+  margin: 98px 24px 80px;
+  padding: 16px;
+  background-color: var(--bg);
+  border: 1px solid var(--second);
+  border-radius: 16px;
+}
+
+.customers.modeOpen {
+  position: relative;
+  background-color: var(--color4);
+  border-color: var(--color2);
+}
+
+.customers .dialogContent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.customers .dialogContent .dialog {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.customers .dialogContent .dialog .appDialog {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.customers .navigator {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.customers .navigator .breadCrumb {
+  width: calc(100% - 112px);
+  margin-right: 16px;
+}
+
+.customers .navigator .breadCrumb .navItem {
+  margin-right: 8px;
+}
+
+.customers .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.customers .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: block;
+}
+
+.customers .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.customers .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: none;
+}
+
+.customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  display: none;
+}
+
+.customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  display: block;
+}
+
+.customers .navigator .breadCrumb .navItem:last-child {
+  margin-right: 0px;
+}
+
+.customers .navigator .specialActions {
+  width: 96px;
+  justify-content: flex-end;
+}
+
+.customers .navigator .specialActions .action {
+  margin-right: 8px;
+}
+
+.customers .navigator .specialActions .action:last-child {
+  margin-right: 0px;
+}
+
+.customers .navigator .specialActions .action .appButton {
+  display: block;
+}
+
+.customers.modeOpen .navigator .specialActions .action .appButton,
+.customers.modeEdit .navigator .specialActions .action .appButton {
+  display: none;
+}
+
+.customers .titulation {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+  text-align: left;
+  z-index: 1;
+}
+
+.customers.modeOpen .titulation,
+.customers.modeEdit .titulation {
+  display: none;
+}
+
+.customers .titulation .title {
+  width: 100%;
+  color: var(--texts);
+  font-size: 24px;
+}
+
+.customers .titulation .description {
+  width: 100%;
+  margin-top: 8px;
+  color: var(--texts);
+  font-size: 16px;
+}
+
+.customers .table {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 306px);
+  margin-top: 16px;
+  z-index: 1;
+}
+
+.customers .table.pagination {
+  max-height: calc(100vh - 362px);
+}
+
+.customers.modeOpen .table,
+.customers.modeEdit .table {
+  display: none;
+}
+
+.customers .cardItem {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 250px);
+  z-index: 1;
+}
+
+.customers .cardItem.pagination {
+  max-height: calc(100vh - 250px);
+}
+
+.customers.modeOpen #modeOpen,
+.customers.modeEdit #modeEdit {
+  display: block;
+}
+
+.customers.modeOpen #modeEdit,
+.customers.modeEdit #modeOpen {
+  display: none;
+}
+
+.customers .cardItem .values {
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-height: calc(100vh - 322px);
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.customers .cardItem.pagination .values {
+  max-height: calc(100vh - 322px);
+}
+
+.customers .cardItem .values .data {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.customers .cardItem .values .data.edit {
+  text-align: center;
+}
+
+.customers .cardItem .values .data .label {
+  width: calc(100% - 32px);
+  margin-right: 16px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.customers .cardItem .values .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.customers .cardItem .values .data .input {
+  width: 100%;
+}
+
+.customers .cardItem .values #idOpen {
+  margin-bottom: 8px;
+}
+
+.customers .cardItem .values #nameOpen .value {
+  font-size: 24px;
+}
+
+.customers .cardItem .values #externalIdOpen {
+  justify-content: center;
+}
+
+.customers .cardItem .values #externalIdOpen .value {
+  width: auto;
+  padding: 8px;
+  color: var(--color1);
+  font-size: 14px;
+  background-color: var(--color2);
+  border-radius: 8px;
+}
+
+.customers .cardItem .values #inBlacklist .value {
+  font-size: 72px;
+}
+
+.customers .cardItem .values .dates {
+  width: 100%;
+}
+
+.customers .cardItem .values .dates .data {
+  width: calc(50% - 16px);
+  margin-bottom: 16px;
+}
+
+.customers .cardItem .values .dates .data:nth-child(2n+1) {
+  margin-right: 8px;
+  text-align: left;
+}
+
+.customers .cardItem .values .dates .data:nth-child(2n) {
+  margin-left: 8px;
+  text-align: right;
+}
+
+.customers .cardItem .values .dates .data .label {
+  width: 100%;
+  margin-right: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.customers .cardItem .values .dates .data .value {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.customers .cardItem .values .data .frequencies {
+  width: auto;
+  max-width: calc(100% - 2px);
+  max-height: 198px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--color2);
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.customers .cardItem .values .data .frequencies table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  width: 100%;
+}
+
+.customers .cardItem .values .data .frequencies table tr {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--second);
+}
+
+.customers .cardItem .values .data .frequencies table tr:nth-child(1) {
+  background-color: var(--color5);
+}
+
+.customers .cardItem .values .data .frequencies table tr:last-child {
+  border-bottom: none;
+}
+
+.customers .cardItem .values .data .frequencies table th,
+.customers .cardItem .values .data .frequencies table td {
+  min-width: 168px;
+  padding: 4px 8px;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+}
+
+.customers .cardItem .values .data .frequencies table th {
+  position: sticky;
+  top: 0px;
+}
+
+.customers .cardItem .actions {
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+  text-align: center;
+  border-radius: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.customers .cardItem .actions.spinner {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.customers .cardItem .actions .btnAction {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.customers .cardItem .actions .btnAction:last-child {
+  margin-right: 0px;
+}
+
+.customers .cardItem .actions #btnCloseOpenCustomer,
+.customers .cardItem .actions #btnCloseEditCustomer {
+  display: none;
+}
+
+.customers .pagination {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+  min-height: 40px;
+}
+
+.customers.modeOpen .pagination,
+.customers.modeEdit .pagination {
+  display: none;
+}
+
+.customers .pagination .btnPage {
+  margin-right: 8px;
+}
+
+.customers .pagination .btnPage:last-child {
+  margin-right: 0px;
+}
+
+@media (min-width: 768px) {
+  .customers {
+    width: calc(100% - 170px);
+    max-height: calc(100vh - 82px);
+    margin: 24px 24px 24px 112px;
+  }
+
+  .customers.modeOpen,
+  .customers.modeEdit {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .customers.modeOpen,
+  .customers.modeEdit {
+    position: relative;
+    background-color: var(--bg);
+    border-color: var(--second);
+  }
+
+  .customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+  .customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+    display: block;
+  }
+
+  .customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+  .customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+    display: none;
+  }
+
+  .customers.modeOpen .navigator .specialActions .action .appButton,
+  .customers.modeEdit .navigator .specialActions .action .appButton {
+    display: block;
+  }
+
+  .customers.modeOpen .titulation,
+  .customers.modeEdit .titulation {
+    display: block;
+  }
+
+  .customers .table {
+    max-height: calc(100vh - 180px);
+  }
+
+  .customers .table.pagination {
+    max-height: calc(100vh - 236px);
+  }
+
+  .customers.modeOpen .table,
+  .customers.modeEdit .table {
+    display: block !important;
+    width: calc(50% - 8px);
+    margin-right: 8px;
+  }
+
+  .customers .cardItem .values {
+    max-height: calc(100vh - 248px);
+    margin-top: 0px;
+  }
+
+  .customers .cardItem.pagination .values {
+    max-height: calc(100vh - 324px);
+  }
+
+  .customers .cardItem .values .data,
+  .customers .cardItem .values .data.edit {
+    text-align: right;
+  }
+
+  .customers .cardItem .values #externalIdOpen {
+    justify-content: flex-end;
+  }
+
+  .customers .cardItem .actions {
+    text-align: right;
+  }
+
+  .customers .cardItem .actions #btnCloseOpenCustomer,
+  .customers .cardItem .actions #btnCloseEditCustomer {
+    display: inline-block;
+  }
+
+  .customers.modeOpen #modeOpen,
+  .customers.modeEdit #modeEdit {
+    display: block;
+    width: calc(50% - 42px);
+    max-height: calc(100vh - 194px);
+    margin-left: 8px;
+    padding: 16px;
+    background-color: var(--color4);
+    border: 1px solid var(--color2);
+    border-radius: 16px;
+  }
+
+  .customers.modeOpen #modeOpen.pagination,
+  .customers.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 268px);
+  }
+
+  .customers.modeOpen #modeEdit,
+  .customers.modeEdit #modeOpen {
+    display: none;
+  }
+
+  .customers .pagination {
+    justify-content: flex-end;
+  }
+
+  .customers.modeOpen .pagination,
+  .customers.modeEdit .pagination {
+    display: flex;
+  }
+}
+
+@media (min-width: 1081px) {
+  .customers {
+    width: calc(100% - 158px);
+    max-height: calc(100vh - 66px);
+    margin: 16px 24px 16px 106px;
+  }
+
+  .customers .table {
+    max-height: calc(100vh - 160px);
+  }
+
+  .customers .table.pagination {
+    max-height: calc(100vh - 216px);
+  }
+
+  .customers.modeOpen .table,
+  .customers.modeEdit .table {
+    width: calc(100% - 458px);
+  }
+
+  .customers.modeOpen #modeOpen,
+  .customers.modeEdit #modeEdit {
+    width: 408px;
+    max-height: calc(100vh - 180px);
+  }
+
+  .customers.modeOpen #modeOpen.pagination,
+  .customers.modeEdit #modeEdit.pagination {
+    max-height: calc(100vh - 252px);
+  }
+
+  .customers .cardItem .values {
+    max-height: calc(100vh - 236px);
+  }
+
+  .customers .cardItem.pagination .values {
+    max-height: calc(100vh - 308px);
+  }
+}

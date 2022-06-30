@@ -1,0 +1,14 @@
+{
+  "optFiltersDate": [
+    {
+      "id": "createdAt",
+      "icon": "",
+      "value": "creación"
+    },
+    {
+      "id": "updatedAt",
+      "icon": "",
+      "value": "modificación"
+    }
+  ]
+}

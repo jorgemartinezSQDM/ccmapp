@@ -1,0 +1,21 @@
+<div class="dialog" [ngClass]="{radius: radius}">
+  <div class="content">
+    <p class="title bold" [innerHTML]="title" *ngIf="title"></p>
+    <p class="description norm" [innerHTML]="description"></p>
+    <div class="actions flexBox">
+      <app-spinner class="appSpinner" *ngIf="spinner && !feedback"></app-spinner>
+      <app-feedback class="appFeedback" [code]="feedbackcCode" [error]="error" [warning]="warning" [success]="success"
+        *ngIf="!spinner && feedback"></app-feedback>
+      <div id="" class="btnAction" *ngIf="!spinner && !feedback && actions">
+        <app-button class="appButton" [label]="'Cancelar'" (click)="cancel();"></app-button>
+      </div>
+      <div id="" class="btnAction" *ngIf="!spinner && !feedback && actions">
+        <app-button class="appButton" [label]="nameAction" [primary]="true" (click)="accepted();"></app-button>
+      </div>
+      <div id="" class="btnAction" *ngIf="!spinner && !feedback && !actions">
+        <app-button class="appButton" [label]="'Cerrar'" [primary]="true" (click)="cancel();"></app-button>
+      </div>
+    </div>
+  </div>
+  <div class="lightBox"></div>
+</div>

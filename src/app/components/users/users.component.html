@@ -1,4 +1,4 @@
-<table>
+<!--<table>
   <thead>
     <tr>
       <th>Id</th>
@@ -12,4 +12,112 @@
       <td>{{ user.NombreUsuario }}</td>
     </tr>
   </tbody>
-</table>
+</table>-->
+<div class="users" [ngClass]="{modeOpen: modeOpen, modeEdit: modeEdit}">
+  <div class="dialogContent" *ngIf="dialog">
+    <div class="dialog">
+      <app-dialog class="appDialog" [actions]="true" [title]="'Eliminar'" [description]="messageDialog"
+        [nameAction]="'Eliminar'" (close)="cancelDelete($event);" (action)="deleteUsers($event);" [radius]="true"
+        [feedbackcCode]="feedbackCode" [error]="dialogStates.error" [warning]="dialogStates.warning"
+        [success]="dialogStates.success"></app-dialog>
+    </div>
+  </div>
+  <div class="navigator flexBox">
+    <div class="breadCrumb">
+      <div class="navItem flexBox">
+        <app-button class="appButton" [icon]="'016'" [label]="'Volver'" (click)="back();">
+        </app-button>
+        <app-button class="appButton" [icon]="'016'" [label]="'Cerrar'" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+    <div class="specialActions flexBox">
+      <div class="action flexBox">
+        <app-button class="appButton" [icon]="'017'" [label]="'CSV'" [secondary]="true" (click)="exportCsv();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div class="titulation" *ngIf="title">
+    <p class="title boldTit" [innerHTML]="title"></p>
+    <p class="description norm" [innerHTML]="description" *ngIf="description"></p>
+  </div>
+  <div class="table" [ngClass]="{pagination: pagination}">
+    <app-users-table class="appCampaignsTable" [numberColumnsLoader]="6" [users]="users" (open)="open($event);"
+      (edit)="edit($event);" (delete)="openDialogDelete($event);" [pagination]="pagination">
+    </app-users-table>
+  </div>
+  <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">
+    <div class="values flexBox">
+      <div id="idOpen" class="data">
+        <p class="value norm" [innerHTML]="userOpen.Id"></p>
+      </div>
+      <div id="nameOpen" class="data">
+        <p class="value bold">{{userOpen.NombreUsuario}}</p>
+      </div>
+      <div class="dates flexBox">
+        <div id="created" class="data flexBox" title="">
+          <p class="label norm">Creado:</p>
+          <p class="value bold" [innerHTML]="userOpen.createdAt"></p>
+        </div>
+        <div id="updatedAt" class="data flexBox" title="">
+          <p class="label norm">Modificado:</p>
+          <p class="value bold" [innerHTML]="userOpen.updatedAt"></p>
+        </div>
+      </div>
+    </div>
+    <div class="actions" [ngClass]="{spinner: spinner}">
+      <app-spinner class="appSpinner" *ngIf="spinner"></app-spinner>
+      <div id="btnEditOpenUser" class="btnAction">
+        <app-button class="appButton" [label]="'Editar'" [primary]="true" (click)="editFromOpen(userOpen);"
+          *ngIf="!spinner">
+        </app-button>
+      </div>
+      <div id="btnDeleteOpenUser" class="btnAction">
+        <app-button class="appButton" [label]="'Eliminar'" [primary]="true" *ngIf="!spinner"
+          (click)="openDialogDeleteCard(userOpen);"></app-button>
+      </div>
+      <div id="btnDownloadOpenUser" class="btnAction">
+        <app-button class="appButton" [label]="'Descargar'" *ngIf="!spinner" (click)="downloadUser(userOpen)">
+        </app-button>
+      </div>
+      <div id="btnCloseOpenUser" class="btnAction">
+        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div id="modeEdit" class="cardItem" [ngClass]="{pagination: pagination}">
+    <div class="values flexBox">
+      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Nombres:</p>
+        <app-input-text class="input" [id]="'name'" [placeholder]="'Nombres'" [type]="'text'" [responsive]="true"
+          [value]="userEdit.NombreUsuario">
+        </app-input-text>
+      </div>
+    </div>
+    <div class="actions" [ngClass]="{spinner: spinner}">
+      <app-spinner class="appSpinner" *ngIf="spinner && !feedback.show"></app-spinner>
+      <app-feedback class="appFeedback" [responsive]="true" [code]="feedback.code" [error]="feedback.error"
+        [warning]="feedback.warning" [success]="feedback.success" *ngIf="!spinner && feedback.show"></app-feedback>
+      <div id="btnEditEditUser" class="btnAction right" *ngIf="!spinner && !feedback.show">
+        <app-button class="appButton" [label]="'Actualizar'" [primary]="true" (click)="update();"></app-button>
+      </div>
+      <div id="btnCancelEditUser" class="btnAction right" *ngIf="!spinner && !feedback.show">
+        <app-button class="appButton" [label]="'Cancelar'" (click)="cancel();"></app-button>
+      </div>
+      <div id="btnCloseEditCustomer" class="btnAction">
+        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner && !feedback.show" (click)="close();">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div class="pagination flexBox" *ngIf="pagination">
+    <div class="btnPage" *ngIf="this.actualPage != 1">
+      <app-button class="appButton" [label]="'Anterior'" [secondary]="true" (click)="backPage();"></app-button>
+    </div>
+    <div class="btnPage" *ngIf="!lasted">
+      <app-button class="appButton" [label]="'Siguiente'" [secondary]="true" (click)="nextPage();"></app-button>
+    </div>
+  </div>
+</div>

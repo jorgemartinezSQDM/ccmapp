@@ -1,0 +1,8 @@
+<div id="{{id}}" class="textTable {{class}} {{table}} flexBox" [ngClass]="{order: order, block: block}" (mouseover)="hover=true;"
+  (mouseout)="hover=false;" (click)="changeSort();">
+  <p class="text bold" [innerHTML]="value"></p>
+  <div class="icon decent icon_{{iconDecendent}}r" *ngIf="order && decendent && (!hover && !click) || block"></div>
+  <div class="icon decent icon_{{iconDecendent}}f" *ngIf="order && decendent && (hover || click) && !block"></div>
+  <div class="icon ascent icon_{{iconAscendent}}r" *ngIf="order && !decendent && (!hover && !click) || block"></div>
+  <div class="icon ascent icon_{{iconAscendent}}f" *ngIf="order && !decendent && (hover || click) && !block"></div>
+</div>

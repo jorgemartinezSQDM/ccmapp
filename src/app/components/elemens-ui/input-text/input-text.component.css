@@ -1,0 +1,152 @@
+.inputText {
+  align-content: center;
+  align-items: center;
+  min-width: 38px;
+  width: auto;
+  height: 38px;
+  padding: 0px 12px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--brInput);
+  border-radius: 12px;
+}
+
+.inputText.error {
+  border-color: var(--error);
+}
+
+.inputText.warning {
+  border-color: var(--warning);
+}
+
+.inputText.success {
+  border-color: var(--success);
+}
+
+.inputText .icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  color: var(--texts);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.inputText .icon:active,
+.inputText .icon.active {
+  transform: scale(0.96);
+}
+
+.inputText.password .icon.password {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+
+.inputText.focus .icon,
+.inputText.hover .icon,
+.inputText:hover .icon {
+  color: var(--texts);
+  font-size: 22px;
+}
+
+.inputText.password .icon.active,
+.inputText.password .icon:active {
+  width: 20px;
+  height: 20px;
+  padding: 1px;
+  font-size: 18px;
+  background-color: var(--color5);
+  border-radius: 6px;
+  transform: scale(0.98);
+}
+
+.inputText.password .icon.active::before,
+.inputText.password .icon:active::before {
+  margin: 1px;
+}
+
+.inputText input {
+  width: 100%;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+}
+
+.inputText.responsive input,
+.inputText.responsive input::placeholder,
+.inputText.center input,
+.inputText.center input::placeholder {
+  text-align: center;
+}
+
+.inputText.left input,
+.inputText.left input::placeholder {
+  text-align: left;
+}
+
+.inputText.right input,
+.inputText.right input::placeholder {
+  text-align: right;
+}
+
+.inputText.icon input,
+.inputText.password input {
+  width: calc(100% - 30px);
+}
+
+.inputText.icon.password input {
+  width: calc(100% - 74px);
+}
+
+.inputText input::placeholder {
+  color: var(--plInput);
+  font-size: 14px;
+  text-align: left;
+}
+
+.inputText input::placeholder::first-letter {
+  text-transform: uppercase;
+}
+
+.inputText.error .icon,
+.inputText.error input,
+.inputText.error input::placeholder {
+  color: var(--txError);
+}
+
+.inputText.warning .icon,
+.inputText.warning input,
+.inputText.warning input::placeholder {
+  color: var(--txWarning);
+}
+
+.inputText.success .icon,
+.inputText.success input,
+.inputText.success input::placeholder {
+  color: var(--txSuccess);
+}
+
+@media (min-width: 768px) {
+
+  .inputText.responsive input,
+  .inputText.responsive input::placeholder {
+    text-align: right;
+  }
+}
+
+@media (min-width: 1081px) {
+
+  .inputText.password .icon.hover,
+  .inputText.password .icon:hover {
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+    font-size: 18px;
+    background-color: var(--color5);
+    border-radius: 6px;
+  }
+
+  .inputText.password .icon.hover::before,
+  .inputText.password .icon:hover::before {
+    margin: 1px;
+  }
+}

@@ -1,0 +1,64 @@
+.dialog {
+  position: relative;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  padding: 32px;
+}
+
+.dialog .content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 32px);
+  max-width: 600px;
+  padding: 16px;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 16px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.dialog .content .title {
+  width: calc(100% - 32px);
+  margin: 0px 16px 16px;
+  color: var(--texts);
+  font-size: 24px;
+}
+
+.dialog .content .description {
+  width: 100%;
+  color: var(--texts);
+  font-size: 16px;
+}
+
+.dialog .content .actions {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 16px;
+}
+
+.dialog .content .actions .btnAction {
+  margin-right: 8px;
+}
+
+.dialog .content .actions .btnAction:last-child {
+  margin-right: 0px;
+}
+
+.dialog .lightBox {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.64);
+  z-index: 1;
+}
+
+.dialog.radius .lightBox {
+  border-radius: 16px;
+}

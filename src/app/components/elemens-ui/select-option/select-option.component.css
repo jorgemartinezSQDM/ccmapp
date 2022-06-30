@@ -1,0 +1,112 @@
+.selectOption {
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  width: auto;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0px 12px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--brInput);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.selectOption .icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  color: var(--texts);
+  font-size: 22px;
+}
+
+.selectOption .default {
+  width: calc(100% - 24px);
+  margin-top: -2px;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+}
+
+.selectOption.icon .default {
+  width: calc(100% - 54px);
+}
+
+.selectOption .arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  color: var(--texts);
+  font-size: 16px;
+}
+
+.selectOption .arrow:active,
+.selectOption .arrow.active {
+  transform: scale(0.98);
+}
+
+.selectOption .options {
+  position: absolute;
+  top: 38px;
+  left: 0px;
+  width: calc(100% - 18px);
+  max-height: 104px;
+  padding: 8px;
+  margin-top: 4px;
+  background-color: var(--bgInput);
+  border: 1px solid var(--brInput);
+  border-radius: 12px;
+  border-radius: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.selectOption .options.show {
+  display: block;
+}
+
+.selectOption .options .option {
+  width: calc(100% - 16px);
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.selectOption .options .option:last-child {
+  margin-bottom: 0px;
+}
+
+.selectOption .options .option:active,
+.selectOption .options .option.active {
+  background-color: var(--color6);
+}
+
+.selectOption .options .option::first-letter {
+  text-transform: uppercase;
+}
+
+.selectOption .options .option .iconOption {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  color: var(--texts);
+  font-size: 14px;
+}
+
+.selectOption .options .option .value {
+  width: calc(100% - 0px);
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+  text-overflow: Ellipsis;
+  background-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.selectOption .options .option.iconOption .value {
+  width: calc(100% - 22px);
+}

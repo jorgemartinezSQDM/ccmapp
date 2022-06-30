@@ -1,0 +1,101 @@
+<div class="table flexBox" [ngClass]="{pagination: pagination}">
+  <div class="filters">
+    <div class="search">
+      <p class="name norm">Buscar por <span class="bold">{{filterName}}:</span></p>
+      <app-input-search class="appInpSearch" [expandable]="false" (search)="search($event);"></app-input-search>
+    </div>
+    <div class="others flexBox">
+      <div class="btnFilters" [ngClass]="{showFilters: showFilters}" *ngIf="!noBtnFilters">
+        <app-button class="appButton" [icon]="'018'" [iconSwitch]="'039'" [label]="'Mostrar filtros'"
+          [labelSwitch]="'Ocultar filtros'" [primary]="true" [modeSwitch]="true" (on)="onOffFilters($event);">
+        </app-button>
+      </div>
+      <div class="listFilters" *ngIf="showFilters" [ngClass]="{date: modeFilterDate, columns: modeFilterColumns}">
+        <div id="forId" class="filter">
+          <p class="name norm">Columnas</p>
+          <app-select-option class="appSelectOption" [default]="'una parametro'" [options]="filters"
+            (select)="getSelect($event)" (event)="onOffModeFilterColumns($event);">
+          </app-select-option>
+        </div>
+        <div id="dateCreated" class="filter">
+          <p class="name norm">Fecha</p>
+          <app-select-option class="appSelectOption" [default]="'fecha'" [options]="optDateFilter"
+            (select)="getSelect($event)" (event)="onOffModeFilterDate($event);">
+          </app-select-option>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="listContent" class="list"
+    [ngClass]="{showFilters: showFilters, date: modeFilterDate, columns: modeFilterColumns}">
+    <div class="titles">
+      <div id="selectAll" class="clmn">
+        <app-checkbox (checked)="onOffSelectedAll($event);" [selected]="selectedAll"></app-checkbox>
+      </div>
+      <div class="clmn" *ngFor="let title of listTitles">
+        <app-text-table [value]="title.name" [order]="true" [iconAscendent]="title.iconAscendent"
+          [iconDecendent]="title.iconDecendent" (click)="sort(title);" [table]="'users'"></app-text-table>
+      </div>
+      <div id="crudTitle" class="clmn flexBox">
+        <div id="deleteAll" class="crud">
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" [block]="!selectedAll && !userSelected"
+            (click)="deleteAll();">
+          </app-button>
+        </div>
+        <div id="downloadAll" class="crud">
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" [block]="!selectedAll && !userSelected"
+            (click)="downloadAll();"></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="values">
+      <ng-container *ngIf="users; else loaders">
+        <div class="value" *ngFor="let user of users; let i = index"
+          [ngClass]="{selected: user.selected, hide: !user.show}" title="{{user.NombreUsuario}}">
+          <div id="selectRow" class="clmn selector">
+            <app-checkbox (checked)="onOffSelected($event, user, i)" [selected]="selectedAll || user.selected">
+            </app-checkbox>
+          </div>
+          <p id="" class="clmn" [innerHTML]="user.Id" title="{{user.Id}}"></p>
+          <p id="" class="clmn" [innerHTML]="user.NombreUsuario" title="{{user.NombreUsuario}}"></p>
+          <p id="" class="clmn" [innerHTML]="user.createdAt" title="{{user.createdAt}}"></p>
+          <p id="" class="clmn" [innerHTML]="user.updatedAt" title="{{user.updatedAt}}"></p>
+          <div id="crud" class="clmn flexBox">
+            <div id="open" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openUser(user, i);">
+              </app-button>
+            </div>
+            <div id="edit" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'025'" (click)="editUser(user, i);">
+              </app-button>
+            </div>
+            <div id="delete" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" (click)="deleteUser(user, i);">
+              </app-button>
+            </div>
+            <div id="download" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" (click)="downloadUser(user, i);">
+              </app-button>
+            </div>
+          </div>
+          <div class="fill"></div>
+        </div>
+      </ng-container>
+      <ng-template #loaders>
+        <div class="value loads" *ngFor="let item of itemsLoaders">
+          <div class="checkbox loader"></div>
+          <div class="clmnLoad" *ngFor="let clmn of numClmns">
+            <div class="val loader" [ngStyle]="{width: clmn.width}"></div>
+          </div>
+          <div class="crudLoad flexBox">
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+            <div class="btnCrud loader"></div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="pagination"></div>
+</div>

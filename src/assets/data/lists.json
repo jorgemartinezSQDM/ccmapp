@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "id": "01",
+      "slug": "campaigns",
+      "name": "Camapañas",
+      "iconcode": "001",
+      "selected": false,
+      "show": true
+    },
+    {
+      "id": "02",
+      "slug": "customers",
+      "name": "Clientes",
+      "iconcode": "003",
+      "selected": false,
+      "show": true
+    },
+    {
+      "id": "03",
+      "slug": "users",
+      "name": "Usuarios",
+      "iconcode": "004",
+      "selected": false,
+      "show": true
+    }
+  ]
+}

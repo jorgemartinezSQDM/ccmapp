@@ -1,0 +1,242 @@
+.header {
+  align-items: center;
+  align-content: center;
+  position: fixed;
+  top: 0px;
+  width: calc(100% - 50px);
+  height: auto;
+  padding: 16px 24px;
+  background-color: var(--bg);
+  border-right: 1px solid var(--second);
+  border-bottom: 1px solid var(--second);
+  border-left: 1px solid var(--second);
+  border-bottom-right-radius: 24px;
+  border-bottom-left-radius: 24px;
+  z-index: 998;
+}
+
+.header.modeDialog {
+  z-index: 0;
+}
+
+.header .logo {
+  width: calc(100% - 112px);
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.header.logout .logo {
+  width: calc(100% - 64px);
+}
+
+.header .logo:active,
+.header .logo.active {
+  transform: scale(0.96);
+}
+
+.header .logo img {
+  height: 32px;
+}
+
+.header .avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.header .search {
+  margin-right: 16px;
+}
+
+.header .btnMenu {
+  width: auto;
+}
+
+.header .navigator {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.header .navigator .lists {
+  width: 100%;
+}
+
+.header .navigator .lists .search {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.header .navigator .lists .itemsNav {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.header .navigator .lists .itemsNav:last-child {
+  margin-bottom: 0px;
+}
+
+.header .navigator .lists .itemsNav .appButton {
+  width: 100%;
+}
+
+.header .navigator .profile {
+  width: calc(100% - 32px);
+  margin-top: 16px;
+  padding: 16px;
+  background-color: var(--color6);
+  border-radius: 16px;
+}
+
+.header .navigator .profile .itemsNav {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.header .navigator .profile #login,
+.header .navigator .profile #logout {
+  justify-content: flex-end;
+}
+
+.header .navigator .profile .itemsNav:last-child {
+  margin-bottom: 0px;
+}
+
+.header .navigator .profile .infoProfile {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: auto;
+  margin-top: 16px;
+  padding: 0px;
+  background-color: transparent;
+  border-radius: 500px;
+}
+
+.header.expand .navigator .profile .infoProfile {
+  justify-content: flex-start;
+  padding: 8px;
+  background-color: var(--color2);
+  border-radius: 16px;
+}
+
+.header .navigator .profile .infoProfile .appAvatar {
+  width: 40px;
+  height: 40px;
+}
+
+.header .navigator .profile .infoProfile .information {
+  width: calc(100% - 56px);
+  margin-left: 8px;
+  text-align: left;
+}
+
+.header .navigator .profile .infoProfile .information .name {
+  width: 100%;
+  margin-bottom: 4px;
+  color: var(--pureBlack);
+  font-size: 16px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.header .navigator .profile .infoProfile .information .other {
+  width: 100%;
+  color: var(--pureBlack);
+  font-size: 14px;
+  text-overflow: Ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: auto;
+    max-width: 200px;
+    height: calc(100% - 50px);
+    padding: 24px 16px;
+    border-top: 1px solid var(--second);
+    border-left: none;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .header .logo {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .header.expand .logo {
+    text-align: left;
+  }
+
+  .header .logo img {
+    height: 38px;
+  }
+
+  .header .search {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .header .navigator {
+    width: 100%;
+    height: calc(100% - 122px);
+  }
+
+  .header .navigator .lists {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 280px);
+    border-radius: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .header.expand .navigator .lists {
+    align-content: flex-start;
+    align-items: flex-start;
+    height: calc(100% - 296px);
+  }
+
+  .header .navigator .lists .itemsNav {
+    width: 40px;
+    margin-bottom: 8px;
+  }
+
+  .header.expand .navigator .lists .itemsNav {
+    width: auto;
+  }
+
+  .header .navigator .profile {
+    width: auto;
+    margin-top: 24px;
+    padding: 8px;
+  }
+
+  .header .navigator .profile .itemsNav {
+    margin-bottom: 8px;
+  }
+
+  .header .navigator .profile #login,
+  .header .navigator .profile #logout {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1081px) {
+  .header {
+    padding: 24px 16px;
+  }
+}

@@ -1,22 +1,41 @@
-<div class="container">
-  <div class="row">
+<div class="login flexBox">
+  <div class="left flexBox">
+    <div class="logo fadeInUp delay0">
+      <img src="{{logo}}" alt="Claro">
+    </div>
+    <div class="titulation fadeInUp delay1">
+      <p class="title boldTit">Iniciar sesión</p>
+      <p class="description norm">Ingrese su nombre de usuario y su contraseña para poder ingresar al sistema</p>
+    </div>
+    <div class="fields fadeInUp delay2">
+      <div class="field">
+        <p class="name norm">Nombre de usuario <span class="bold">*</span></p>
+        <app-input-text class="appInputText" [id]="'username'" [type]="'text'" [placeholder]="'Username'"
+          (value)="getUsername($event);" [error]="inputsError">
+        </app-input-text>
+      </div>
+      <div class="field">
+        <p class="name norm">Contraseña <span class="bold">*</span></p>
+        <app-input-text class="appInputText" [id]="'password'" [type]="'password'" [placeholder]="'Contraseña'"
+          (value)="getPassword($event);" [error]="inputsError">
+        </app-input-text>
+      </div>
+    </div>
+    <div class="actions flexBox fadeInUp delay3" [ngClass]="{feedback: feedback.show}">
+      <app-spinner class="appSpinner" *ngIf="spinner && !feedback.show"></app-spinner>
+      <app-feedback class="appFeedback" [center]="true" [code]="feedback.code" [error]="feedback.error"
+        [warning]="feedback.warning" [success]="feedback.success" *ngIf="!spinner && feedback.show"></app-feedback>
+      <app-button class="btnAction" [label]="'Iniciar sesión'" [primary]="true" *ngIf="!spinner" (click)="login();">
+      </app-button>
+    </div>
+  </div>
+  <div class="right fadeIn animated"></div>
+  <!--<div class="row">
     <form class="custom-form" method="post">
       <h1>Login</h1>
-      <input
-        type="text"
-        [(ngModel)]="username"
-        name="username"
-        placeholder="username"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Password"
-        required="required"
-      />
+      <input type="text" [(ngModel)]="username" name="username" placeholder="username" required="required" />
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required="required" />
       <a class="waves-effect waves-light btn red darken-1" (click)="login()">Log in</a>
     </form>
-  </div>
+  </div>-->
 </div>
