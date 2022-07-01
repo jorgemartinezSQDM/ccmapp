@@ -12,8 +12,8 @@ import { CommonService } from 'src/app/services/common/common.service';
   styleUrls: ['./frequency-table.component.css']
 })
 export class FrequencyTableComponent implements OnInit {
-  filterName: string = 'nombres';
-  parameterFilter: any = 'Nombres';
+  filterName: string = 'nombre de la campaña';
+  parameterFilter: any = 'Campanas_Nombre';
   showFilters!: boolean;
   optDateFilter!: ID_Option[];
   modeFilterDate!: boolean;
