@@ -93,14 +93,20 @@ export class CampaignsComponent implements OnInit {
               let created = campaign.createdAt ? moment(campaign.createdAt).local(true).format(this.formatDate) : "";
               let updated = campaign.updatedAt ? moment(campaign.updatedAt).local(true).format(this.formatDate) : "";
               let item: Campaign = {
-                createdAt: created,
+                createdAt: {
+                  value: campaign.createdAt ? campaign.createdAt : "",
+                  formated: created,
+                },
                 externalId: campaign.ExternalId ? campaign.ExternalId : "",
                 id: campaign.Id ? campaign.Id : "",
                 nameCampaign: campaign.Nombre ? campaign.Nombre : "",
                 numberSendsCustomersDays: campaign.numeroVecesClientesDia ? campaign.numeroVecesClientesDia : "",
                 show: true,
                 selected: false,
-                updatedAt: updated,
+                updatedAt: {
+                  value: campaign.updatedAt ? campaign.updatedAt : "",
+                  formated: updated,
+                },
               };
               formatCampaigns.push(item);
             }
@@ -127,8 +133,8 @@ export class CampaignsComponent implements OnInit {
         const campaign: Campaign = this.campaigns[a];
         let item: ID_xCampaign = {
           "External ID": campaign.externalId,
-          "Fecha de creación": campaign.createdAt,
-          "Fecha de modificación": campaign.updatedAt,
+          "Fecha de creación": campaign.createdAt.value,
+          "Fecha de modificación": campaign.updatedAt.value,
           "Id": campaign.id,
           "Nombre de la campaña": campaign.nameCampaign,
           "Número de envios por días": campaign.numberSendsCustomersDays
@@ -545,8 +551,8 @@ export class CampaignsComponent implements OnInit {
       let campaignsCSV: ID_xCampaign[] = [];
       let item: ID_xCampaign = {
         "External ID": campaign.externalId,
-        "Fecha de creación": campaign.createdAt,
-        "Fecha de modificación": campaign.updatedAt,
+        "Fecha de creación": campaign.createdAt.value,
+        "Fecha de modificación": campaign.updatedAt.value,
         "Id": campaign.id,
         "Nombre de la campaña": campaign.nameCampaign,
         "Número de envios por días": campaign.numberSendsCustomersDays

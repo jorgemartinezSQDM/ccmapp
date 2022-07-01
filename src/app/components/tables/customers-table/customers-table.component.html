@@ -63,8 +63,8 @@
           <p id="" class="clmn" [innerHTML]="customer.Numero_Documento" title="{{customer.Numero_Documento}}"></p>
           <p id="" class="clmn" [innerHTML]="'Si'" title="Si" *ngIf="customer.ListaNegra"></p>
           <p id="" class="clmn" [innerHTML]="'No'" title="No" *ngIf="!customer.ListaNegra"></p>
-          <p id="" class="clmn" [innerHTML]="customer.createdAt" title="{{customer.createdAt}}"></p>
-          <p id="" class="clmn" [innerHTML]="customer.updatedAt" title="{{customer.updatedAt}}"></p>
+          <p id="" class="clmn" [innerHTML]="customer.createdAt.formated" title="{{customer.createdAt.formated}}"></p>
+          <p id="" class="clmn" [innerHTML]="customer.updatedAt.formated" title="{{customer.updatedAt.formated}}"></p>
           <div id="crud" class="clmn flexBox">
             <div id="open" class="crud">
               <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openCustomer(customer, i);">

@@ -1,7 +1,10 @@
 
 export interface Customer {
   Apellidos: String,
-  createdAt: any,
+  createdAt: {
+    value: any;
+    formated: any;
+  },
   Id: Number,
   ListaNegra: boolean,
   llaveUnicaCliente: String,
@@ -10,5 +13,8 @@ export interface Customer {
   selected: boolean,
   show: boolean,
   Tipo_Documento: String,
-  updatedAt: any
+  updatedAt: {
+    value: any;
+    formated: any;
+  }
 }

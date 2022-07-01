@@ -191,8 +191,8 @@ export class CustomersTableComponent implements OnInit {
             "Tipo de documento de identidad": customer.Tipo_Documento,
             "Numero del documento de identidad": customer.Numero_Documento,
             "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
-            "Fecha de creación": customer.createdAt,
-            "Fecha de modificación": customer.updatedAt,
+            "Fecha de creación": customer.createdAt.value,
+            "Fecha de modificación": customer.updatedAt.value,
           }
           customersCSV.push(item);
         };
@@ -216,8 +216,8 @@ export class CustomersTableComponent implements OnInit {
               "Tipo de documento de identidad": customer.Tipo_Documento,
               "Numero del documento de identidad": customer.Numero_Documento,
               "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
-              "Fecha de creación": customer.createdAt,
-              "Fecha de modificación": customer.updatedAt,
+              "Fecha de creación": customer.createdAt.value,
+              "Fecha de modificación": customer.updatedAt.value,
             }
             customersCSV.push(item);
           };
@@ -279,8 +279,8 @@ export class CustomersTableComponent implements OnInit {
         "Tipo de documento de identidad": customer.Tipo_Documento,
         "Numero del documento de identidad": customer.Numero_Documento,
         "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
-        "Fecha de creación": customer.createdAt,
-        "Fecha de modificación": customer.updatedAt,
+        "Fecha de creación": customer.createdAt.value,
+        "Fecha de modificación": customer.updatedAt.value,
       }
       customersCSV.push(item);
       this.commonService.exportAsExcelFile(customersCSV, 'Cliente');

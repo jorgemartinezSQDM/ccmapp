@@ -90,12 +90,18 @@ export class UsersComponent implements OnInit {
               let created = user.createdAt ? moment(user.createdAt).local(true).format(this.formatDate) : "";
               let updated = user.updatedAt ? moment(user.updatedAt).local(true).format(this.formatDate) : "";
               let item: User = {
-                createdAt: created,
+                createdAt: {
+                  value: user.createdAt ? user.createdAt : "",
+                  formated: created,
+                },
                 Id: user.Id ? user.Id : "",
                 NombreUsuario: user.NombreUsuario ? user.NombreUsuario : "",
                 selected: false,
                 show: true,
-                updatedAt: updated,
+                updatedAt: {
+                  value: user.updatedAt ? user.updatedAt : "",
+                  formated: updated,
+                },
               };
               formatUsers.push(item);
             }
@@ -123,8 +129,8 @@ export class UsersComponent implements OnInit {
         let item: ID_xUsers = {
           "Id": user.Id,
           "Nombre de usuario": user.NombreUsuario,
-          "Fecha de creación": user.createdAt,
-          "Fecha de modificación": user.updatedAt,
+          "Fecha de creación": user.createdAt.value,
+          "Fecha de modificación": user.updatedAt.value,
         }
         usersCSV.push(item);
       };
@@ -492,8 +498,8 @@ export class UsersComponent implements OnInit {
       let item: ID_xUsers = {
         "Id": user.Id,
         "Nombre de usuario": user.NombreUsuario,
-        "Fecha de creación": user.createdAt,
-        "Fecha de modificación": user.updatedAt,
+        "Fecha de creación": user.createdAt.value,
+        "Fecha de modificación": user.updatedAt.value,
       }
       usersCSV.push(item);
       this.commonService.exportAsExcelFile(usersCSV, 'Cliente');

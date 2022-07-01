@@ -1,11 +1,17 @@
 
 export interface Campaign {
-  createdAt: any;
+  createdAt: {
+    value: any;
+    formated: any;
+  };
   externalId: string;
   id: string;
   nameCampaign: string;
   numberSendsCustomersDays: string;
   show: boolean;
   selected: boolean;
-  updatedAt: any;
+  updatedAt: {
+    value: any;
+    formated: any;
+  };
 }

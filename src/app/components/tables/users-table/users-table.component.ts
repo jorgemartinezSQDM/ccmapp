@@ -186,8 +186,8 @@ export class UsersTableComponent implements OnInit {
           let item: ID_xUsers = {
             "Id": user.Id,
             "Nombre de usuario": user.NombreUsuario,
-            "Fecha de creación": user.createdAt,
-            "Fecha de modificación": user.updatedAt,
+            "Fecha de creación": user.createdAt.value,
+            "Fecha de modificación": user.updatedAt.value,
           }
           usersCSV.push(item);
         };
@@ -206,8 +206,8 @@ export class UsersTableComponent implements OnInit {
             let item: ID_xUsers = {
               "Id": user.Id,
               "Nombre de usuario": user.NombreUsuario,
-              "Fecha de creación": user.createdAt,
-              "Fecha de modificación": user.updatedAt,
+              "Fecha de creación": user.createdAt.value,
+              "Fecha de modificación": user.updatedAt.value,
             }
             usersCSV.push(item);
           };
@@ -264,8 +264,8 @@ export class UsersTableComponent implements OnInit {
       let item: ID_xUsers = {
         "Id": user.Id,
         "Nombre de usuario": user.NombreUsuario,
-        "Fecha de creación": user.createdAt,
-        "Fecha de modificación": user.updatedAt,
+        "Fecha de creación": user.createdAt.value,
+        "Fecha de modificación": user.updatedAt.value,
       }
       usersCSV.push(item);
       this.commonService.exportAsExcelFile(usersCSV, 'Usuario');

@@ -1,9 +1,15 @@
 
 export interface User {
-  createdAt: any,
+  createdAt: {
+    value: any;
+    formated: any;
+  },
   Id: Number,
   NombreUsuario: String,
   selected: boolean;
   show: boolean;
-  updatedAt: any
+  updatedAt: {
+    value: any;
+    formated: any;
+  }
 }

@@ -186,8 +186,8 @@ export class CampaignsTableComponent implements OnInit {
           const campaign: Campaign = this.campaigns[a];
           let item: ID_xCampaign = {
             "External ID": campaign.externalId,
-            "Fecha de creación": campaign.createdAt,
-            "Fecha de modificación": campaign.updatedAt,
+            "Fecha de creación": campaign.createdAt.value,
+            "Fecha de modificación": campaign.updatedAt.value,
             "Id": campaign.id,
             "Nombre de la campaña": campaign.nameCampaign,
             "Número de envios por días": campaign.numberSendsCustomersDays
@@ -208,8 +208,8 @@ export class CampaignsTableComponent implements OnInit {
             const campaign: Campaign = this.campaignsSelected[a];
             let item: ID_xCampaign = {
               "External ID": campaign.externalId,
-              "Fecha de creación": campaign.createdAt,
-              "Fecha de modificación": campaign.updatedAt,
+              "Fecha de creación": campaign.createdAt.value,
+              "Fecha de modificación": campaign.updatedAt.value,
               "Id": campaign.id,
               "Nombre de la campaña": campaign.nameCampaign,
               "Número de envios por días": campaign.numberSendsCustomersDays
@@ -268,8 +268,8 @@ export class CampaignsTableComponent implements OnInit {
       let campaignsCSV: ID_xCampaign[] = [];
       let item: ID_xCampaign = {
         "External ID": campaign.externalId,
-        "Fecha de creación": campaign.createdAt,
-        "Fecha de modificación": campaign.updatedAt,
+        "Fecha de creación": campaign.createdAt.value,
+        "Fecha de modificación": campaign.updatedAt.value,
         "Id": campaign.id,
         "Nombre de la campaña": campaign.nameCampaign,
         "Número de envios por días": campaign.numberSendsCustomersDays

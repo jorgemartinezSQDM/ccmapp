@@ -58,8 +58,8 @@
           </div>
           <p id="" class="clmn" [innerHTML]="user.Id" title="{{user.Id}}"></p>
           <p id="" class="clmn" [innerHTML]="user.NombreUsuario" title="{{user.NombreUsuario}}"></p>
-          <p id="" class="clmn" [innerHTML]="user.createdAt" title="{{user.createdAt}}"></p>
-          <p id="" class="clmn" [innerHTML]="user.updatedAt" title="{{user.updatedAt}}"></p>
+          <p id="" class="clmn" [innerHTML]="user.createdAt" title="{{user.createdAt.formated}}"></p>
+          <p id="" class="clmn" [innerHTML]="user.updatedAt" title="{{user.updatedAt.formated}}"></p>
           <div id="crud" class="clmn flexBox">
             <div id="open" class="crud">
               <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openUser(user, i);">

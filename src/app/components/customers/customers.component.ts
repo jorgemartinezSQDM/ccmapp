@@ -95,7 +95,10 @@ export class CustomersComponent implements OnInit {
               let updated = customer.updatedAt ? moment(customer.updatedAt).local(true).format(this.formatDate) : "";
               let item: Customer = {
                 Apellidos: customer.Apellidos ? customer.Apellidos : "",
-                createdAt: created,
+                createdAt: {
+                  value: customer.createdAt ? customer.createdAt : "",
+                  formated: created,
+                },
                 Id: customer.Id ? customer.Id : "",
                 ListaNegra: customer.ListaNegra ? customer.ListaNegra : "",
                 llaveUnicaCliente: customer.llaveUnicaCliente ? customer.llaveUnicaCliente : "",
@@ -104,7 +107,10 @@ export class CustomersComponent implements OnInit {
                 Tipo_Documento: customer.Tipo_Documento ? customer.Tipo_Documento : "",
                 selected: false,
                 show: true,
-                updatedAt: updated,
+                updatedAt: {
+                  value: customer.updatedAt ? customer.updatedAt : "",
+                  formated: updated,
+                },
               };
               formatCustomers.push(item);
             }
@@ -137,8 +143,8 @@ export class CustomersComponent implements OnInit {
           "Tipo de documento de identidad": customer.Tipo_Documento,
           "Numero del documento de identidad": customer.Numero_Documento,
           "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
-          "Fecha de creación": customer.createdAt,
-          "Fecha de modificación": customer.updatedAt,
+          "Fecha de creación": customer.createdAt.value,
+          "Fecha de modificación": customer.updatedAt.value,
         }
         customersCSV.push(item);
       };
@@ -547,8 +553,8 @@ export class CustomersComponent implements OnInit {
         "Tipo de documento de identidad": customer.Tipo_Documento,
         "Numero del documento de identidad": customer.Numero_Documento,
         "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
-        "Fecha de creación": customer.createdAt,
-        "Fecha de modificación": customer.updatedAt,
+        "Fecha de creación": customer.createdAt.value,
+        "Fecha de modificación": customer.updatedAt.value,
       }
       customersCSV.push(item);
       this.commonService.exportAsExcelFile(customersCSV, 'Cliente');
