@@ -69,14 +69,21 @@
     </app-customers-table>
   </div>
   <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">
-    <div class="values flexBox">
+    <div id="btnCloseOpenCampaign" class="btnCloseCard">
+      <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
+      </app-button>
+    </div>
+    <div class="values">
       <div id="idOpen" class="data">
+        <p class="label norm">Id del cliente:</p>
         <p class="value norm" [innerHTML]="customerOpen.Id"></p>
       </div>
       <div id="nameOpen" class="data">
+        <p class="label norm">Nombre completo del cliente:</p>
         <p class="value bold">{{customerOpen.Nombres}} {{customerOpen.Apellidos}}</p>
       </div>
       <div id="document" class="data">
+        <p class="label norm">Documento de identidad:</p>
         <p class="value bold">{{customerOpen.Tipo_Documento}} {{customerOpen.Numero_Documento}}</p>
       </div>
       <div id="externalIdOpen" class="data flexBox">
@@ -88,21 +95,21 @@
         <p class="value boldTit" *ngIf="customerOpen.ListaNegra">Si</p>
         <p class="value boldTit" *ngIf="!customerOpen.ListaNegra">No</p>
       </div>
-      <div class="data" id="frecuencias" *ngIf="showFrequency">
-        <p class="label norm">Frecuencias de la campaña:</p>
-        <div class="frequencies">
+      <div class="data" id="frecuenciasCard" *ngIf="showFrequency">
+        <p class="label norm">Frecuencias del cliente: <span class="bold">{{customerOpen.Nombres}} {{customerOpen.Apellidos}}</span></p>
+        <div class="frequenciesMovil">
           <table>
             <tr>
-              <th class="bold">Id</th>
+              <th class="bold id">Id</th>
               <th class="bold">Nombre de la campaña</th>
               <th class="bold">Toques generados</th>
               <th class="bold">Creada</th>
               <th class="bold">Modificada</th>
             </tr>
             <tr *ngFor="let frequency of frequencies">
-              <td class="norm">{{frequency.Id}}</td>
-              <td class="norm">{{frequency.Campanas_Nombre}}</td>
-              <td class="norm">{{frequency.ToquesDia}}</td>
+              <td class="norm id">{{frequency.Id}}</td>
+              <td class="norm name">{{frequency.Campanas_Nombre}}</td>
+              <td class="norm touch">{{frequency.ToquesDia}}</td>
               <td class="norm">{{frequency.createdAt}}</td>
               <td class="norm">{{frequency.updatedAt}}</td>
             </tr>
@@ -110,13 +117,13 @@
         </div>
       </div>
       <div class="dates flexBox">
-        <div id="created" class="data flexBox" title="">
+        <div id="created" class="data" title="{{dateCreadtedOpen}}">
           <p class="label norm">Creado:</p>
-          <p class="value bold" [innerHTML]="customerOpen.createdAt"></p>
+          <p class="value bold" [innerHTML]="dateCreadtedOpen"></p>
         </div>
-        <div id="updatedAt" class="data flexBox" title="">
+        <div id="updatedAt" class="data" title="{{dateUpdatedOpen}}">
           <p class="label norm">Modificado:</p>
-          <p class="value bold" [innerHTML]="customerOpen.updatedAt"></p>
+          <p class="value bold" [innerHTML]="dateUpdatedOpen"></p>
         </div>
       </div>
     </div>
@@ -135,25 +142,58 @@
         <app-button class="appButton" [label]="'Descargar'" *ngIf="!spinner" (click)="downloadCustomer(customerOpen)">
         </app-button>
       </div>
-      <div id="btnCloseOpenCustomer" class="btnAction">
-        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
-        </app-button>
-      </div>
+    </div>
+  </div>
+  <div id="frecuencias" class="frequencies" *ngIf="showFrequency">
+    <p class="label bold">Frecuencias de la campaña: <span class="bold">{{customerOpen.Nombres}} {{customerOpen.Apellidos}}</span></p>
+    <div class="frequenciesTab">
+      <table>
+        <tr>
+          <th class="bold">Id</th>
+          <th class="bold">Nombre de la campaña</th>
+          <th class="bold">Toques generados</th>
+          <th class="bold">Creada</th>
+          <th class="bold">Modificada</th>
+        </tr>
+        <tr *ngFor="let frequency of frequencies">
+          <td class="norm">{{frequency.Id}}</td>
+          <td class="norm name">{{frequency.Campanas_Nombre}}</td>
+          <td class="norm touch">{{frequency.ToquesDia}}</td>
+          <td class="norm">{{frequency.createdAt}}</td>
+          <td class="norm">{{frequency.updatedAt}}</td>
+        </tr>
+      </table>
     </div>
   </div>
   <div id="modeEdit" class="cardItem" [ngClass]="{pagination: pagination}">
-    <div class="values flexBox">
-      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+    <div class="values">
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
         <p class="label norm">Nombres:</p>
         <app-input-text class="input" [id]="'name'" [placeholder]="'Nombres'" [type]="'text'" [responsive]="true"
           [value]="customerEdit.Nombres">
         </app-input-text>
       </div>
-      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
         <p class="label norm">Apellidos:</p>
         <app-input-text class="input" [id]="'lastname'" [placeholder]="'Apellidos'" [type]="'text'" [responsive]="true"
           [value]="customerEdit.Apellidos">
         </app-input-text>
+      </div>
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Tipo de documento:</p>
+        <app-input-text class="input" [id]="'typeDoc'" [placeholder]="'Apellidos'" [type]="'text'" [responsive]="true"
+          [value]="customerEdit.Tipo_Documento">
+        </app-input-text>
+      </div>
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">Número de documento:</p>
+        <app-input-text class="input" [id]="'numberDoc'" [placeholder]="'Apellidos'" [type]="'text'" [responsive]="true"
+          [value]="customerEdit.Numero_Documento">
+        </app-input-text>
+      </div>
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
+        <p class="label norm">¿en lista negra?:</p>
+        <app-checkbox (checked)="onOffSelected($event)" [selected]="customerEdit.ListaNegra"></app-checkbox>
       </div>
     </div>
     <div class="actions" [ngClass]="{spinner: spinner}">

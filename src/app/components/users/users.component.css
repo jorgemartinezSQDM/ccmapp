@@ -68,7 +68,7 @@
 
 .users.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
 .users.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
-  display: block;
+  display: none;
 }
 
 .users .navigator .breadCrumb .navItem:last-child {
@@ -154,6 +154,11 @@
   max-height: calc(100vh - 250px);
 }
 
+.users #modeOpen,
+.users #modeEdit {
+  margin-top: 0px;
+}
+
 .users.modeOpen #modeOpen,
 .users.modeEdit #modeEdit {
   display: block;
@@ -164,23 +169,28 @@
   display: none;
 }
 
+.users #modeOpen .btnCloseCard {
+  margin-bottom: 16px;
+}
+
 .users .cardItem .values {
   align-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  max-height: calc(100vh - 322px);
+  max-height: calc(100vh - 378px);
   margin-top: 16px;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .users .cardItem.pagination .values {
-  max-height: calc(100vh - 322px);
+  max-height: calc(100vh - 378px);
 }
 
 .users .cardItem .values .data {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   margin-bottom: 16px;
   text-align: center;
 }
@@ -190,84 +200,39 @@
 }
 
 .users .cardItem .values .data .label {
-  width: calc(100% - 32px);
-  margin-right: 16px;
+  width: auto;
+  max-width: 100%;
   margin-bottom: 8px;
-  margin-left: 16px;
   color: var(--texts);
   font-size: 14px;
 }
 
+.users .cardItem .values .data .label span {
+  color: var(--color1);
+}
+
 .users .cardItem .values .data .value {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   color: var(--texts);
   font-size: 14px;
 }
 
 .users .cardItem .values .data .input {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
-.users .cardItem .values #idOpen {
-  margin-bottom: 8px;
+.users .cardItem .values .dates {
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
 }
 
 .users .cardItem .values #nameOpen .value {
   font-size: 24px;
-}
-
-.users .cardItem .values #externalIdOpen {
-  justify-content: center;
-}
-
-.users .cardItem .values #externalIdOpen .value {
-  width: auto;
-  padding: 8px;
-  color: var(--color1);
-  font-size: 14px;
-  background-color: var(--color2);
-  border-radius: 8px;
-}
-
-.users .cardItem .values #inBlacklist .value {
-  font-size: 72px;
-}
-
-.users .cardItem .values .dates {
-  width: 100%;
-}
-
-.users .cardItem .values .dates .data {
-  width: calc(50% - 16px);
-  margin-bottom: 16px;
-}
-
-.users .cardItem .values .dates .data:nth-child(2n+1) {
-  margin-right: 8px;
-  text-align: left;
-}
-
-.users .cardItem .values .dates .data:nth-child(2n) {
-  margin-left: 8px;
-  text-align: right;
-}
-
-.users .cardItem .values .dates .data .label {
-  width: 100%;
-  margin-right: 0px;
-  margin-bottom: 8px;
-  margin-left: 0px;
-  color: var(--texts);
-  font-size: 14px;
-}
-
-.users .cardItem .values .dates .data .value {
-  width: 100%;
-  color: var(--texts);
-  font-size: 14px;
-  text-overflow: Ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .users .cardItem .actions {
@@ -378,9 +343,7 @@
 
   .users.modeOpen .table,
   .users.modeEdit .table {
-    display: block !important;
-    width: calc(50% - 8px);
-    margin-right: 8px;
+    display: none !important;
   }
 
   .users .cardItem .values {
@@ -394,15 +357,34 @@
 
   .users .cardItem .values .data,
   .users .cardItem .values .data.edit {
-    text-align: right;
+    text-align: left;
   }
 
   .users .cardItem .values #externalIdOpen {
-    justify-content: flex-end;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .users .cardItem .values .dates {
+    flex-direction: row;
+  }
+
+  .users .cardItem .values .dates .data {
+    width: auto;
+    max-width: calc(50% - 8px);
+    margin-bottom: 0px;
+  }
+
+  .users .cardItem .values .dates .data:nth-child(2n+1) {
+    margin-right: 8px;
+  }
+
+  .users .cardItem .values .dates .data:nth-child(2n) {
+    margin-left: 8px;
   }
 
   .users .cardItem .actions {
-    text-align: right;
+    text-align: left;
   }
 
   .users .cardItem .actions #btnCloseOpenCustomer,
@@ -412,11 +394,15 @@
 
   .users.modeOpen #modeOpen,
   .users.modeEdit #modeEdit {
-    display: block;
-    width: calc(50% - 42px);
-    max-height: calc(100vh - 194px);
-    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: auto;
+    max-width: calc(100% - 42px);
+    max-height: calc(100vh - 138px);
     padding: 16px;
+    margin-top: 16px;
     background-color: var(--color4);
     border: 1px solid var(--color2);
     border-radius: 16px;
@@ -424,7 +410,7 @@
 
   .users.modeOpen #modeOpen.pagination,
   .users.modeEdit #modeEdit.pagination {
-    max-height: calc(100vh - 268px);
+    max-height: calc(100vh - 212px);
   }
 
   .users.modeOpen #modeEdit,
@@ -433,12 +419,7 @@
   }
 
   .users .pagination {
-    justify-content: flex-end;
-  }
-
-  .users.modeOpen .pagination,
-  .users.modeEdit .pagination {
-    display: flex;
+    justify-content: flex-start;
   }
 }
 
@@ -464,20 +445,24 @@
 
   .users.modeOpen #modeOpen,
   .users.modeEdit #modeEdit {
-    width: 408px;
+    width: 32%;
+    max-height: calc(100vh - 196px);
+  }
+
+  .users .cardItem .values {
     max-height: calc(100vh - 180px);
   }
 
   .users.modeOpen #modeOpen.pagination,
   .users.modeEdit #modeEdit.pagination {
-    max-height: calc(100vh - 252px);
+    max-height: calc(100vh - 196px);
   }
 
-  .users .cardItem .values {
-    max-height: calc(100vh - 236px);
+  .users.modeOpen #modeOpen .values #frecuenciasCard {
+    display: none;
   }
 
   .users .cardItem.pagination .values {
-    max-height: calc(100vh - 308px);
+    max-height: calc(100vh - 248px);
   }
 }

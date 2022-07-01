@@ -35,7 +35,7 @@ export class ButtonComponent implements OnInit {
     this.iconSwitch = !this.iconSwitch ? this.icon : this.iconSwitch;
     this.commonService.share.subscribe((response) => {
       if (response) {
-        if (response.resetSwitch &&  response.id == this.id) {
+        if (response.resetSwitch) {
           this.switch = false;
         }
       }

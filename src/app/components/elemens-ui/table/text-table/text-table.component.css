@@ -45,6 +45,14 @@
 }
 
 @media (min-width: 1081px) {
+  .textTable.campaigns {
+    width: 137px;
+  }
+
+  .textTable.customers {
+    width: 83.2px;
+  }
+
   .textTable.users {
     width: 217.4px;
   }

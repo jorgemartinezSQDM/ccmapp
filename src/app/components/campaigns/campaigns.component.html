@@ -52,11 +52,17 @@
     </app-campaigns-table>
   </div>
   <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">
-    <div class="values flexBox">
+    <div id="btnCloseOpenCampaign" class="btnCloseCard">
+      <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
+      </app-button>
+    </div>
+    <div class="values">
       <div id="idOpen" class="data">
+        <p class="label norm">Id de la campaña:</p>
         <p class="value norm" [innerHTML]="campaignOpen.id"></p>
       </div>
       <div id="nameOpen" class="data">
+        <p class="label norm">Nombre de la campaña:</p>
         <p class="value bold" [innerHTML]="campaignOpen.nameCampaign"></p>
       </div>
       <div id="externalIdOpen" class="data flexBox">
@@ -67,9 +73,9 @@
         <p class="label norm">Envios a clientes por días:</p>
         <p class="value boldTit" [innerHTML]="campaignOpen.numberSendsCustomersDays"></p>
       </div>
-      <div class="data" id="frecuencias" *ngIf="showFrequency">
-        <p class="label norm">Frecuencias de la campaña:</p>
-        <div class="frequencies">
+      <div id="frecuenciasCard" class="data" *ngIf="showFrequency">
+        <p class="label bold">Frecuencias de la campaña: <span class="bold">{{campaignOpen.nameCampaign}}</span></p>
+        <div class="frequenciesMovil">
           <table>
             <tr>
               <th class="bold">Id</th>
@@ -80,8 +86,8 @@
             </tr>
             <tr *ngFor="let frequency of frequencies">
               <td class="norm">{{frequency.Id}}</td>
-              <td class="norm">{{frequency.Clientes_Nombres}} {{frequency.Clientes_Apellidos}}</td>
-              <td class="norm">{{frequency.ToquesDia}}</td>
+              <td class="norm name">{{frequency.Clientes_Nombres}} {{frequency.Clientes_Apellidos}}</td>
+              <td class="norm touch">{{frequency.ToquesDia}}</td>
               <td class="norm">{{frequency.createdAt}}</td>
               <td class="norm">{{frequency.updatedAt}}</td>
             </tr>
@@ -89,13 +95,13 @@
         </div>
       </div>
       <div class="dates flexBox">
-        <div id="created" class="data flexBox" title="{{campaignOpen.createdAt}}">
+        <div id="created" class="data" title="{{dateCreadtedOpen}}">
           <p class="label norm">Creada:</p>
-          <p class="value bold" [innerHTML]="campaignOpen.createdAt"></p>
+          <p class="value bold" [innerHTML]="dateCreadtedOpen"></p>
         </div>
-        <div id="updatedAt" class="data flexBox" title="{{campaignOpen.updatedAt}}">
+        <div id="updatedAt" class="data" title="{{dateUpdatedOpen}}">
           <p class="label norm">Modificada:</p>
-          <p class="value bold" [innerHTML]="campaignOpen.updatedAt"></p>
+          <p class="value bold" [innerHTML]="dateUpdatedOpen"></p>
         </div>
       </div>
     </div>
@@ -114,27 +120,44 @@
         <app-button class="appButton" [label]="'Descargar'" *ngIf="!spinner" (click)="downloadCampaign(campaignOpen)">
         </app-button>
       </div>
-      <div id="btnCloseOpenCampaign" class="btnAction">
-        <app-button class="appButton" [label]="'Cerrar'" *ngIf="!spinner" (click)="close();">
-        </app-button>
-      </div>
+    </div>
+  </div>
+  <div id="frecuencias" class="frequencies" *ngIf="showFrequency">
+    <p class="label bold">Frecuencias de la campaña: <span class="bold">{{campaignOpen.nameCampaign}}</span></p>
+    <div class="frequenciesTab">
+      <table>
+        <tr>
+          <th class="bold">Id</th>
+          <th class="bold">Nombre del cliente</th>
+          <th class="bold">Toques generados</th>
+          <th class="bold">Creada</th>
+          <th class="bold">Modificada</th>
+        </tr>
+        <tr *ngFor="let frequency of frequencies">
+          <td class="norm">{{frequency.Id}}</td>
+          <td class="norm name">{{frequency.Clientes_Nombres}} {{frequency.Clientes_Apellidos}}</td>
+          <td class="norm touch">{{frequency.ToquesDia}}</td>
+          <td class="norm">{{frequency.createdAt}}</td>
+          <td class="norm">{{frequency.updatedAt}}</td>
+        </tr>
+      </table>
     </div>
   </div>
   <div id="modeEdit" class="cardItem" [ngClass]="{pagination: pagination}">
-    <div class="values flexBox">
-      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+    <div class="values">
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
         <p class="label norm">Código de campaña:</p>
         <app-input-text class="input" [id]="'externalIdEdit'" [placeholder]="'Código de campaña'" [type]="'text'"
           [responsive]="true" [value]="campaignEdit.externalId">
         </app-input-text>
       </div>
-      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
         <p class="label norm">Nombre de la campaña:</p>
         <app-input-text class="input" [id]="'nameCampaignEdit'" [placeholder]="'Nombre de la campaña'" [type]="'text'"
           [responsive]="true" [value]="campaignEdit.nameCampaign">
         </app-input-text>
       </div>
-      <div id="" class="data flexBox" [ngClass]="{edit: modeEdit}">
+      <div id="" class="data" [ngClass]="{edit: modeEdit}">
         <p class="label norm">Envíos por días a clientes:</p>
         <app-input-text class="input" [id]="'sendsByDaysEdit'" [placeholder]="'Envíos por días a clientes'"
           [type]="'text'" [responsive]="true" [value]="campaignEdit.numberSendsCustomersDays">

@@ -68,7 +68,7 @@
 
 .campaigns.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
 .campaigns.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
-  display: block;
+  display: none;
 }
 
 .campaigns .navigator .breadCrumb .navItem:last-child {
@@ -164,23 +164,28 @@
   display: none;
 }
 
+.campaigns #modeOpen .btnCloseCard {
+  margin-bottom: 16px;
+}
+
 .campaigns .cardItem .values {
   align-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  max-height: calc(100vh - 322px);
+  max-height: calc(100vh - 378px);
   margin-top: 16px;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .campaigns .cardItem.pagination .values {
-  max-height: calc(100vh - 322px);
+  max-height: calc(100vh - 378px);
 }
 
 .campaigns .cardItem .values .data {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   margin-bottom: 16px;
   text-align: center;
 }
@@ -190,28 +195,41 @@
 }
 
 .campaigns .cardItem .values .data .label {
-  width: calc(100% - 32px);
-  margin-right: 16px;
+  width: auto;
+  max-width: 100%;
   margin-bottom: 8px;
-  margin-left: 16px;
   color: var(--texts);
   font-size: 14px;
 }
 
+.campaigns .cardItem .values .data .label span {
+  color: var(--color1);
+}
+
 .campaigns .cardItem .values .data .value {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   color: var(--texts);
   font-size: 14px;
 }
 
 .campaigns .cardItem .values .data .input {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
-.campaigns .cardItem .values .data .frequencies {
+.campaigns .cardItem .values .dates {
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
+}
+
+.campaigns .cardItem .values .data .frequenciesMovil {
   width: auto;
   max-width: calc(100% - 2px);
-  max-height: 198px;
+  max-height: 400px;
   background-color: var(--bgInput);
   border: 1px solid var(--color2);
   border-radius: 8px;
@@ -219,41 +237,56 @@
   overflow-y: auto;
 }
 
-.campaigns .cardItem .values .data .frequencies table {
+.campaigns .cardItem .values .data .frequenciesMovil table {
   border-collapse: collapse;
   border-spacing: 0px;
   width: 100%;
 }
 
-.campaigns .cardItem .values .data .frequencies table tr {
+.campaigns .cardItem .values .data .frequenciesMovil table tr {
   background-color: var(--white);
   border-bottom: 1px solid var(--second);
 }
 
-.campaigns .cardItem .values .data .frequencies table tr:nth-child(1) {
+.campaigns .cardItem .values .data .frequenciesMovil table tr:nth-child(1) {
   background-color: var(--color5);
+  position: sticky;
+  top: 0px;
 }
 
-.campaigns .cardItem .values .data .frequencies table tr:last-child {
+.campaigns .cardItem .values .data .frequenciesMovil table tr:last-child {
   border-bottom: none;
 }
 
-.campaigns .cardItem .values .data .frequencies table th,
-.campaigns .cardItem .values .data .frequencies table td {
-  min-width: 168px;
-  padding: 4px 8px;
+.campaigns .cardItem .values .data .frequenciesMovil table th,
+.campaigns .cardItem .values .data .frequenciesMovil table td {
+  min-width: 128px;
+  width: auto;
+  max-width: calc(100% - 2px);
+  padding: 8px 8px;
   color: var(--texts);
   font-size: 14px;
   text-align: left;
 }
 
-.campaigns .cardItem .values .data .frequencies table th {
-  position: sticky;
-  top: 0px;
+.campaigns .cardItem .values .data .frequenciesMovil table th:first-child,
+.campaigns .cardItem .values .data .frequenciesMovil table td:first-child {
+  min-width: 88px;
+  width: 88px;
 }
 
-.campaigns .cardItem .values #idOpen {
-  margin-bottom: 8px;
+.campaigns .cardItem .values .data .frequenciesMovil table td.name {
+  text-transform: capitalize;
+}
+
+.campaigns .cardItem .values .data .frequenciesMovil table td.touch {
+  text-align: center;
+}
+
+
+.campaigns .cardItem .values .data .frequenciesMovil table th {
+  position: sticky;
+  top: 0px;
 }
 
 .campaigns .cardItem .values #nameOpen .value {
@@ -261,7 +294,9 @@
 }
 
 .campaigns .cardItem .values #externalIdOpen {
-  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
 }
 
 .campaigns .cardItem .values #externalIdOpen .value {
@@ -275,48 +310,12 @@
 
 .campaigns .cardItem #sendByDays .value {
   color: var(--blackSqdm);
-  font-size: 112px;
-}
-
-.campaigns .cardItem .values .dates {
-  width: 100%;
-}
-
-.campaigns .cardItem .values .dates .data {
-  width: calc(50% - 16px);
-  margin-bottom: 16px;
-}
-
-.campaigns .cardItem .values .dates .data:nth-child(2n+1) {
-  margin-right: 8px;
-  text-align: left;
-}
-
-.campaigns .cardItem .values .dates .data:nth-child(2n) {
-  margin-left: 8px;
-  text-align: right;
-}
-
-.campaigns .cardItem .values .dates .data .label {
-  width: 100%;
-  margin-right: 0px;
-  margin-bottom: 8px;
-  margin-left: 0px;
-  color: var(--texts);
-  font-size: 14px;
-}
-
-.campaigns .cardItem .values .dates .data .value {
-  width: 100%;
-  color: var(--texts);
-  font-size: 14px;
-  text-overflow: Ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  font-size: 64px;
 }
 
 .campaigns .cardItem .actions {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   margin-top: 16px;
   min-height: 40px;
   text-align: center;
@@ -346,6 +345,84 @@
 .campaigns .cardItem .actions #btnCloseOpenCampaign,
 .campaigns .cardItem .actions #btnCloseEditCampaign {
   display: none;
+}
+
+.campaigns .frequencies {
+  display: none;
+  width: calc(100% - 34px);
+  padding: 16px;
+  background-color: var(--color4);
+  border: 1px solid var(--color2);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.campaigns .frequencies .label {
+  color: var(--texts);
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.campaigns .frequencies .label span {
+  color: var(--red);
+}
+
+.campaigns .frequencies .frequenciesTab {
+  width: auto;
+  max-width: calc(100% - 2px);
+  background-color: var(--bgInput);
+  border: 1px solid var(--color2);
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.campaigns .frequencies .frequenciesTab table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  width: 100%;
+}
+
+.campaigns .frequencies .frequenciesTab table tr {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--second);
+}
+
+.campaigns .frequencies .frequenciesTab table tr:nth-child(1) {
+  background-color: var(--color5);
+  position: sticky;
+  top: 0px;
+}
+
+.campaigns .frequencies .frequenciesTab table tr:last-child {
+  border-bottom: none;
+}
+
+.campaigns .frequencies .frequenciesTab table th,
+.campaigns .frequencies .frequenciesTab table td {
+  width: calc(calc(100% - 88px) / 4);
+  padding: 8px 8px;
+  color: var(--texts);
+  font-size: 14px;
+  text-align: left;
+}
+
+.campaigns .frequencies .frequenciesTab table td.name {
+  text-transform: capitalize;
+}
+
+.campaigns .frequencies .frequenciesTab table td.touch {
+  text-align: center;
+}
+
+.campaigns .frequencies .frequenciesTab table th:first-child,
+.campaigns .frequencies .frequenciesTab table td:first-child {
+  width: 88px;
+}
+
+.campaigns .frequencies .frequenciesTab table th {
+  position: sticky;
+  top: 0px;
 }
 
 .campaigns .pagination {
@@ -423,9 +500,7 @@
 
   .campaigns.modeOpen .table,
   .campaigns.modeEdit .table {
-    display: block !important;
-    width: calc(50% - 8px);
-    margin-right: 8px;
+    display: none !important;
   }
 
   .campaigns .cardItem .values {
@@ -439,15 +514,34 @@
 
   .campaigns .cardItem .values .data,
   .campaigns .cardItem .values .data.edit {
-    text-align: right;
+    text-align: left;
   }
 
   .campaigns .cardItem .values #externalIdOpen {
-    justify-content: flex-end;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .campaigns .cardItem .values .dates {
+    flex-direction: row;
+  }
+
+  .campaigns .cardItem .values .dates .data {
+    width: auto;
+    max-width: calc(50% - 8px);
+    margin-bottom: 0px;
+  }
+
+  .campaigns .cardItem .values .dates .data:nth-child(2n+1) {
+    margin-right: 8px;
+  }
+
+  .campaigns .cardItem .values .dates .data:nth-child(2n) {
+    margin-left: 8px;
   }
 
   .campaigns .cardItem .actions {
-    text-align: right;
+    text-align: left;
   }
 
   .campaigns .cardItem .actions #btnCloseOpenCampaign,
@@ -457,10 +551,12 @@
 
   .campaigns.modeOpen #modeOpen,
   .campaigns.modeEdit #modeEdit {
-    display: block;
-    width: calc(50% - 42px);
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: calc(100% - 42px);
     max-height: calc(100vh - 194px);
-    margin-left: 8px;
+    margin-top: 16px;
     padding: 16px;
     background-color: var(--color4);
     border: 1px solid var(--color2);
@@ -477,8 +573,12 @@
     display: none;
   }
 
+  .campaigns .frequencies {
+    text-align: left;
+  }
+
   .campaigns .pagination {
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .campaigns.modeOpen .pagination,
@@ -509,8 +609,8 @@
 
   .campaigns.modeOpen #modeOpen,
   .campaigns.modeEdit #modeEdit {
-    width: 408px;
-    max-height: calc(100vh - 180px);
+    width: 32%;
+    max-height: calc(100vh - 196px);
   }
 
   .campaigns.modeOpen #modeOpen.pagination,
@@ -527,7 +627,27 @@
     max-height: calc(100vh - 236px);
   }
 
+  .campaigns.modeOpen #modeOpen .values #frecuenciasCard {
+    display: none;
+  }
+
   .campaigns .cardItem.pagination .values {
     max-height: calc(100vh - 308px);
+  }
+
+  .campaigns .cardItem .values .data .frequencies {
+    overflow-x: hidden;
+  }
+
+  .campaigns .frequencies {
+    display: block;
+    width: calc(68% - 84px);
+    max-height: calc(100vh - 194px);
+    margin-top: 16px;
+    margin-left: 16px;
+  }
+
+  .campaigns .frequencies .frequenciesTab {
+    max-height: calc(100vh - 230px);
   }
 }

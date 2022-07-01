@@ -24,6 +24,8 @@ import { TextTableComponent } from './components/elemens-ui/table/text-table/tex
 import { DialogComponent } from './components/elemens-ui/dialog/dialog.component';
 import { CustomersTableComponent } from './components/tables/customers-table/customers-table.component';
 import { UsersTableComponent } from './components/tables/users-table/users-table.component';
+import { FrequencyComponent } from './components/frequency/frequency.component';
+import { FrequencyTableComponent } from './components/tables/frequency-table/frequency-table.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { UsersTableComponent } from './components/tables/users-table/users-table
     DialogComponent,
     CustomersTableComponent,
     UsersTableComponent,
+    FrequencyComponent,
+    FrequencyTableComponent,
   ],
   imports: [
     BrowserModule,

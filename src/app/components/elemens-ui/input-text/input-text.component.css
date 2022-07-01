@@ -129,7 +129,7 @@
 
   .inputText.responsive input,
   .inputText.responsive input::placeholder {
-    text-align: right;
+    text-align: left;
   }
 }
 

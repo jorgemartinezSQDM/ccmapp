@@ -100,7 +100,7 @@ export class AppComponent {
       }
       itemNav.selected = true;
       this.commonService.goTo("/" + itemNav.slug, null);
-      this.commonService.shareData({resetSwitch: true, id: "mainHeader"})
+      this.commonService.shareData({resetSwitch: true})
     }, 400);
   }
 

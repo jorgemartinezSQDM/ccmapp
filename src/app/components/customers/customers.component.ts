@@ -59,6 +59,10 @@ export class CustomersComponent implements OnInit {
   showFrequency!: boolean;
   frequencies!: Frequency[];
   formatDate: string = "DD/MM/YYYY hh:mm A";
+  dateCreadtedOpen: string = "";
+  dateUpdatedOpen: string = "";
+  dateCreadtedEdit: string = "";
+  dateUpdatedEdit: string = "";
 
   constructor(
     private HttpService: HttpServiceService,
@@ -75,7 +79,11 @@ export class CustomersComponent implements OnInit {
     this.getAll(this.actualPage, this.size);
     for (let a = 0; a < this.lists.length; a++) {
       const itemList: ID_Menu = this.lists[a];
-      itemList.selected = itemList.id === '03' ? true : false;
+      itemList.selected = false;
+    }
+    for (let b = 0; b < this.lists.length; b++) {
+      const itemList: ID_Menu = this.lists[b];
+      itemList.selected = itemList.id === '02' ? true : false;
     }
   }
 
@@ -190,11 +198,13 @@ export class CustomersComponent implements OnInit {
     this.modeOpen = true;
     this.modeEdit = false;
     this.customerOpen = data.customer;
+    this.dateCreadtedOpen = this.customerOpen.createdAt.formated;
+    this.dateUpdatedOpen = this.customerOpen.updatedAt.formated;
     this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
     this.HttpService.getAllFrecuencies(this.token, 1, 100, "clienteId", this.customerOpen.Id).subscribe((response) => {
       if (response) {
-        if (response.results.length > 0) {
-          let frequencies = response.results;
+        if (response.Records.length > 0) {
+          let frequencies = response.Records;
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
@@ -238,9 +248,12 @@ export class CustomersComponent implements OnInit {
       this.customerEdit = customer;
       this.modeOpen = false;
       this.modeEdit = true;
+      this.showFrequency = false;
       this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
       setTimeout(() => {
-        this.elems.table.scrollLeft = 1264;
+        if (this.elems.table) {
+          this.elems.table.scrollLeft = 1264;
+        }
       }, 400);
     }, 400);
   }
@@ -249,6 +262,7 @@ export class CustomersComponent implements OnInit {
     setTimeout(() => {
       this.modeOpen = false;
       this.modeEdit = false;
+      this.showFrequency = false;
       this.commonService.shareData({ unSelected: true });
     }, 400);
   }
@@ -256,15 +270,18 @@ export class CustomersComponent implements OnInit {
   edit(data: any) {
     this.modeOpen = false;
     this.modeEdit = true;
-    let created = data ? data.cusotmer ? moment(data.cusotmer.createdAt).format("YYYY-MM-DDTkk:mm") : "" : "";
-    let update = data ? data.cusotmer ? moment(data.cusotmer.updatedAt).format("YYYY-MM-DDTkk:mm") : "" : "";
-    data.cusotmer.createdAt = created;
-    data.cusotmer.updatedAt = update;
-    this.customerEdit = data.cusotmer;
+    this.customerEdit = data.customer;
+    this.showFrequency = false;
     this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
     setTimeout(() => {
-      this.elems.table.scrollLeft = 1264;
+      if (this.elems.table) {
+        this.elems.table.scrollLeft = 1264;
+      }
     }, 400);
+  }
+
+  onOffSelected(data: any) {
+    this.customerEdit.ListaNegra = data.checked;
   }
 
   cancel() {
@@ -273,6 +290,7 @@ export class CustomersComponent implements OnInit {
       this.spinner = false;
       this.modeOpen = false;
       this.modeEdit = false;
+      this.showFrequency = false;
       this.commonService.shareData({ unSelected: true });
     }, 400);
   }
@@ -281,8 +299,16 @@ export class CustomersComponent implements OnInit {
     this.spinner = true;
     this.elems.name = document.getElementById("name") ? document.getElementById("name") : null;
     this.elems.lastname = document.getElementById("lastname") ? document.getElementById("lastname") : null;
+    this.elems.typeDoc = document.getElementById("typeDoc") ? document.getElementById("typeDoc") : null;
+    this.elems.numberDoc = document.getElementById("numberDoc") ? document.getElementById("numberDoc") : null;
     setTimeout(() => {
-      let item: any = {}
+      let item: any = {
+        "Nombres": this.elems.name ? this.elems.name.value : this.customerEdit.Nombres,
+        "Apellidos": this.elems.lastname ? this.elems.lastname.value : this.customerEdit.Apellidos,
+        "Tipo_Documento": this.elems.typeDoc ? this.elems.typeDoc.value : this.customerEdit.Tipo_Documento,
+        "Numero_Documento": this.elems.numberDoc ? this.elems.numberDoc.value : this.customerEdit.Numero_Documento,
+        "ListaNegra": this.customerEdit.ListaNegra,
+      }
       let request = [];
       request.push(item);
       this.HttpService.updateCustomer(request, this.token).subscribe((response) => {

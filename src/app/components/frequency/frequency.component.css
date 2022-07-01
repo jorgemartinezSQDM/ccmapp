@@ -1,4 +1,4 @@
-.customers {
+.frequencies {
   width: calc(100% - 82px);
   max-height: calc(100vh - 210px);
   margin: 98px 24px 80px;
@@ -8,13 +8,13 @@
   border-radius: 16px;
 }
 
-.customers.modeOpen {
+.frequencies.modeOpen {
   position: relative;
   background-color: var(--color4);
   border-color: var(--color2);
 }
 
-.customers .dialogContent {
+.frequencies .dialogContent {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -23,81 +23,81 @@
   z-index: 2;
 }
 
-.customers .dialogContent .dialog {
+.frequencies .dialogContent .dialog {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 16px;
 }
 
-.customers .dialogContent .dialog .appDialog {
+.frequencies .dialogContent .dialog .appDialog {
   width: 100%;
   height: 100%;
   border-radius: 16px;
 }
 
-.customers .navigator {
+.frequencies .navigator {
   position: relative;
   width: 100%;
   z-index: 1;
 }
 
-.customers .navigator .breadCrumb {
+.frequencies .navigator .breadCrumb {
   width: calc(100% - 112px);
   margin-right: 16px;
 }
 
-.customers .navigator .breadCrumb .navItem {
+.frequencies .navigator .breadCrumb .navItem {
   margin-right: 8px;
 }
 
-.customers .navigator .breadCrumb .navItem .appButton:nth-child(1),
-.customers .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+.frequencies .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.frequencies .navigator .breadCrumb .navItem .appButton:nth-child(1) {
   display: block;
 }
 
-.customers .navigator .breadCrumb .navItem .appButton:nth-child(2),
-.customers .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+.frequencies .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.frequencies .navigator .breadCrumb .navItem .appButton:nth-child(2) {
   display: none;
 }
 
-.customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
-.customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+.frequencies.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+.frequencies.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
   display: none;
 }
 
-.customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
-.customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+.frequencies.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+.frequencies.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
   display: none;
 }
 
-.customers .navigator .breadCrumb .navItem:last-child {
+.frequencies .navigator .breadCrumb .navItem:last-child {
   margin-right: 0px;
 }
 
-.customers .navigator .specialActions {
+.frequencies .navigator .specialActions {
   width: 96px;
   justify-content: flex-end;
 }
 
-.customers .navigator .specialActions .action {
+.frequencies .navigator .specialActions .action {
   margin-right: 8px;
 }
 
-.customers .navigator .specialActions .action:last-child {
+.frequencies .navigator .specialActions .action:last-child {
   margin-right: 0px;
 }
 
-.customers .navigator .specialActions .action .appButton {
+.frequencies .navigator .specialActions .action .appButton {
   display: block;
 }
 
-.customers.modeOpen .navigator .specialActions .action .appButton,
-.customers.modeEdit .navigator .specialActions .action .appButton {
+.frequencies.modeOpen .navigator .specialActions .action .appButton,
+.frequencies.modeEdit .navigator .specialActions .action .appButton {
   display: none;
 }
 
-.customers .titulation {
+.frequencies .titulation {
   display: block;
   position: relative;
   width: 100%;
@@ -106,25 +106,25 @@
   z-index: 1;
 }
 
-.customers.modeOpen .titulation,
-.customers.modeEdit .titulation {
+.frequencies.modeOpen .titulation,
+.frequencies.modeEdit .titulation {
   display: none;
 }
 
-.customers .titulation .title {
+.frequencies .titulation .title {
   width: 100%;
   color: var(--texts);
   font-size: 24px;
 }
 
-.customers .titulation .description {
+.frequencies .titulation .description {
   width: 100%;
   margin-top: 8px;
   color: var(--texts);
   font-size: 16px;
 }
 
-.customers .table {
+.frequencies .table {
   display: block;
   position: relative;
   width: 100%;
@@ -133,16 +133,16 @@
   z-index: 1;
 }
 
-.customers .table.pagination {
+.frequencies .table.pagination {
   max-height: calc(100vh - 362px);
 }
 
-.customers.modeOpen .table,
-.customers.modeEdit .table {
+.frequencies.modeOpen .table,
+.frequencies.modeEdit .table {
   display: none;
 }
 
-.customers .cardItem {
+.frequencies .cardItem {
   display: none;
   position: relative;
   width: 100%;
@@ -150,30 +150,30 @@
   z-index: 1;
 }
 
-.customers .cardItem.pagination {
+.frequencies .cardItem.pagination {
   max-height: calc(100vh - 250px);
 }
 
-.customers #modeOpen,
-.customers #modeEdit {
+.frequencies #modeOpen,
+.frequencies #modeEdit {
   margin-top: 0px;
 }
 
-.customers.modeOpen #modeOpen,
-.customers.modeEdit #modeEdit {
+.frequencies.modeOpen #modeOpen,
+.frequencies.modeEdit #modeEdit {
   display: block;
 }
 
-.customers.modeOpen #modeEdit,
-.customers.modeEdit #modeOpen {
+.frequencies.modeOpen #modeEdit,
+.frequencies.modeEdit #modeOpen {
   display: none;
 }
 
-.customers #modeOpen .btnCloseCard {
+.frequencies #modeOpen .btnCloseCard {
   margin-bottom: 16px;
 }
 
-.customers .cardItem .values {
+.frequencies .cardItem .values {
   align-content: flex-start;
   align-items: flex-start;
   width: 100%;
@@ -184,22 +184,22 @@
   overflow-x: hidden;
 }
 
-.customers .cardItem.pagination .values {
+.frequencies .cardItem.pagination .values {
   max-height: calc(100vh - 378px);
 }
 
-.customers .cardItem .values .data {
+.frequencies .cardItem .values .data {
   width: auto;
   max-width: 100%;
   margin-bottom: 16px;
   text-align: center;
 }
 
-.customers .cardItem .values .data.edit {
+.frequencies .cardItem .values .data.edit {
   text-align: center;
 }
 
-.customers .cardItem .values .data .label {
+.frequencies .cardItem .values .data .label {
   width: auto;
   max-width: 100%;
   margin-bottom: 8px;
@@ -207,23 +207,23 @@
   font-size: 14px;
 }
 
-.customers .cardItem .values .data .label span {
+.frequencies .cardItem .values .data .label span {
   color: var(--color1);
 }
 
-.customers .cardItem .values .data .value {
+.frequencies .cardItem .values .data .value {
   width: auto;
   max-width: 100%;
   color: var(--texts);
   font-size: 14px;
 }
 
-.customers .cardItem .values .data .input {
+.frequencies .cardItem .values .data .input {
   width: auto;
   max-width: 100%;
 }
 
-.customers .cardItem .values .dates {
+.frequencies .cardItem .values .dates {
   flex-direction: column;
   align-content: center;
   align-items: center;
@@ -231,7 +231,7 @@
   max-width: 100%;
 }
 
-.customers .cardItem .values .data .frequenciesMovil {
+.frequencies .cardItem .values .data .frequenciesMovil {
   width: auto;
   max-width: calc(100% - 2px);
   max-height: 400px;
@@ -242,29 +242,29 @@
   overflow-y: auto;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table {
+.frequencies .cardItem .values .data .frequenciesMovil table {
   border-collapse: collapse;
   border-spacing: 0px;
   width: 100%;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table tr {
+.frequencies .cardItem .values .data .frequenciesMovil table tr {
   background-color: var(--white);
   border-bottom: 1px solid var(--second);
 }
 
-.customers .cardItem .values .data .frequenciesMovil table tr:nth-child(1) {
+.frequencies .cardItem .values .data .frequenciesMovil table tr:nth-child(1) {
   background-color: var(--color5);
   position: sticky;
   top: 0px;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table tr:last-child {
+.frequencies .cardItem .values .data .frequenciesMovil table tr:last-child {
   border-bottom: none;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table tr th,
-.customers .cardItem .values .data .frequenciesMovil table tr td {
+.frequencies .cardItem .values .data .frequenciesMovil table tr th,
+.frequencies .cardItem .values .data .frequenciesMovil table tr td {
   min-width: 156px;
   width: calc(calc(100% - 88px) / 4);
   max-width: calc(100% - 2px);
@@ -274,37 +274,37 @@
   text-align: left;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table tr th.id,
-.customers .cardItem .values .data .frequenciesMovil table tr td.id {
+.frequencies .cardItem .values .data .frequenciesMovil table tr th.id,
+.frequencies .cardItem .values .data .frequenciesMovil table tr td.id {
   min-width: 88px;
   width: 88px;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table td.name {
+.frequencies .cardItem .values .data .frequenciesMovil table td.name {
   text-transform: capitalize;
 }
 
-.customers .cardItem .values .data .frequenciesMovil table td.touch {
+.frequencies .cardItem .values .data .frequenciesMovil table td.touch {
   text-align: center;
 }
 
 
-.customers .cardItem .values .data .frequenciesMovil table th {
+.frequencies .cardItem .values .data .frequenciesMovil table th {
   position: sticky;
   top: 0px;
 }
 
-.customers .cardItem .values #nameOpen .value {
+.frequencies .cardItem .values #nameOpen .value {
   font-size: 24px;
 }
 
-.customers .cardItem .values #externalIdOpen {
+.frequencies .cardItem .values #externalIdOpen {
   align-items: center;
   align-content: center;
   flex-direction: column;
 }
 
-.customers .cardItem .values #externalIdOpen .value {
+.frequencies .cardItem .values #externalIdOpen .value {
   width: auto;
   padding: 8px;
   color: var(--color1);
@@ -313,11 +313,11 @@
   border-radius: 8px;
 }
 
-.customers .cardItem .values #inBlacklist .value {
+.frequencies .cardItem .values #inBlacklist .value {
   font-size: 64px;
 }
 
-.customers .cardItem .actions {
+.frequencies .cardItem .actions {
   width: 100%;
   margin-top: 16px;
   min-height: 40px;
@@ -328,29 +328,29 @@
   white-space: nowrap;
 }
 
-.customers .cardItem .actions.spinner {
+.frequencies .cardItem .actions.spinner {
   display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;
 }
 
-.customers .cardItem .actions .btnAction {
+.frequencies .cardItem .actions .btnAction {
   position: relative;
   display: inline-block;
   margin-right: 8px;
 }
 
-.customers .cardItem .actions .btnAction:last-child {
+.frequencies .cardItem .actions .btnAction:last-child {
   margin-right: 0px;
 }
 
-.customers .cardItem .actions #btnCloseOpenCustomer,
-.customers .cardItem .actions #btnCloseEditCustomer {
+.frequencies .cardItem .actions #btnCloseOpenCustomer,
+.frequencies .cardItem .actions #btnCloseEditCustomer {
   display: none;
 }
 
-.customers .frequencies {
+.frequencies .frequencies {
   display: none;
   width: calc(100% - 34px);
   padding: 16px;
@@ -360,17 +360,17 @@
   text-align: center;
 }
 
-.customers .frequencies .label {
+.frequencies .frequencies .label {
   color: var(--texts);
   font-size: 16px;
   margin-bottom: 16px;
 }
 
-.customers .frequencies .label span {
+.frequencies .frequencies .label span {
   color: var(--red);
 }
 
-.customers .frequencies .frequenciesTab {
+.frequencies .frequencies .frequenciesTab {
   width: auto;
   max-width: calc(100% - 2px);
   background-color: var(--bgInput);
@@ -380,29 +380,29 @@
   overflow-y: auto;
 }
 
-.customers .frequencies .frequenciesTab table {
+.frequencies .frequencies .frequenciesTab table {
   border-collapse: collapse;
   border-spacing: 0px;
   width: 100%;
 }
 
-.customers .frequencies .frequenciesTab table tr {
+.frequencies .frequencies .frequenciesTab table tr {
   background-color: var(--white);
   border-bottom: 1px solid var(--second);
 }
 
-.customers .frequencies .frequenciesTab table tr:nth-child(1) {
+.frequencies .frequencies .frequenciesTab table tr:nth-child(1) {
   background-color: var(--color5);
   position: sticky;
   top: 0px;
 }
 
-.customers .frequencies .frequenciesTab table tr:last-child {
+.frequencies .frequencies .frequenciesTab table tr:last-child {
   border-bottom: none;
 }
 
-.customers .frequencies .frequenciesTab table th,
-.customers .frequencies .frequenciesTab table td {
+.frequencies .frequencies .frequenciesTab table th,
+.frequencies .frequencies .frequenciesTab table td {
   width: calc(calc(100% - 88px) / 4);
   padding: 8px 8px;
   color: var(--texts);
@@ -410,24 +410,24 @@
   text-align: left;
 }
 
-.customers .frequencies .frequenciesTab table td.name {
+.frequencies .frequencies .frequenciesTab table td.name {
   text-transform: capitalize;
 }
 
-.customers .frequencies .frequenciesTab table td.touch {
+.frequencies .frequencies .frequenciesTab table td.touch {
   text-align: center;
 }
 
-.customers .frequencies .frequenciesTab table th:first-child {
+.frequencies .frequencies .frequenciesTab table th:first-child {
   width: 88px;
 }
 
-.customers .frequencies .frequenciesTab table th {
+.frequencies .frequencies .frequenciesTab table th {
   position: sticky;
   top: 0px;
 }
 
-.customers .pagination {
+.frequencies .pagination {
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -436,28 +436,28 @@
   min-height: 40px;
 }
 
-.customers.modeOpen .pagination,
-.customers.modeEdit .pagination {
+.frequencies.modeOpen .pagination,
+.frequencies.modeEdit .pagination {
   display: none;
 }
 
-.customers .pagination .btnPage {
+.frequencies .pagination .btnPage {
   margin-right: 8px;
 }
 
-.customers .pagination .btnPage:last-child {
+.frequencies .pagination .btnPage:last-child {
   margin-right: 0px;
 }
 
 @media (min-width: 768px) {
-  .customers {
+  .frequencies {
     width: calc(100% - 170px);
     max-height: calc(100vh - 82px);
     margin: 24px 24px 24px 112px;
   }
 
-  .customers.modeOpen,
-  .customers.modeEdit {
+  .frequencies.modeOpen,
+  .frequencies.modeEdit {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -465,94 +465,94 @@
     justify-content: flex-start;
   }
 
-  .customers.modeOpen,
-  .customers.modeEdit {
+  .frequencies.modeOpen,
+  .frequencies.modeEdit {
     position: relative;
     background-color: var(--bg);
     border-color: var(--second);
   }
 
-  .customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
-  .customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
+  .frequencies.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(1),
+  .frequencies.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(1) {
     display: block;
   }
 
-  .customers.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
-  .customers.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
+  .frequencies.modeOpen .navigator .breadCrumb .navItem .appButton:nth-child(2),
+  .frequencies.modeEdit .navigator .breadCrumb .navItem .appButton:nth-child(2) {
     display: none;
   }
 
-  .customers.modeOpen .navigator .specialActions .action .appButton,
-  .customers.modeEdit .navigator .specialActions .action .appButton {
+  .frequencies.modeOpen .navigator .specialActions .action .appButton,
+  .frequencies.modeEdit .navigator .specialActions .action .appButton {
     display: block;
   }
 
-  .customers.modeOpen .titulation,
-  .customers.modeEdit .titulation {
+  .frequencies.modeOpen .titulation,
+  .frequencies.modeEdit .titulation {
     display: block;
   }
 
-  .customers .table {
+  .frequencies .table {
     max-height: calc(100vh - 180px);
   }
 
-  .customers .table.pagination {
+  .frequencies .table.pagination {
     max-height: calc(100vh - 236px);
   }
 
-  .customers.modeOpen .table,
-  .customers.modeEdit .table {
+  .frequencies.modeOpen .table,
+  .frequencies.modeEdit .table {
     display: none !important;
   }
 
-  .customers .cardItem .values {
+  .frequencies .cardItem .values {
     max-height: calc(100vh - 248px);
     margin-top: 0px;
   }
 
-  .customers .cardItem.pagination .values {
+  .frequencies .cardItem.pagination .values {
     max-height: calc(100vh - 324px);
   }
 
-  .customers .cardItem .values .data,
-  .customers .cardItem .values .data.edit {
+  .frequencies .cardItem .values .data,
+  .frequencies .cardItem .values .data.edit {
     text-align: left;
   }
 
-  .customers .cardItem .values #externalIdOpen {
+  .frequencies .cardItem .values #externalIdOpen {
     align-content: flex-start;
     align-items: flex-start;
   }
 
-  .customers .cardItem .values .dates {
+  .frequencies .cardItem .values .dates {
     flex-direction: row;
   }
 
-  .customers .cardItem .values .dates .data {
+  .frequencies .cardItem .values .dates .data {
     width: auto;
     max-width: calc(50% - 8px);
     margin-bottom: 0px;
   }
 
-  .customers .cardItem .values .dates .data:nth-child(2n+1) {
+  .frequencies .cardItem .values .dates .data:nth-child(2n+1) {
     margin-right: 8px;
   }
 
-  .customers .cardItem .values .dates .data:nth-child(2n) {
+  .frequencies .cardItem .values .dates .data:nth-child(2n) {
     margin-left: 8px;
   }
 
-  .customers .cardItem .actions {
+  .frequencies .cardItem .actions {
     text-align: left;
   }
 
-  .customers .cardItem .actions #btnCloseOpenCustomer,
-  .customers .cardItem .actions #btnCloseEditCustomer {
+  .frequencies .cardItem .actions #btnCloseOpenCustomer,
+  .frequencies .cardItem .actions #btnCloseEditCustomer {
     display: inline-block;
   }
 
-  .customers.modeOpen #modeOpen,
-  .customers.modeEdit #modeEdit {
+  .frequencies.modeOpen #modeOpen,
+  .frequencies.modeEdit #modeEdit {
     display: flex;
     flex-direction: column;
     align-content: flex-start;
@@ -567,73 +567,73 @@
     border-radius: 16px;
   }
 
-  .customers.modeOpen #modeOpen.pagination,
-  .customers.modeEdit #modeEdit.pagination {
+  .frequencies.modeOpen #modeOpen.pagination,
+  .frequencies.modeEdit #modeEdit.pagination {
     max-height: calc(100vh - 212px);
   }
 
-  .customers.modeOpen #modeEdit,
-  .customers.modeEdit #modeOpen {
+  .frequencies.modeOpen #modeEdit,
+  .frequencies.modeEdit #modeOpen {
     display: none;
   }
 
-  .customers .frequencies {
+  .frequencies .frequencies {
     text-align: left;
   }
 
-  .customers .pagination {
+  .frequencies .pagination {
     justify-content: flex-start;
   }
 }
 
 @media (min-width: 1081px) {
-  .customers {
+  .frequencies {
     width: calc(100% - 158px);
     max-height: calc(100vh - 66px);
     margin: 16px 24px 16px 106px;
   }
 
-  .customers .table {
+  .frequencies .table {
     max-height: calc(100vh - 160px);
   }
 
-  .customers .table.pagination {
+  .frequencies .table.pagination {
     max-height: calc(100vh - 216px);
   }
 
-  .customers.modeOpen .table,
-  .customers.modeEdit .table {
+  .frequencies.modeOpen .table,
+  .frequencies.modeEdit .table {
     width: calc(100% - 458px);
   }
 
-  .customers.modeOpen #modeOpen,
-  .customers.modeEdit #modeEdit {
+  .frequencies.modeOpen #modeOpen,
+  .frequencies.modeEdit #modeEdit {
     width: 32%;
     max-height: calc(100vh - 196px);
   }
 
-  .customers .cardItem .values {
+  .frequencies .cardItem .values {
     max-height: calc(100vh - 308px);
   }
 
-  .customers.modeOpen #modeOpen.pagination,
-  .customers.modeEdit #modeEdit.pagination {
+  .frequencies.modeOpen #modeOpen.pagination,
+  .frequencies.modeEdit #modeEdit.pagination {
     max-height: calc(100vh - 196px);
   }
 
-  .customers.modeOpen #modeOpen .values #frecuenciasCard {
+  .frequencies.modeOpen #modeOpen .values #frecuenciasCard {
     display: none;
   }
 
-  .customers .cardItem.pagination .values {
+  .frequencies .cardItem.pagination .values {
     max-height: calc(100vh - 248px);
   }
 
-  .customers .cardItem .values .data .frequencies {
+  .frequencies .cardItem .values .data .frequencies {
     overflow-x: hidden;
   }
 
-  .customers .frequencies {
+  .frequencies .frequencies {
     display: block;
     width: calc(68% - 92px);
     max-height: calc(100vh - 194px);
@@ -641,7 +641,7 @@
     margin-left: 16px;
   }
 
-  .customers .frequencies .frequenciesTab {
+  .frequencies .frequencies .frequenciesTab {
     max-height: calc(100vh - 230px);
   }
 }

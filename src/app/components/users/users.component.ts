@@ -55,6 +55,10 @@ export class UsersComponent implements OnInit {
   pagination: boolean = true;
   lasted: boolean = false;
   formatDate: string = "DD/MM/YYYY hh:mm A";
+  dateCreadtedOpen: string = "";
+  dateUpdatedOpen: string = "";
+  dateCreadtedEdit: string = "";
+  dateUpdatedEdit: string = "";
 
   constructor(
     private HttpService: HttpServiceService,
@@ -71,6 +75,10 @@ export class UsersComponent implements OnInit {
     this.getAll(this.actualPage, this.size);
     for (let a = 0; a < this.lists.length; a++) {
       const itemList: ID_Menu = this.lists[a];
+      itemList.selected = false;
+    }
+    for (let b = 0; b < this.lists.length; b++) {
+      const itemList: ID_Menu = this.lists[b];
       itemList.selected = itemList.id === '03' ? true : false;
     }
   }
@@ -176,9 +184,13 @@ export class UsersComponent implements OnInit {
     this.modeOpen = true;
     this.modeEdit = false;
     this.userOpen = data.user;
+    this.dateCreadtedOpen = this.userOpen.createdAt.formated;
+    this.dateUpdatedOpen = this.userOpen.updatedAt.formated;
     this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
     setTimeout(() => {
-      this.elems.table.scrollLeft = 1264;
+      if (this.elems.table) {
+        this.elems.table.scrollLeft = 1264;
+      }
     }, 400);
   }
 
@@ -191,7 +203,9 @@ export class UsersComponent implements OnInit {
       this.modeEdit = true;
       this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
       setTimeout(() => {
-        this.elems.table.scrollLeft = 1264;
+        if (this.elems.table) {
+          this.elems.table.scrollLeft = 1264;
+        }
       }, 400);
     }, 400);
   }
@@ -207,14 +221,12 @@ export class UsersComponent implements OnInit {
   edit(data: any) {
     this.modeOpen = false;
     this.modeEdit = true;
-    let created = data ? data.user ? moment(data.user.createdAt).format("YYYY-MM-DDTkk:mm") : "" : "";
-    let update = data ? data.user ? moment(data.user.updatedAt).format("YYYY-MM-DDTkk:mm") : "" : "";
-    data.user.createdAt = created;
-    data.user.updatedAt = update;
     this.userEdit = data.user;
     this.elems.table = document.getElementById("listContent") ? document.getElementById("listContent") : null;
     setTimeout(() => {
-      this.elems.table.scrollLeft = 1264;
+      if (this.elems.table) {
+        this.elems.table.scrollLeft = 1264;
+      }
     }, 400);
   }
 
@@ -232,7 +244,9 @@ export class UsersComponent implements OnInit {
     this.spinner = true;
     this.elems.name = document.getElementById("name") ? document.getElementById("name") : null;
     setTimeout(() => {
-      let item: any = {}
+      let item: any = {
+        "NombreUsuario": this.elems.name ? this.elems.name.value : this.userEdit.NombreUsuario,
+      }
       let request = [];
       request.push(item);
       this.HttpService.updateUser(request, this.token).subscribe((response) => {

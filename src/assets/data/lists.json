@@ -23,6 +23,14 @@
       "iconcode": "004",
       "selected": false,
       "show": true
+    },
+    {
+      "id": "04",
+      "slug": "frequencies",
+      "name": "Frecuencias",
+      "iconcode": "044",
+      "selected": false,
+      "show": true
     }
   ]
 }

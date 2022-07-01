@@ -208,7 +208,7 @@
 }
 
 .table .list .values .value .clmn.sends {
-  text-align: center;
+  text-align: left;
 }
 
 .table .list .values .value #selectRow {
@@ -385,6 +385,16 @@
 
   .table.pagination .list.columns {
     max-height: calc(100vh - 452px);
+  }
+}
+
+@media (min-width: 1081px) {
+  .table .list .values .value .clmn {
+    width: 137px;
+  }
+
+  .table .list {
+    overflow-x: hidden;
   }
 }
 

@@ -26,55 +26,59 @@
       </div>
     </div>
   </div>
-  <div id="listContent" class="list"
-    [ngClass]="{showFilters: showFilters, date: modeFilterDate, columns: modeFilterColumns}">
+  <div id="listContent" class="list" [ngClass]="{showFilters: showFilters, date: modeFilterDate, columns: modeFilterColumns}">
     <div class="titles">
       <div id="selectAll" class="clmn">
         <app-checkbox (checked)="onOffSelectedAll($event);" [selected]="selectedAll"></app-checkbox>
       </div>
       <div class="clmn" *ngFor="let title of listTitles">
         <app-text-table [value]="title.name" [order]="true" [iconAscendent]="title.iconAscendent"
-          [iconDecendent]="title.iconDecendent" (click)="sort(title);" [table]="'users'"></app-text-table>
+          [iconDecendent]="title.iconDecendent" (click)="sort(title);" [table]="'customers'"></app-text-table>
       </div>
       <div id="crudTitle" class="clmn flexBox">
-        <div id="deleteAll" class="crud">
-          <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" [block]="!selectedAll && !userSelected"
+        <!--<div id="deleteAll" class="crud">
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" [block]="!selectedAll && !frequencySelected"
             (click)="deleteAll();">
           </app-button>
-        </div>
+        </div>-->
         <div id="downloadAll" class="crud">
-          <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" [block]="!selectedAll && !userSelected"
+          <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" [block]="!selectedAll && !frequencySelected"
             (click)="downloadAll();"></app-button>
         </div>
       </div>
     </div>
     <div class="values">
-      <ng-container *ngIf="users; else loaders">
-        <div class="value" *ngFor="let user of users; let i = index"
-          [ngClass]="{selected: user.selected, hide: !user.show}" title="{{user.NombreUsuario}}">
+      <ng-container *ngIf="frequencies; else loaders">
+        <div class="value" *ngFor="let frequency of frequencies; let i = index"
+          [ngClass]="{selected: frequency.selected, hide: !frequency.show}" title="{{frequency.Campanas_Nombre }} / {{frequency.Clientes_Nombres}} {{frequency.Clientes_Apellidos}}">
           <div id="selectRow" class="clmn selector">
-            <app-checkbox (checked)="onOffSelected($event, user, i)" [selected]="selectedAll || user.selected">
+            <app-checkbox (checked)="onOffSelected($event, frequency, i)" [selected]="selectedAll || frequency.selected">
             </app-checkbox>
           </div>
-          <p id="" class="clmn" [innerHTML]="user.Id" title="{{user.Id}}"></p>
-          <p id="" class="clmn" [innerHTML]="user.NombreUsuario" title="{{user.NombreUsuario}}"></p>
-          <p id="" class="clmn" [innerHTML]="user.createdAt.formated" title="{{user.createdAt.formated}}"></p>
-          <p id="" class="clmn" [innerHTML]="user.updatedAt.formated" title="{{user.updatedAt.formated}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.Id" title="{{frequency.Id}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.ClienteId" title="{{frequency.ClienteId}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.Clientes_Nombres" title="{{frequency.Clientes_Nombres}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.Clientes_Apellidos" title="{{frequency.Clientes_Apellidos}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.CampanaId" title="{{frequency.CampanaId}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.Campanas_Nombre" title="{{frequency.Campanas_Nombre}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.ToquesDia" title="{{frequency.ToquesDia}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.createdAt.formated" title="{{frequency.createdAt.formated}}"></p>
+          <p id="" class="clmn" [innerHTML]="frequency.updatedAt.formated" title="{{frequency.updatedAt.formated}}"></p>
           <div id="crud" class="clmn flexBox">
-            <div id="open" class="crud">
-              <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openUser(user, i);">
+            <!--<div id="open" class="crud">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'024'" (click)="openfrequency(customer, i);">
               </app-button>
             </div>
             <div id="edit" class="crud">
-              <app-button class="appButton" [onlyIcon]="true" [icon]="'025'" (click)="editUser(user, i);">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'025'" (click)="editfrequency(customer, i);">
               </app-button>
             </div>
             <div id="delete" class="crud">
-              <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" (click)="deleteUser(user, i);">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'026'" (click)="deletefrequency(customer, i);">
               </app-button>
-            </div>
+            </div>-->
             <div id="download" class="crud">
-              <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" (click)="downloadUser(user, i);">
+              <app-button class="appButton" [onlyIcon]="true" [icon]="'027'" (click)="downloadfrequency(frequency, i);">
               </app-button>
             </div>
           </div>
@@ -97,4 +101,5 @@
       </ng-template>
     </div>
   </div>
+  <div class="pagination"></div>
 </div>

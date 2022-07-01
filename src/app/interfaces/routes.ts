@@ -3,6 +3,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { CampaignsComponent } from '../components/campaigns/campaigns.component';
 import { CustomersComponent } from '../components/customers/customers.component';
 import { UsersComponent } from '../components/users/users.component';
+import { FrequencyComponent } from '../components/frequency/frequency.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/campaigns', pathMatch: 'full' },
@@ -10,4 +11,5 @@ export const routes: Routes = [
   { path: 'campaigns', component: CampaignsComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'frequencies', component: FrequencyComponent },
 ];
