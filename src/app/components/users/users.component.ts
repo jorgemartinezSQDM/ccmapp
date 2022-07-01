@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit {
   size = 100;
   pagination: boolean = true;
   lasted: boolean = false;
-  formatDate: string = "DD/MM/YYYY hh:mm A";
+  formatDate: string = "DD/MM/YYYY HH:mm:ss";
   dateCreadtedOpen: string = "";
   dateUpdatedOpen: string = "";
   dateCreadtedEdit: string = "";
@@ -95,8 +95,8 @@ export class UsersComponent implements OnInit {
             this.lasted = users.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < users.length; a++) {
               const user = users[a];
-              let created = user.createdAt ? moment(user.createdAt).local(true).format(this.formatDate) : "";
-              let updated = user.updatedAt ? moment(user.updatedAt).local(true).format(this.formatDate) : "";
+              let created = user.createdAt ? moment(user.createdAt).format(this.formatDate) : "";
+              let updated = user.updatedAt ? moment(user.updatedAt).format(this.formatDate) : "";
               let item: User = {
                 createdAt: {
                   value: user.createdAt ? user.createdAt : "",

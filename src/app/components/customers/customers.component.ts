@@ -58,7 +58,7 @@ export class CustomersComponent implements OnInit {
   lasted: boolean = false;
   showFrequency!: boolean;
   frequencies!: Frequency[];
-  formatDate: string = "DD/MM/YYYY hh:mm A";
+  formatDate: string = "DD/MM/YYYY HH:mm:ss";
   dateCreadtedOpen: string = "";
   dateUpdatedOpen: string = "";
   dateCreadtedEdit: string = "";
@@ -99,8 +99,8 @@ export class CustomersComponent implements OnInit {
             this.lasted = customers.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < customers.length; a++) {
               const customer = customers[a];
-              let created = customer.createdAt ? moment(customer.createdAt).local(true).format(this.formatDate) : "";
-              let updated = customer.updatedAt ? moment(customer.updatedAt).local(true).format(this.formatDate) : "";
+              let created = customer.createdAt ? moment(customer.createdAt).format(this.formatDate) : "";
+              let updated = customer.updatedAt ? moment(customer.updatedAt).format(this.formatDate) : "";
               let item: Customer = {
                 Apellidos: customer.Apellidos ? customer.Apellidos : "",
                 createdAt: {
@@ -208,8 +208,8 @@ export class CustomersComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).local(true).format(this.formatDate) : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).local(true).format(this.formatDate) : "";
+            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) : "";
+            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",

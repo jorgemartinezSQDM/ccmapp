@@ -55,7 +55,7 @@ export class FrequencyComponent implements OnInit {
   pagination: boolean = true;
   lasted: boolean = false;
   showFrequency!: boolean;
-  formatDate: string = "DD/MM/YYYY hh:mm A";
+  formatDate: string = "DD/MM/YYYY HH:mm:ss";
   dateCreadtedOpen: string = "";
   dateUpdatedOpen: string = "";
   dateCreadtedEdit: string = "";
@@ -96,8 +96,8 @@ export class FrequencyComponent implements OnInit {
             this.lasted = frequencies.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < frequencies.length; a++) {
               const frequency = frequencies[a];
-              let created = frequency.createdAt ? moment(frequency.createdAt).local(true).format(this.formatDate) : "";
-              let updated = frequency.updatedAt ? moment(frequency.updatedAt).local(true).format(this.formatDate) : "";
+              let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) : "";
+              let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) : "";
               let item: Frequency = {
                 createdAt: {
                   value: frequency.createdAt ? frequency.createdAt : "",

@@ -59,7 +59,7 @@ export class CampaignsComponent implements OnInit {
   lasted: boolean = false;
   showFrequency!: boolean;
   frequencies!: Frequency[];
-  formatDate: string = "DD/MM/YYYY hh:mm A";
+  formatDate: string = "DD/MM/YYYY HH:mm:ss";
 
   constructor(
     private HttpService: HttpServiceService,
@@ -98,8 +98,8 @@ export class CampaignsComponent implements OnInit {
             this.lasted = campaigns.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < campaigns.length; a++) {
               const campaign = campaigns[a];
-              let created = campaign.createdAt ? moment(campaign.createdAt).local(true).format(this.formatDate) : "";
-              let updated = campaign.updatedAt ? moment(campaign.updatedAt).local(true).format(this.formatDate) : "";
+              let created = campaign.createdAt ? moment(campaign.createdAt).format(this.formatDate) : "";
+              let updated = campaign.updatedAt ? moment(campaign.updatedAt).format(this.formatDate) : "";
               let item: Campaign = {
                 createdAt: {
                   value: campaign.createdAt ? campaign.createdAt : "",
@@ -200,8 +200,8 @@ export class CampaignsComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).local(true).format(this.formatDate) : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).local(true).format(this.formatDate) : "";
+            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) : "";
+            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",
