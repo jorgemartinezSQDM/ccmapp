@@ -65,7 +65,7 @@
   </div>
   <div class="table" [ngClass]="{pagination: pagination}">
     <app-customers-table class="appCampaignsTable" [numberColumnsLoader]="6" [customers]="customers"
-      (open)="open($event);" (edit)="edit($event);" (delete)="openDialogDelete($event);" [pagination]="pagination">
+      (open)="open($event);" (edit)="edit($event);" (delete)="openDialogDeleteCard($event);" [pagination]="pagination">
     </app-customers-table>
   </div>
   <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">
@@ -96,7 +96,8 @@
         <p class="value boldTit" *ngIf="!customerOpen.ListaNegra">No</p>
       </div>
       <div class="data" id="frecuenciasCard" *ngIf="showFrequency">
-        <p class="label norm">Frecuencias del cliente: <span class="bold">{{customerOpen.Nombres}} {{customerOpen.Apellidos}}</span></p>
+        <p class="label norm">Frecuencias del cliente: <span class="bold">{{customerOpen.Nombres}}
+            {{customerOpen.Apellidos}}</span></p>
         <div class="frequenciesMovil">
           <table>
             <tr>
@@ -145,7 +146,8 @@
     </div>
   </div>
   <div id="frecuencias" class="frequencies" *ngIf="showFrequency">
-    <p class="label bold">Frecuencias del cliente: <span class="bold">{{customerOpen.Nombres}} {{customerOpen.Apellidos}}</span></p>
+    <p class="label bold">Frecuencias del cliente: <span class="bold">{{customerOpen.Nombres}}
+        {{customerOpen.Apellidos}}</span></p>
     <div class="frequenciesTab">
       <table>
         <tr>

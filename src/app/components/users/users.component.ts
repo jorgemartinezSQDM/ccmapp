@@ -303,7 +303,7 @@ export class UsersComponent implements OnInit {
     }, 400);
   }
 
-  openDialogDeleteCard(user: User) {
+  openDialogDeleteCard(user: any) {
     setTimeout(() => {
       this.messageDialog = "¿está seguro de eliminar este elemento?"
       this.dialog = true;
@@ -311,7 +311,7 @@ export class UsersComponent implements OnInit {
       this.deleteSelected = false;
       this.deleteSingle = false;
       this.deleteSingleCard = true;
-      this.idUserDelete = user.Id;
+      this.idUserDelete = user.user.Id;
     }, 400);
   }
 
@@ -332,11 +332,12 @@ export class UsersComponent implements OnInit {
           });
         }
         if (allDelete > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0002";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({ showFeedbackDialog: true });
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -377,11 +378,12 @@ export class UsersComponent implements OnInit {
           });
         }
         if (deletes > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0003";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({ showFeedbackDialog: true });
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -410,11 +412,12 @@ export class UsersComponent implements OnInit {
       } else if (this.deleteSingle) {
         this.HttpService.deleteUser(this.idUserDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;
@@ -459,11 +462,12 @@ export class UsersComponent implements OnInit {
       } else if (this.deleteSingleCard) {
         this.HttpService.deleteUser(this.idUserDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;

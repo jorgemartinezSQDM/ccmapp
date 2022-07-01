@@ -384,11 +384,12 @@ export class CampaignsComponent implements OnInit {
           });
         }
         if (allDelete > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0002";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({showFeedbackDialog: true});
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -429,11 +430,12 @@ export class CampaignsComponent implements OnInit {
           });
         }
         if (deletes > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0003";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({showFeedbackDialog: true});
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -462,11 +464,12 @@ export class CampaignsComponent implements OnInit {
       } else if (this.deleteSingle) {
         this.HttpService.deleteCampaign(this.idCampaignDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({showFeedbackDialog: true});
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;
@@ -511,11 +514,12 @@ export class CampaignsComponent implements OnInit {
       } else if (this.deleteSingleCard) {
         this.HttpService.deleteCampaign(this.idCampaignDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({showFeedbackDialog: true});
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;

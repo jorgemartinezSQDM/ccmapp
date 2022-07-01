@@ -165,15 +165,15 @@ export class HttpServiceService {
 
   deleteCampaign(id: any, token: any) {
     const fullUrl = configs.BaseUri + "campaigns/delete";
-    let raw = JSON.stringify({
-      "records": id,
-    });
-    return this.http.put<any>(fullUrl, raw, {
+    return this.http.delete<any>(fullUrl, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
-        })
+        }),
+      body: {
+        "records": id,
+      }
     }).pipe(
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<any>('getHeroes', []))
@@ -182,15 +182,15 @@ export class HttpServiceService {
 
   deleteCustomer(id: any, token: any) {
     const fullUrl = configs.BaseUri + "customers/delete";
-    let raw = JSON.stringify({
-      "records": id,
-    });
-    return this.http.put<any>(fullUrl, raw, {
+    return this.http.delete<any>(fullUrl, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
-        })
+        }),
+      body: {
+        "records": id,
+      }
     }).pipe(
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<any>('getHeroes', []))
@@ -199,15 +199,15 @@ export class HttpServiceService {
 
   deleteUser(id: any, token: any) {
     const fullUrl = configs.BaseUri + "users/delete";
-    let raw = JSON.stringify({
-      "records": id,
-    });
-    return this.http.put<any>(fullUrl, raw, {
+    return this.http.delete<any>(fullUrl, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
-        })
+        }),
+      body: {
+        "records": id,
+      }
     }).pipe(
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<any>('getHeroes', []))
@@ -216,15 +216,15 @@ export class HttpServiceService {
 
   deleteFrequency(id: any, token: any) {
     const fullUrl = configs.BaseUri + "frecuencies/delete";
-    let raw = JSON.stringify({
-      "records": id,
-    });
-    return this.http.put<any>(fullUrl, raw, {
+    return this.http.delete<any>(fullUrl, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
-        })
+        }),
+      body: {
+        "records": id,
+      }
     }).pipe(
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<any>('getHeroes', []))

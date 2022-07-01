@@ -44,7 +44,7 @@
   </div>
   <div class="table" [ngClass]="{pagination: pagination}">
     <app-users-table class="appCampaignsTable" [numberColumnsLoader]="6" [users]="users" (open)="open($event);"
-      (edit)="edit($event);" (delete)="openDialogDelete($event);" [pagination]="pagination">
+      (edit)="edit($event);" (delete)="openDialogDeleteCard($event);" [pagination]="pagination">
     </app-users-table>
   </div>
   <div id="modeOpen" class="cardItem" [ngClass]="{pagination: pagination}">

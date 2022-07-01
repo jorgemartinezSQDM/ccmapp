@@ -123,7 +123,6 @@ export class CustomersComponent implements OnInit {
               formatCustomers.push(item);
             }
             formatCustomers = this.commonService.orderDecent(formatCustomers, "Id");
-            console.log(formatCustomers);
             this.customers = formatCustomers;
           } else {
             this.commonService.goTo("/login", null);
@@ -367,7 +366,7 @@ export class CustomersComponent implements OnInit {
     }, 400);
   }
 
-  openDialogDeleteCard(customer: Customer) {
+  openDialogDeleteCard(customer: any) {
     setTimeout(() => {
       this.messageDialog = "¿está seguro de eliminar este elemento?"
       this.dialog = true;
@@ -375,7 +374,7 @@ export class CustomersComponent implements OnInit {
       this.deleteSelected = false;
       this.deleteSingle = false;
       this.deleteSingleCard = true;
-      this.idCustomerDelete = customer.Id;
+      this.idCustomerDelete = customer.customer.Id;
     }, 400);
   }
 
@@ -396,11 +395,12 @@ export class CustomersComponent implements OnInit {
           });
         }
         if (allDelete > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0002";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({ showFeedbackDialog: true });
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -441,11 +441,12 @@ export class CustomersComponent implements OnInit {
           });
         }
         if (deletes > 0) {
+          this.getAll(this.actualPage, this.size);
           this.feedbackCode = "s0003";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = true;
-          this.showFeedbackDialog = true;
+          this.commonService.shareData({ showFeedbackDialog: true });
           setTimeout(() => {
             this.feedbackCode = "";
             this.dialogStates.error = false;
@@ -474,11 +475,12 @@ export class CustomersComponent implements OnInit {
       } else if (this.deleteSingle) {
         this.HttpService.deleteCustomer(this.idCustomerDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;
@@ -523,11 +525,12 @@ export class CustomersComponent implements OnInit {
       } else if (this.deleteSingleCard) {
         this.HttpService.deleteCustomer(this.idCustomerDelete, this.token).subscribe((response) => {
           if (response) {
+            this.getAll(this.actualPage, this.size);
             this.feedbackCode = "s0001";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.showFeedbackDialog = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;

@@ -31,6 +31,19 @@ export class DialogComponent implements OnInit {
       this.spinner = false;
     }
     this.commonService.shareData({ modeDialog: true });
+    this.commonService.share.subscribe((response)=> {
+      if (response) {
+        if (response.showFeedbackDialog) {
+          this.spinner = false;
+          this.feedback = true;
+          setTimeout(() => {
+            this.feedback = false;
+          }, 2000);
+        } else {
+          this.feedback = false;
+        }
+      }
+    })
   }
 
   cancel() {
