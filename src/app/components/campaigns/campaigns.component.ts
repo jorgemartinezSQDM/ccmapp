@@ -144,8 +144,8 @@ export class CampaignsComponent implements OnInit {
           "Nombre de la campaña": campaign.nameCampaign,
           "Número de envios por días": campaign.numberSendsCustomersDays,
           "External ID": campaign.externalId,
-          "Fecha de creación": campaign.createdAt.value,
-          "Fecha de modificación": campaign.updatedAt.value,
+          "Fecha de creación": campaign.createdAt.formated,
+          "Fecha de modificación": campaign.updatedAt.formated,
         }
         campaignsCSV.push(item);
       };
@@ -567,8 +567,8 @@ export class CampaignsComponent implements OnInit {
       let campaignsCSV: ID_xCampaign[] = [];
       let item: ID_xCampaign = {
         "External ID": campaign.externalId,
-        "Fecha de creación": campaign.createdAt.value,
-        "Fecha de modificación": campaign.updatedAt.value,
+        "Fecha de creación": campaign.createdAt.formated,
+        "Fecha de modificación": campaign.updatedAt.formated,
         "Id": campaign.id,
         "Nombre de la campaña": campaign.nameCampaign,
         "Número de envios por días": campaign.numberSendsCustomersDays

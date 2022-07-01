@@ -148,8 +148,8 @@ export class FrequencyComponent implements OnInit {
           "Id de la camapaña": frequency ? frequency.CampanaId : "",
           "Nombre de la camapaña": frequency ? frequency.Campanas_Nombre : "",
           "Toques del día": frequency ? frequency.ToquesDia : "",
-          "Fecha de creación": frequency ? frequency.createdAt.value : "",
-          "Fecha de modificación": frequency ? frequency.updatedAt.value : "",
+          "Fecha de creación": frequency ? frequency.createdAt.formated : "",
+          "Fecha de modificación": frequency ? frequency.updatedAt.formated : "",
         }
         frequenciesCSV.push(item);
       };
@@ -531,8 +531,8 @@ export class FrequencyComponent implements OnInit {
         "Id de la camapaña": frequency ? frequency.CampanaId : "",
         "Nombre de la camapaña": frequency ? frequency.Campanas_Nombre : "",
         "Toques del día": frequency ? frequency.ToquesDia : "",
-        "Fecha de creación": frequency ? frequency.createdAt.value : "",
-        "Fecha de modificación": frequency ? frequency.updatedAt.value : "",
+        "Fecha de creación": frequency ? frequency.createdAt.formated : "",
+        "Fecha de modificación": frequency ? frequency.updatedAt.formated : "",
       }
       frequenciesCSV.push(item);
       this.commonService.exportAsExcelFile(frequenciesCSV, 'Cliente');
