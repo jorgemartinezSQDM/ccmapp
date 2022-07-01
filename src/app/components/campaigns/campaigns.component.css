@@ -309,7 +309,7 @@
 }
 
 .campaigns .cardItem #sendByDays .value {
-  color: var(--blackSqdm);
+  color: var(--black);
   font-size: 64px;
 }
 
