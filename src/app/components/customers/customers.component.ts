@@ -108,7 +108,7 @@ export class CustomersComponent implements OnInit {
                   formated: created,
                 },
                 Id: customer.Id ? customer.Id : "",
-                ListaNegra: customer.ListaNegra ? customer.ListaNegra : "",
+                ListaNegra: customer.ListaNegra ? customer.ListaNegra : false,
                 llaveUnicaCliente: customer.llaveUnicaCliente ? customer.llaveUnicaCliente : "",
                 Nombres: customer.Nombres ? customer.Nombres : "",
                 Numero_Documento: customer.Numero_Documento ? customer.Numero_Documento : "",
@@ -122,6 +122,8 @@ export class CustomersComponent implements OnInit {
               };
               formatCustomers.push(item);
             }
+            formatCustomers = this.commonService.orderDecent(formatCustomers, "Id");
+            console.log(formatCustomers);
             this.customers = formatCustomers;
           } else {
             this.commonService.goTo("/login", null);
@@ -225,6 +227,7 @@ export class CustomersComponent implements OnInit {
             }
             frequenciesFormat.push(item);
           }
+          frequenciesFormat = this.commonService.orderDecent(frequenciesFormat, "Id");
           this.frequencies = frequenciesFormat;
           this.showFrequency = true;
         } else {
@@ -303,16 +306,18 @@ export class CustomersComponent implements OnInit {
     this.elems.numberDoc = document.getElementById("numberDoc") ? document.getElementById("numberDoc") : null;
     setTimeout(() => {
       let item: any = {
-        "Nombres": this.elems.name ? this.elems.name.value : this.customerEdit.Nombres,
-        "Apellidos": this.elems.lastname ? this.elems.lastname.value : this.customerEdit.Apellidos,
-        "Tipo_Documento": this.elems.typeDoc ? this.elems.typeDoc.value : this.customerEdit.Tipo_Documento,
-        "Numero_Documento": this.elems.numberDoc ? this.elems.numberDoc.value : this.customerEdit.Numero_Documento,
-        "ListaNegra": this.customerEdit.ListaNegra,
+        Id: this.customerEdit.Id,
+        Nombres: this.elems.name ? this.elems.name.value : this.customerEdit.Nombres,
+        Apellidos: this.elems.lastname ? this.elems.lastname.value : this.customerEdit.Apellidos,
+        Tipo_Documento: this.elems.typeDoc ? this.elems.typeDoc.value : this.customerEdit.Tipo_Documento,
+        Numero_Documento: this.elems.numberDoc ? this.elems.numberDoc.value : this.customerEdit.Numero_Documento,
+        ListaNegra: this.customerEdit.ListaNegra,
       }
       let request = [];
       request.push(item);
       this.HttpService.updateCustomer(request, this.token).subscribe((response) => {
         if (response) {
+          this.getAll(this.actualPage, this.size);
           this.spinner = false;
           this.feedback.code = "s0000";
           this.feedback.error = false;

@@ -119,6 +119,7 @@ export class FrequencyComponent implements OnInit {
               };
               formatfrequencies.push(item);
             }
+            formatfrequencies = this.commonService.orderDecent(formatfrequencies, "Id");
             this.frequencies = formatfrequencies;
           } else {
             this.commonService.goTo("/login", null);

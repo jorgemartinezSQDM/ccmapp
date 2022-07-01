@@ -113,6 +113,7 @@ export class UsersComponent implements OnInit {
               };
               formatUsers.push(item);
             }
+            formatUsers = this.commonService.orderDecent(formatUsers, "Id");
             this.users = formatUsers;
           } else {
             this.commonService.goTo("/login", null);
@@ -245,12 +246,14 @@ export class UsersComponent implements OnInit {
     this.elems.name = document.getElementById("name") ? document.getElementById("name") : null;
     setTimeout(() => {
       let item: any = {
-        "NombreUsuario": this.elems.name ? this.elems.name.value : this.userEdit.NombreUsuario,
+        Id: this.userEdit.Id,
+        NombreUsuario: this.elems.name ? this.elems.name.value : this.userEdit.NombreUsuario,
       }
       let request = [];
       request.push(item);
       this.HttpService.updateUser(request, this.token).subscribe((response) => {
         if (response) {
+          this.getAll(this.actualPage, this.size);
           this.spinner = false;
           this.feedback.code = "s0000";
           this.feedback.error = false;

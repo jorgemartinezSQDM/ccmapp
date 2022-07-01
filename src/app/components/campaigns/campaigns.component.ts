@@ -118,6 +118,7 @@ export class CampaignsComponent implements OnInit {
               };
               formatCampaigns.push(item);
             }
+            formatCampaigns = this.commonService.orderDecent(formatCampaigns, "id");
             this.campaigns = formatCampaigns;
           } else {
             this.commonService.goTo("/login", null);
@@ -217,6 +218,7 @@ export class CampaignsComponent implements OnInit {
             }
             frequenciesFormat.push(item);
           }
+          frequenciesFormat = this.commonService.orderDecent(frequenciesFormat, "Id");
           this.frequencies = frequenciesFormat;
           this.showFrequency = true;
         } else {
@@ -292,21 +294,18 @@ export class CampaignsComponent implements OnInit {
     this.elems.externalId = document.getElementById("externalIdEdit") ? document.getElementById("externalIdEdit") : null;
     this.elems.nameCampaign = document.getElementById("nameCampaignEdit") ? document.getElementById("nameCampaignEdit") : null;
     this.elems.sendsByDays = document.getElementById("sendsByDaysEdit") ? document.getElementById("sendsByDaysEdit") : null;
-    this.elems.created = document.getElementById("createdEdit") ? document.getElementById("createdEdit") : null;
-    this.elems.update = document.getElementById("updateEdit") ? document.getElementById("updateEdit") : null;
     setTimeout(() => {
       let item: any = {
-        //createdAt: this.elems.created ? new Date(this.elems.created.value) : new Date(this.campaignEdit.createdAt),
         ExternalId: this.elems.externalId ? this.elems.externalId.value : this.campaignEdit.externalId,
-        //Id: this.elems.id ? this.elems.id.value : this.campaignEdit.id,
-        Nombre_Campaña: this.elems.nameCampaign ? this.elems.nameCampaign.value : this.campaignEdit.nameCampaign,
+        Id: this.campaignEdit.id,
+        Nombre: this.elems.nameCampaign ? this.elems.nameCampaign.value : this.campaignEdit.nameCampaign,
         numeroVecesClientesDia: this.elems.sendsByDays ? this.elems.sendsByDays.value : this.campaignEdit.numberSendsCustomersDays,
-        //updatedAt: this.elems.update ? new Date(this.elems.update.value) : new Date(this.campaignEdit.updatedAt),
       }
       let request = [];
       request.push(item);
       this.HttpService.updateCampaign(request, this.token).subscribe((response) => {
         if (response) {
+          this.getAll(this.actualPage, this.size);
           this.spinner = false;
           this.feedback.code = "s0000";
           this.feedback.error = false;

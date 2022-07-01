@@ -104,7 +104,7 @@ export class HttpServiceService {
   }
 
   updateCampaign(request: any, token: any) {
-    const fullUrl = configs.BaseUri + "/campaigns/update";
+    const fullUrl = configs.BaseUri + "campaigns/update";
     let raw = JSON.stringify(request);
     return this.http.put<any>(fullUrl, raw, {
       headers: new HttpHeaders(
@@ -119,7 +119,7 @@ export class HttpServiceService {
   }
 
   updateCustomer(request: any, token: any) {
-    const fullUrl = configs.BaseUri + "/customers/update";
+    const fullUrl = configs.BaseUri + "customers/update";
     let raw = JSON.stringify(request);
     return this.http.put<any>(fullUrl, raw, {
       headers: new HttpHeaders(
@@ -134,7 +134,7 @@ export class HttpServiceService {
   }
 
   updateUser(request: any, token: any) {
-    const fullUrl = configs.BaseUri + "/users/update";
+    const fullUrl = configs.BaseUri + "users/update";
     let raw = JSON.stringify(request);
     return this.http.put<any>(fullUrl, raw, {
       headers: new HttpHeaders(
@@ -149,7 +149,7 @@ export class HttpServiceService {
   }
 
   updateFrequency(request: any, token: any) {
-    const fullUrl = configs.BaseUri + "/frecuencies/update";
+    const fullUrl = configs.BaseUri + "frecuencies/update";
     let raw = JSON.stringify(request);
     return this.http.put<any>(fullUrl, raw, {
       headers: new HttpHeaders(
