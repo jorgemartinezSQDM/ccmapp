@@ -86,20 +86,57 @@ export class FrequencyTableComponent implements OnInit {
     let event = value ? value.event : null;
     let valueIn = value ? value.value : "";
     let parameter = this.parameterFilter;
-    if (valueIn) {
-      for (let a = 0; a < this.frequencies.length; a++) {
-        const frequency: any = this.frequencies[a];
-        let filter = frequency[parameter].toString().toLowerCase();
-        if (filter.indexOf(valueIn) === -1) {
-          frequency.show = false;
-        } else {
+    if (parameter == "createdAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.frequencies.length; a++) {
+          const frequency: any = this.frequencies[a];
+          let filter = frequency.createdAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            frequency.show = false;
+          } else {
+            frequency.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.frequencies.length; b++) {
+          const frequency: any = this.frequencies[b];
+          frequency.show = true;
+        }
+      }
+    } else if (parameter == "updatedAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.frequencies.length; a++) {
+          const frequency: any = this.frequencies[a];
+          let filter = frequency.updatedAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            frequency.show = false;
+          } else {
+            frequency.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.frequencies.length; b++) {
+          const frequency: any = this.frequencies[b];
           frequency.show = true;
         }
       }
     } else {
-      for (let b = 0; b < this.frequencies.length; b++) {
-        const frequency: any = this.frequencies[b];
-        frequency.show = true;
+      if (valueIn) {
+        valueIn = valueIn.toLowerCase();
+        for (let a = 0; a < this.frequencies.length; a++) {
+          const frequency: any = this.frequencies[a];
+          let filter = frequency[parameter].toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            frequency.show = false;
+          } else {
+            frequency.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.frequencies.length; b++) {
+          const frequency: any = this.frequencies[b];
+          frequency.show = true;
+        }
       }
     }
   }

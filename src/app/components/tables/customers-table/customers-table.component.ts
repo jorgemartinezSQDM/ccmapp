@@ -86,20 +86,57 @@ export class CustomersTableComponent implements OnInit {
     let event = value ? value.event : null;
     let valueIn = value ? value.value : "";
     let parameter = this.parameterFilter;
-    if (valueIn) {
-      for (let a = 0; a < this.customers.length; a++) {
-        const customer: any = this.customers[a];
-        let filter = customer[parameter].toString().toLowerCase();
-        if (filter.indexOf(valueIn) === -1) {
-          customer.show = false;
-        } else {
+    if (parameter == "createdAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer: any = this.customers[a];
+          let filter = customer.createdAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            customer.show = false;
+          } else {
+            customer.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.customers.length; b++) {
+          const customer: any = this.customers[b];
+          customer.show = true;
+        }
+      }
+    } else if (parameter == "updatedAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer: any = this.customers[a];
+          let filter = customer.updatedAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            customer.show = false;
+          } else {
+            customer.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.customers.length; b++) {
+          const customer: any = this.customers[b];
           customer.show = true;
         }
       }
     } else {
-      for (let b = 0; b < this.customers.length; b++) {
-        const customer: any = this.customers[b];
-        customer.show = true;
+      if (valueIn) {
+        valueIn = valueIn.toLowerCase();
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer: any = this.customers[a];
+          let filter = customer[parameter].toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            customer.show = false;
+          } else {
+            customer.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.customers.length; b++) {
+          const customer: any = this.customers[b];
+          customer.show = true;
+        }
       }
     }
   }

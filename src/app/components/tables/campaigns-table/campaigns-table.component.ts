@@ -87,20 +87,57 @@ export class CampaignsTableComponent implements OnInit {
     let event = value ? value.event : null;
     let valueIn = value ? value.value : "";
     let parameter = this.parameterFilter;
-    if (valueIn) {
-      for (let a = 0; a < this.campaigns.length; a++) {
-        const campaign: any = this.campaigns[a];
-        let filter = campaign[parameter].toString().toLowerCase();
-        if (filter.indexOf(valueIn) === -1) {
-          campaign.show = false;
-        } else {
+    if (parameter == "createdAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign: any = this.campaigns[a];
+          let filter = campaign.createdAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            campaign.show = false;
+          } else {
+            campaign.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.campaigns.length; b++) {
+          const campaign: any = this.campaigns[b];
+          campaign.show = true;
+        }
+      }
+    } else if (parameter == "updatedAt") {
+      if (valueIn) {
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign: any = this.campaigns[a];
+          let filter = campaign.updatedAt.formated.toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            campaign.show = false;
+          } else {
+            campaign.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.campaigns.length; b++) {
+          const campaign: any = this.campaigns[b];
           campaign.show = true;
         }
       }
     } else {
-      for (let b = 0; b < this.campaigns.length; b++) {
-        const campaign: any = this.campaigns[b];
-        campaign.show = true;
+      if (valueIn) {
+        valueIn = valueIn.toLowerCase();
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign: any = this.campaigns[a];
+          let filter = campaign[parameter].toString().toLowerCase();
+          if (filter.indexOf(valueIn) === -1) {
+            campaign.show = false;
+          } else {
+            campaign.show = true;
+          }
+        }
+      } else {
+        for (let b = 0; b < this.campaigns.length; b++) {
+          const campaign: any = this.campaigns[b];
+          campaign.show = true;
+        }
       }
     }
   }
