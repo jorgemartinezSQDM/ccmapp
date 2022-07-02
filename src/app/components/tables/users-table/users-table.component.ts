@@ -173,10 +173,12 @@ export class UsersTableComponent implements OnInit {
   sort(data: any) {
     setTimeout(() => {
       let inital = this.users;
-      if (!this.ascendent) {
-        this.commonService.orderAscent(this.users, data.id);
-      } else {
-        this.commonService.orderDecent(this.users, data.id);
+      if (data.order) {
+        if (!this.ascendent) {
+          this.commonService.orderAscent(this.users, data.id);
+        } else {
+          this.commonService.orderDecent(this.users, data.id);
+        }
       }
     }, 400);
   }

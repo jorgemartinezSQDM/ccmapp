@@ -3,88 +3,88 @@
     {
       "id": "id",
       "name": "Id",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
       "order": true
     },
     {
       "id": "externalId",
       "name": "Código de la campaña",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "nameCampaign",
       "name": "Nombre de la campaña",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "numberSendsCustomersDays",
       "name": "Envíos por días a clientes",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "createdAt",
       "name": "Creada",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "updatedAt",
       "name": "Modificada",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     }
   ],
   "pCustomers": [
     {
       "id": "Id",
       "name": "Id",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
       "order": true
     },
     {
       "id": "llaveUnicaCliente",
       "name": "Llave única del cliente",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Nombres",
       "name": "Nombres",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Apellidos",
       "name": "Apellidos",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Tipo_Documento",
       "name": "Tipo de documento de identidad",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Numero_Documento",
       "name": "Número del documento de identidad",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "ListaNegra",
@@ -96,111 +96,111 @@
     {
       "id": "createdAt",
       "name": "Creado",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "updatedAt",
       "name": "Modificado",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     }
   ],
   "pUsers": [
     {
       "id": "Id",
       "name": "Id",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
       "order": true
     },
     {
       "id": "NombreUsuario",
       "name": "Nombre del usuario",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "createdAt",
       "name": "Creado",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "updatedAt",
       "name": "Modificado",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     }
   ],
   "pFrequencies": [
     {
       "id": "Id",
       "name": "Id",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
+      "iconAscendent": "043",
+      "iconDecendent": "042",
       "order": true
     },
     {
       "id": "ClienteId",
       "name": "Id del cliente",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Clientes_Nombres",
       "name": "Nombre del cliente",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Clientes_Apellidos",
       "name": "Apellidos del cliente",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "CampanaId",
       "name": "Id de la camapaña",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "Campanas_Nombre",
       "name": "Nombre de la camapaña",
-      "iconAscendent": "041",
-      "iconDecendent": "040",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "ToquesDia",
       "name": "Toques del día",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "createdAt",
       "name": "Creada",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     },
     {
       "id": "updatedAt",
       "name": "Modificada",
-      "iconAscendent": "043",
-      "iconDecendent": "042",
-      "order": true
+      "iconAscendent": "",
+      "iconDecendent": "",
+      "order": false
     }
   ]
 }

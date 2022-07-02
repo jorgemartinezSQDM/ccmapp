@@ -174,10 +174,12 @@ export class CampaignsTableComponent implements OnInit {
   sort(data: any) {
     setTimeout(() => {
       let inital = this.campaigns;
-      if (!this.ascendent) {
-        this.commonService.orderAscent(this.campaigns, data.id);
-      } else {
-        this.commonService.orderDecent(this.campaigns, data.id);
+      if (data.order) {
+        if (!this.ascendent) {
+          this.commonService.orderAscent(this.campaigns, data.id);
+        } else {
+          this.commonService.orderDecent(this.campaigns, data.id);
+        }
       }
     }, 400);
   }

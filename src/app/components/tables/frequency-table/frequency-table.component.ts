@@ -173,10 +173,12 @@ export class FrequencyTableComponent implements OnInit {
   sort(data: any) {
     setTimeout(() => {
       let inital = this.frequencies;
-      if (!this.ascendent) {
-        this.commonService.orderAscent(this.frequencies, data.id);
-      } else {
-        this.commonService.orderDecent(this.frequencies, data.id);
+      if (data.order) {
+        if (!this.ascendent) {
+          this.commonService.orderAscent(this.frequencies, data.id);
+        } else {
+          this.commonService.orderDecent(this.frequencies, data.id);
+        }
       }
     }, 400);
   }
