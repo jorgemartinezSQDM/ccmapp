@@ -356,6 +356,7 @@
   .table .list {
     max-height: calc(100vh - 18px);
     max-width: 1394px;
+    overflow-x: hidden;
     /*margin: 0px calc(calc(100% - 1394px) / 2);*/
   }
 
@@ -386,15 +387,14 @@
   .table.pagination .list.columns {
     max-height: calc(100vh - 452px);
   }
-}
 
-@media (min-width: 1081px) {
   .table .list .values .value .clmn {
-    width: 137px;
+    width: 147px;
+    font-size: 13px;
   }
 
-  .table .list {
-    overflow-x: hidden;
+  .table .list .values .value .clmn.id {
+    width: 88px;
   }
 }
 
@@ -406,6 +406,10 @@
   .table .list .values .value .clmn {
     width: 211px;
   }
+
+  .table .list .values .value .clmn.id {
+    width: 211px;
+  }
 }
 
 @media (min-width: 1900px) {
@@ -414,6 +418,10 @@
   }
 
   .table .list .values .value .clmn {
+    width: 229.4px;
+  }
+
+  .table .list .values .value .clmn.id {
     width: 229.4px;
   }
 }

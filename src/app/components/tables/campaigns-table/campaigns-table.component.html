@@ -32,7 +32,7 @@
         <app-checkbox (checked)="onOffSelectedAll($event);" [selected]="selectedAll"></app-checkbox>
       </div>
       <div class="clmn" *ngFor="let title of listTitles">
-        <app-text-table [value]="title.name" [order]="true" [iconAscendent]="title.iconAscendent"
+        <app-text-table [id]="title.id" [value]="title.name" [order]="true" [iconAscendent]="title.iconAscendent"
           [iconDecendent]="title.iconDecendent" (click)="sort(title);" [table]="'campaigns'"></app-text-table>
       </div>
       <div id="crudTitle" class="clmn flexBox">
@@ -55,7 +55,7 @@
             <app-checkbox (checked)="onOffSelected($event, campaing, i)" [selected]="selectedAll || campaing.selected">
             </app-checkbox>
           </div>
-          <p id="" class="clmn" [innerHTML]="campaing.id" title="{{campaing.id}}"></p>
+          <p id="" class="clmn id" [innerHTML]="campaing.id" title="{{campaing.id}}"></p>
           <p id="" class="clmn" [innerHTML]="campaing.externalId" title="{{campaing.externalId}}"></p>
           <p id="" class="clmn" [innerHTML]="campaing.nameCampaign" title="{{campaing.nameCampaign}}"></p>
           <p id="" class="clmn sends" [innerHTML]="campaing.numberSendsCustomersDays"
