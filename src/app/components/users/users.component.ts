@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit {
   size = 100;
   pagination: boolean = true;
   lasted: boolean = false;
-  formatDate: string = "DD/MM/YYYY HH:mm:ss";
+  formatDate: string = "DD/MM/YYYY";
   dateCreadtedOpen: string = "";
   dateUpdatedOpen: string = "";
   dateCreadtedEdit: string = "";
@@ -95,8 +95,8 @@ export class UsersComponent implements OnInit {
             this.lasted = users.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < users.length; a++) {
               const user = users[a];
-              let created = user.createdAt ? moment(user.createdAt).format(this.formatDate) : "";
-              let updated = user.updatedAt ? moment(user.updatedAt).format(this.formatDate) : "";
+              let created = user.createdAt ? moment(user.createdAt).format(this.formatDate) + " " + user.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = user.updatedAt ? moment(user.updatedAt).format(this.formatDate) + " " + user.updatedAt.split("T")[1].split(".")[0] : "";
               let item: User = {
                 createdAt: {
                   value: user.createdAt ? user.createdAt : "",
@@ -170,7 +170,7 @@ export class UsersComponent implements OnInit {
         this.deleteSelected = false;
         this.deleteSingle = true;
         this.deleteSingleCard = false;
-        this.idUserDelete = data.user.id;
+        this.idUserDelete = data.user.Id;
       }
     }, 400);
   }
@@ -318,36 +318,45 @@ export class UsersComponent implements OnInit {
   deleteUsers(data: any) {
     if (data.action) {
       if (this.deleteAll) {
-        let allDelete = 0;
+        let allDelete = [];
         for (let a = 0; a < this.usersToDelete.length; a++) {
           const user: User = this.usersToDelete[a];
-          this.HttpService.deleteUser(user.Id, this.token).subscribe((response) => {
-            if (response) {
-              allDelete = allDelete + 1;
-            } else {
-              allDelete = 0;
-            }
-          }, (error) => {
-            allDelete = 0;
-          });
+          allDelete.push(user.Id);
         }
-        if (allDelete > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0002";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({ showFeedbackDialog: true });
-          setTimeout(() => {
-            this.feedbackCode = "";
+        this.HttpService.deleteUser(allDelete, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0002";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
             this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
           this.feedbackCode = "e0003";
           this.dialogStates.error = true;
           this.dialogStates.warning = false;
@@ -362,38 +371,47 @@ export class UsersComponent implements OnInit {
             this.dialog = false;
             this.close();
           }, 4000);
-        }
+        });
       } else if (this.deleteSelected) {
-        let deletes = 0;
+        let deletes = [];
         for (let b = 0; b < this.usersToDelete.length; b++) {
           const user: User = this.usersToDelete[b];
-          this.HttpService.deleteUser(user.Id, this.token).subscribe((response) => {
-            if (response) {
-              deletes = deletes + 1;
-            } else {
-              deletes = 0;
-            }
-          }, (error) => {
-            deletes = 0;
-          });
+          deletes.push(user.Id);
         }
-        if (deletes > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0003";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({ showFeedbackDialog: true });
-          setTimeout(() => {
-            this.feedbackCode = "";
+        this.HttpService.deleteUser(deletes, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0003";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
             this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
           this.feedbackCode = "e0003";
           this.dialogStates.error = true;
           this.dialogStates.warning = false;
@@ -408,7 +426,7 @@ export class UsersComponent implements OnInit {
             this.dialog = false;
             this.close();
           }, 4000);
-        }
+        });
       } else if (this.deleteSingle) {
         this.HttpService.deleteUser(this.idUserDelete, this.token).subscribe((response) => {
           if (response) {

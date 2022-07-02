@@ -58,7 +58,7 @@ export class CustomersComponent implements OnInit {
   lasted: boolean = false;
   showFrequency!: boolean;
   frequencies!: Frequency[];
-  formatDate: string = "DD/MM/YYYY HH:mm:ss";
+  formatDate: string = "DD/MM/YYYY";
   dateCreadtedOpen: string = "";
   dateUpdatedOpen: string = "";
   dateCreadtedEdit: string = "";
@@ -99,8 +99,8 @@ export class CustomersComponent implements OnInit {
             this.lasted = customers.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < customers.length; a++) {
               const customer = customers[a];
-              let created = customer.createdAt ? moment(customer.createdAt).format(this.formatDate) : "";
-              let updated = customer.updatedAt ? moment(customer.updatedAt).format(this.formatDate) : "";
+              let created = customer.createdAt ? moment(customer.createdAt).format(this.formatDate) + " " + customer.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = customer.updatedAt ? moment(customer.updatedAt).format(this.formatDate) + " " + customer.updatedAt.split("T")[1].split(".")[0] : "";
               let item: Customer = {
                 Apellidos: customer.Apellidos ? customer.Apellidos : "",
                 createdAt: {
@@ -184,7 +184,7 @@ export class CustomersComponent implements OnInit {
         this.deleteSelected = false;
         this.deleteSingle = true;
         this.deleteSingleCard = false;
-        this.idCustomerDelete = data.customer.id;
+        this.idCustomerDelete = data.customer.Id;
       }
     }, 400);
   }
@@ -209,8 +209,8 @@ export class CustomersComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) : "";
+            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
+            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",
@@ -381,36 +381,45 @@ export class CustomersComponent implements OnInit {
   deleteCustomers(data: any) {
     if (data.action) {
       if (this.deleteAll) {
-        let allDelete = 0;
+        let allDelete = [];
         for (let a = 0; a < this.customersToDelete.length; a++) {
           const customer: Customer = this.customersToDelete[a];
-          this.HttpService.deleteCustomer(customer.Id, this.token).subscribe((response) => {
-            if (response) {
-              allDelete = allDelete + 1;
-            } else {
-              allDelete = 0;
-            }
-          }, (error) => {
-            allDelete = 0;
-          });
+          allDelete.push(customer.Id);
         }
-        if (allDelete > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0002";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({ showFeedbackDialog: true });
-          setTimeout(() => {
-            this.feedbackCode = "";
+        this.HttpService.deleteCustomer(allDelete, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0002";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
             this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
           this.feedbackCode = "e0003";
           this.dialogStates.error = true;
           this.dialogStates.warning = false;
@@ -425,53 +434,48 @@ export class CustomersComponent implements OnInit {
             this.dialog = false;
             this.close();
           }, 4000);
-        }
+        });
       } else if (this.deleteSelected) {
-        let deletes = 0;
+        let deletes = [];
         for (let b = 0; b < this.customersToDelete.length; b++) {
           const customer: Customer = this.customersToDelete[b];
-          this.HttpService.deleteCustomer(customer.Id, this.token).subscribe((response) => {
-            if (response) {
-              deletes = deletes + 1;
-            } else {
-              deletes = 0;
-            }
-          }, (error) => {
-            deletes = 0;
-          });
+          deletes.push(customer.Id);
         }
-        if (deletes > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0003";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({ showFeedbackDialog: true });
-          setTimeout(() => {
-            this.feedbackCode = "";
+        this.HttpService.deleteCustomer(deletes, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0003";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
-            this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
-          this.feedbackCode = "e0003";
-          this.dialogStates.error = true;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = false;
-          this.showFeedbackDialog = true;
-          setTimeout(() => {
-            this.feedbackCode = "";
-            this.dialogStates.error = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
             this.dialogStates.warning = false;
             this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        }
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => { });
       } else if (this.deleteSingle) {
         this.HttpService.deleteCustomer(this.idCustomerDelete, this.token).subscribe((response) => {
           if (response) {

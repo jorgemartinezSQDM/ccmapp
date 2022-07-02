@@ -59,7 +59,7 @@ export class CampaignsComponent implements OnInit {
   lasted: boolean = false;
   showFrequency!: boolean;
   frequencies!: Frequency[];
-  formatDate: string = "DD/MM/YYYY HH:mm:ss";
+  formatDate: string = "DD/MM/YYYY";
 
   constructor(
     private HttpService: HttpServiceService,
@@ -98,8 +98,8 @@ export class CampaignsComponent implements OnInit {
             this.lasted = campaigns.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < campaigns.length; a++) {
               const campaign = campaigns[a];
-              let created = campaign.createdAt ? moment(campaign.createdAt).format(this.formatDate) : "";
-              let updated = campaign.updatedAt ? moment(campaign.updatedAt).format(this.formatDate) : "";
+              let created = campaign.createdAt ? moment(campaign.createdAt).format(this.formatDate) + " " + campaign.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = campaign.updatedAt ? moment(campaign.updatedAt).format(this.formatDate) + " " + campaign.updatedAt.split("T")[1].split(".")[0] : "";
               let item: Campaign = {
                 createdAt: {
                   value: campaign.createdAt ? campaign.createdAt : "",
@@ -201,8 +201,8 @@ export class CampaignsComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) : "";
+            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
+            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",
@@ -370,36 +370,45 @@ export class CampaignsComponent implements OnInit {
   deleteCampaign(data: any) {
     if (data.action) {
       if (this.deleteAll) {
-        let allDelete = 0;
+        let allDelete = [];
         for (let a = 0; a < this.campaignsToDelete.length; a++) {
           const campaign: Campaign = this.campaignsToDelete[a];
-          this.HttpService.deleteCampaign(campaign.id, this.token).subscribe((response) => {
-            if (response) {
-              allDelete = allDelete + 1;
-            } else {
-              allDelete = 0;
-            }
-          }, (error) => {
-            allDelete = 0;
-          });
+          allDelete.push(campaign.id)
         }
-        if (allDelete > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0002";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({showFeedbackDialog: true});
-          setTimeout(() => {
-            this.feedbackCode = "";
+        this.HttpService.deleteCampaign(allDelete, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0002";
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
             this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          }
+        }, (error) => {
           this.feedbackCode = "e0003";
           this.dialogStates.error = true;
           this.dialogStates.warning = false;
@@ -414,53 +423,62 @@ export class CampaignsComponent implements OnInit {
             this.dialog = false;
             this.close();
           }, 4000);
-        }
+        });
       } else if (this.deleteSelected) {
-        let deletes = 0;
+        let deletes = [];
         for (let b = 0; b < this.campaignsToDelete.length; b++) {
           const campaign: Campaign = this.campaignsToDelete[b];
-          this.HttpService.deleteCampaign(campaign.id, this.token).subscribe((response) => {
-            if (response) {
-              deletes = deletes + 1;
-            } else {
-              deletes = 0;
-            }
-          }, (error) => {
-            deletes = 0;
-          });
+          deletes.push(campaign.id)
         }
-        if (deletes > 0) {
-          this.getAll(this.actualPage, this.size);
-          this.feedbackCode = "s0003";
+        this.HttpService.deleteCampaign(deletes, this.token).subscribe((response) => {
+          if (response) {
+            this.getAll(this.actualPage, this.size);
+            this.feedbackCode = "s0003";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = true;
+            this.commonService.shareData({ showFeedbackDialog: true });
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
+          } else {
+        this.feedbackCode = "e0003";
+        this.dialogStates.error = true;
+        this.dialogStates.warning = false;
+        this.dialogStates.success = false;
+        this.showFeedbackDialog = true;
+        setTimeout(() => {
+          this.feedbackCode = "";
           this.dialogStates.error = false;
           this.dialogStates.warning = false;
-          this.dialogStates.success = true;
-          this.commonService.shareData({showFeedbackDialog: true});
-          setTimeout(() => {
-            this.feedbackCode = "";
-            this.dialogStates.error = false;
-            this.dialogStates.warning = false;
-            this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        } else {
-          this.feedbackCode = "e0003";
-          this.dialogStates.error = true;
+          this.dialogStates.success = false;
+          this.showFeedbackDialog = false;
+          this.dialog = false;
+          this.close();
+        }, 4000);
+          }
+        }, (error) => {
+        this.feedbackCode = "e0003";
+        this.dialogStates.error = true;
+        this.dialogStates.warning = false;
+        this.dialogStates.success = false;
+        this.showFeedbackDialog = true;
+        setTimeout(() => {
+          this.feedbackCode = "";
+          this.dialogStates.error = false;
           this.dialogStates.warning = false;
           this.dialogStates.success = false;
-          this.showFeedbackDialog = true;
-          setTimeout(() => {
-            this.feedbackCode = "";
-            this.dialogStates.error = false;
-            this.dialogStates.warning = false;
-            this.dialogStates.success = false;
-            this.showFeedbackDialog = false;
-            this.dialog = false;
-            this.close();
-          }, 4000);
-        }
+          this.showFeedbackDialog = false;
+          this.dialog = false;
+          this.close();
+        }, 4000);
+        });
       } else if (this.deleteSingle) {
         this.HttpService.deleteCampaign(this.idCampaignDelete, this.token).subscribe((response) => {
           if (response) {
@@ -469,7 +487,7 @@ export class CampaignsComponent implements OnInit {
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.commonService.shareData({showFeedbackDialog: true});
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;
@@ -519,7 +537,7 @@ export class CampaignsComponent implements OnInit {
             this.dialogStates.error = false;
             this.dialogStates.warning = false;
             this.dialogStates.success = true;
-            this.commonService.shareData({showFeedbackDialog: true});
+            this.commonService.shareData({ showFeedbackDialog: true });
             setTimeout(() => {
               this.feedbackCode = "";
               this.dialogStates.error = false;

@@ -222,9 +222,9 @@ export class CustomersTableComponent implements OnInit {
             customers.push(customer);
           }
         }
-        this.delete.emit({ deleteSelected: false, customers: customers });
+        this.delete.emit({ deleteSelected: true, customers: customers });
       } else {
-        this.delete.emit({ deleteSelected: false, customers: this.customersSelected });
+        this.delete.emit({ deleteSelected: true, customers: this.customersSelected });
       }
     }, 400);
   }

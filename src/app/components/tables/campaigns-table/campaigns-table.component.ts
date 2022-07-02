@@ -223,9 +223,9 @@ export class CampaignsTableComponent implements OnInit {
             campaigns.push(campaign);
           }
         }
-        this.delete.emit({ deleteSelected: false, campaigns: campaigns });
+        this.delete.emit({ deleteSelected: true, campaigns: campaigns });
       } else {
-        this.delete.emit({ deleteSelected: false, campaigns: this.campaignsSelected });
+        this.delete.emit({ deleteSelected: true, campaigns: this.campaignsSelected });
       }
     }, 400);
   }

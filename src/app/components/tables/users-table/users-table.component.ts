@@ -223,9 +223,9 @@ export class UsersTableComponent implements OnInit {
             users.push(user);
           }
         }
-        this.delete.emit({ deleteSelected: false, users: users });
+        this.delete.emit({ deleteSelected: true, users: users });
       } else {
-        this.delete.emit({ deleteSelected: false, users: this.usersSelected });
+        this.delete.emit({ deleteSelected: true, users: this.usersSelected });
       }
     }, 400);
   }
