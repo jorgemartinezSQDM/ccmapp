@@ -20,6 +20,7 @@ export class CampaignsTableComponent implements OnInit {
   modeFilterDate!: boolean;
   modeFilterColumns!: boolean;
   selectedAll!: boolean;
+  selectedAllFilter!: boolean;
   listTitles!: ID_pCampaigns[];
   @Input() campaigns!: Campaign[];
   @Input() numberColumnsLoader: any = 1;
@@ -164,11 +165,14 @@ export class CampaignsTableComponent implements OnInit {
   }
 
   onOffSelectedAll(data: any) {
+    let noShow = 0;
     this.selectedAll = data ? data.checked : false;
     for (let a = 0; a < this.campaigns.length; a++) {
       const campaign = this.campaigns[a];
       campaign.selected = this.selectedAll;
+      noShow = !campaign.show ? noShow + 1 : noShow;
     }
+    this.selectedAllFilter = noShow > 0 ? true : false;
   }
 
   sort(data: any) {
@@ -209,8 +213,17 @@ export class CampaignsTableComponent implements OnInit {
 
   deleteAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         this.delete.emit({ deleteAll: true, campaigns: this.campaigns });
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let campaigns: Campaign[] = []
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign: Campaign = this.campaigns[a];
+          if (campaign.show) {
+            campaigns.push(campaign);
+          }
+        }
+        this.delete.emit({ deleteSelected: false, campaigns: campaigns });
       } else {
         this.delete.emit({ deleteSelected: false, campaigns: this.campaignsSelected });
       }
@@ -219,7 +232,7 @@ export class CampaignsTableComponent implements OnInit {
 
   downloadAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         let campaignsCSV: ID_xCampaign[] = [];
         for (let a = 0; a < this.campaigns.length; a++) {
           const campaign: Campaign = this.campaigns[a];
@@ -232,6 +245,29 @@ export class CampaignsTableComponent implements OnInit {
             "Número de envios por días": campaign.numberSendsCustomersDays
           }
           campaignsCSV.push(item);
+        };
+        this.commonService.exportAsExcelFile(campaignsCSV, "Campañas");
+        this.selectedAll = false;
+        this.campaignSelected = false;
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign = this.campaigns[a];
+          campaign.selected = this.selectedAll;
+        }
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let campaignsCSV: ID_xCampaign[] = [];
+        for (let a = 0; a < this.campaigns.length; a++) {
+          const campaign: Campaign = this.campaigns[a];
+          if (campaign.show) {
+            let item: ID_xCampaign = {
+              "External ID": campaign.externalId,
+              "Fecha de creación": campaign.createdAt.formated,
+              "Fecha de modificación": campaign.updatedAt.formated,
+              "Id": campaign.id,
+              "Nombre de la campaña": campaign.nameCampaign,
+              "Número de envios por días": campaign.numberSendsCustomersDays
+            }
+            campaignsCSV.push(item);
+          }
         };
         this.commonService.exportAsExcelFile(campaignsCSV, "Campañas");
         this.selectedAll = false;

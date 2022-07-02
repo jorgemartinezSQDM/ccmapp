@@ -11,6 +11,7 @@ import { CommonService } from 'src/app/services/common/common.service';
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.css']
 })
+
 export class UsersTableComponent implements OnInit {
   filterName: string = 'nombre del usuario';
   parameterFilter: any = 'NombreUsuario';
@@ -19,6 +20,7 @@ export class UsersTableComponent implements OnInit {
   modeFilterDate!: boolean;
   modeFilterColumns!: boolean;
   selectedAll!: boolean;
+  selectedAllFilter!: boolean;
   listTitles!: ID_pUsers[];
   @Input() users!: User[];
   @Input() numberColumnsLoader: any = 1;
@@ -163,11 +165,14 @@ export class UsersTableComponent implements OnInit {
   }
 
   onOffSelectedAll(data: any) {
+    let noShow = 0;
     this.selectedAll = data ? data.checked : false;
     for (let a = 0; a < this.users.length; a++) {
       const user = this.users[a];
       user.selected = this.selectedAll;
+      noShow = !user.show ? noShow + 1 : noShow;
     }
+    this.selectedAllFilter = noShow > 0 ? true : false;
   }
 
   sort(data: any) {
@@ -208,8 +213,17 @@ export class UsersTableComponent implements OnInit {
 
   deleteAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         this.delete.emit({ deleteAll: true, users: this.users });
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let users: User[] = []
+        for (let a = 0; a < this.users.length; a++) {
+          const user: User = this.users[a];
+          if (user.show) {
+            users.push(user);
+          }
+        }
+        this.delete.emit({ deleteSelected: false, users: users });
       } else {
         this.delete.emit({ deleteSelected: false, users: this.usersSelected });
       }
@@ -218,7 +232,7 @@ export class UsersTableComponent implements OnInit {
 
   downloadAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         let usersCSV: ID_xUsers[] = [];
         for (let a = 0; a < this.users.length; a++) {
           const user: User = this.users[a];
@@ -229,6 +243,27 @@ export class UsersTableComponent implements OnInit {
             "Fecha de modificación": user.updatedAt.formated,
           }
           usersCSV.push(item);
+        };
+        this.commonService.exportAsExcelFile(usersCSV, "Usuarios");
+        this.selectedAll = false;
+        this.userSelected = false;
+        for (let a = 0; a < this.users.length; a++) {
+          const user = this.users[a];
+          user.selected = this.selectedAll;
+        }
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let usersCSV: ID_xUsers[] = [];
+        for (let a = 0; a < this.users.length; a++) {
+          const user: User = this.users[a];
+          if (user.show) {
+            let item: ID_xUsers = {
+              "Id": user.Id,
+              "Nombre de usuario": user.NombreUsuario,
+              "Fecha de creación": user.createdAt.formated,
+              "Fecha de modificación": user.updatedAt.formated,
+            }
+            usersCSV.push(item);
+          }
         };
         this.commonService.exportAsExcelFile(usersCSV, "Usuarios");
         this.selectedAll = false;

@@ -19,6 +19,7 @@ export class FrequencyTableComponent implements OnInit {
   modeFilterDate!: boolean;
   modeFilterColumns!: boolean;
   selectedAll!: boolean;
+  selectedAllFilter!: boolean;
   listTitles!: ID_pFrequencies[];
   @Input() frequencies!: Frequency[];
   @Input() numberColumnsLoader: any = 1;
@@ -163,11 +164,14 @@ export class FrequencyTableComponent implements OnInit {
   }
 
   onOffSelectedAll(data: any) {
+    let noShow = 0;
     this.selectedAll = data ? data.checked : false;
     for (let a = 0; a < this.frequencies.length; a++) {
       const frequency = this.frequencies[a];
       frequency.selected = this.selectedAll;
+      noShow = !frequency.show ? noShow + 1 : noShow;
     }
+    this.selectedAllFilter = noShow > 0 ? true : false;
   }
 
   sort(data: any) {
@@ -218,7 +222,7 @@ export class FrequencyTableComponent implements OnInit {
 
   downloadAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         let frequenciesCSV: ID_xFrequencies[] = [];
         for (let a = 0; a < this.frequencies.length; a++) {
           const frequency: Frequency = this.frequencies[a];
@@ -234,6 +238,32 @@ export class FrequencyTableComponent implements OnInit {
             "Fecha de modificación": frequency ? frequency.updatedAt.formated : "",
           }
           frequenciesCSV.push(item);
+        };
+        this.commonService.exportAsExcelFile(frequenciesCSV, "Frecuencias");
+        this.selectedAll = false;
+        this.frequencySelected = false;
+        for (let a = 0; a < this.frequencies.length; a++) {
+          const frequency = this.frequencies[a];
+          frequency.selected = this.selectedAll;
+        }
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let frequenciesCSV: ID_xFrequencies[] = [];
+        for (let a = 0; a < this.frequencies.length; a++) {
+          const frequency: Frequency = this.frequencies[a];
+          if (frequency.show) {
+            let item: ID_xFrequencies = {
+              "Id": frequency ? frequency.Id : "",
+              "Id del cliente": frequency ? frequency.ClienteId : "",
+              "Nombre del cliente": frequency ? frequency.Clientes_Nombres : "",
+              "Apellidos del cliente": frequency ? frequency.Clientes_Apellidos : "",
+              "Id de la camapaña": frequency ? frequency.CampanaId : "",
+              "Nombre de la camapaña": frequency ? frequency.Campanas_Nombre : "",
+              "Toques del día": frequency ? frequency.ToquesDia : "",
+              "Fecha de creación": frequency ? frequency.createdAt.formated : "",
+              "Fecha de modificación": frequency ? frequency.updatedAt.formated : "",
+            }
+            frequenciesCSV.push(item);
+          }
         };
         this.commonService.exportAsExcelFile(frequenciesCSV, "Frecuencias");
         this.selectedAll = false;

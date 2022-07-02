@@ -19,6 +19,7 @@ export class CustomersTableComponent implements OnInit {
   modeFilterDate!: boolean;
   modeFilterColumns!: boolean;
   selectedAll!: boolean;
+  selectedAllFilter!: boolean;
   listTitles!: ID_pCustomers[];
   @Input() customers!: Customer[];
   @Input() numberColumnsLoader: any = 1;
@@ -163,11 +164,14 @@ export class CustomersTableComponent implements OnInit {
   }
 
   onOffSelectedAll(data: any) {
+    let noShow = 0;
     this.selectedAll = data ? data.checked : false;
     for (let a = 0; a < this.customers.length; a++) {
       const customer = this.customers[a];
       customer.selected = this.selectedAll;
+      noShow = !customer.show ? noShow + 1 : noShow;
     }
+    this.selectedAllFilter = noShow > 0 ? true : false;
   }
 
   sort(data: any) {
@@ -208,8 +212,17 @@ export class CustomersTableComponent implements OnInit {
 
   deleteAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         this.delete.emit({ deleteAll: true, customers: this.customers });
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let customers: Customer[] = []
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer: Customer = this.customers[a];
+          if (customer.show) {
+            customers.push(customer);
+          }
+        }
+        this.delete.emit({ deleteSelected: false, customers: customers });
       } else {
         this.delete.emit({ deleteSelected: false, customers: this.customersSelected });
       }
@@ -218,7 +231,7 @@ export class CustomersTableComponent implements OnInit {
 
   downloadAll() {
     setTimeout(() => {
-      if (this.selectedAll) {
+      if (this.selectedAll && !this.selectedAllFilter) {
         let customersCSV: ID_xCustomers[] = [];
         for (let a = 0; a < this.customers.length; a++) {
           const customer: Customer = this.customers[a];
@@ -234,6 +247,32 @@ export class CustomersTableComponent implements OnInit {
             "Fecha de modificación": customer.updatedAt.formated,
           }
           customersCSV.push(item);
+        };
+        this.commonService.exportAsExcelFile(customersCSV, "Clientes");
+        this.selectedAll = false;
+        this.customerSelected = false;
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer = this.customers[a];
+          customer.selected = this.selectedAll;
+        }
+      } else if (this.selectedAll && this.selectedAllFilter) {
+        let customersCSV: ID_xCustomers[] = [];
+        for (let a = 0; a < this.customers.length; a++) {
+          const customer: Customer = this.customers[a];
+          if (customer.show) {
+            let item: ID_xCustomers = {
+              "Id": customer.Id,
+              "Llave única del cliente": customer.llaveUnicaCliente,
+              "Nombres": customer.Nombres,
+              "Apellidos": customer.Apellidos,
+              "Tipo de documento de identidad": customer.Tipo_Documento,
+              "Numero del documento de identidad": customer.Numero_Documento,
+              "¿En lista negra?": customer.ListaNegra ? "Si" : "No",
+              "Fecha de creación": customer.createdAt.formated,
+              "Fecha de modificación": customer.updatedAt.formated,
+            }
+            customersCSV.push(item);
+          }
         };
         this.commonService.exportAsExcelFile(customersCSV, "Clientes");
         this.selectedAll = false;
