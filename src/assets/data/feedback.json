@@ -3,7 +3,7 @@
     "e0000": "Campos vacios.</br>Los campos con * son campos obligatorios, llene los campos e intente nuevamente",
     "e0001": "Nombre de usuario o contraseña incorrectos",
     "e0002": "Hubo un error durante la validación.</br>Intente nuevamente mas tarde",
-    "s0000": "Datos de campaña actualizados",
+    "s0000": "Datos del elemento actualizados correctamente",
     "s0001": "Elemento eliminado correctamente",
     "e0003": "Hubo un error durante el proceso de eliminación",
     "s0002": "Todos los elementos de la lista han sido eliminados correctamente",
