@@ -313,7 +313,7 @@ export class UsersComponent implements OnInit {
       this.deleteSelected = false;
       this.deleteSingle = false;
       this.deleteSingleCard = true;
-      this.idUserDelete = user.user.Id;
+      this.idUserDelete = user.Id;
     }, 400);
   }
 
