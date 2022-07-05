@@ -201,4 +201,11 @@ export class CommonService {
       return result.substring(0, 16)
     }
   }
+
+  formatedDate(date: any) {
+    let arrDate = date.split("T");
+    let dateSeparated = arrDate[0].split("-");
+    let result = dateSeparated[2] + "/" + dateSeparated[1] + "/" + dateSeparated[0];
+    return result;
+  }
 }

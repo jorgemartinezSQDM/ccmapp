@@ -98,8 +98,10 @@ export class CampaignsComponent implements OnInit {
             this.lasted = campaigns.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < campaigns.length; a++) {
               const campaign = campaigns[a];
-              let created = campaign.createdAt ? moment(campaign.createdAt).format(this.formatDate) + " " + campaign.createdAt.split("T")[1].split(".")[0] : "";
-              let updated = campaign.updatedAt ? moment(campaign.updatedAt).format(this.formatDate) + " " + campaign.updatedAt.split("T")[1].split(".")[0] : "";
+              let onlyDateCreated = this.commonService.formatedDate(campaign.createdAt);
+              let onlyDateUpdated = this.commonService.formatedDate(campaign.updatedAt);
+              let created = campaign.createdAt ? onlyDateCreated + " " + campaign.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = campaign.updatedAt ? onlyDateUpdated + " " + campaign.updatedAt.split("T")[1].split(".")[0] : "";
               let item: Campaign = {
                 createdAt: {
                   value: campaign.createdAt ? campaign.createdAt : "",
@@ -201,8 +203,10 @@ export class CampaignsComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
+            let onlyDateCreated = this.commonService.formatedDate(frequency.createdAt);
+            let onlyDateUpdated = this.commonService.formatedDate(frequency.updatedAt);
+            let created = frequency.createdAt ? onlyDateCreated + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
+            let updated = frequency.updatedAt ? onlyDateUpdated + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",
@@ -448,36 +452,36 @@ export class CampaignsComponent implements OnInit {
               this.close();
             }, 4000);
           } else {
-        this.feedbackCode = "e0003";
-        this.dialogStates.error = true;
-        this.dialogStates.warning = false;
-        this.dialogStates.success = false;
-        this.showFeedbackDialog = true;
-        setTimeout(() => {
-          this.feedbackCode = "";
-          this.dialogStates.error = false;
-          this.dialogStates.warning = false;
-          this.dialogStates.success = false;
-          this.showFeedbackDialog = false;
-          this.dialog = false;
-          this.close();
-        }, 4000);
+            this.feedbackCode = "e0003";
+            this.dialogStates.error = true;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = true;
+            setTimeout(() => {
+              this.feedbackCode = "";
+              this.dialogStates.error = false;
+              this.dialogStates.warning = false;
+              this.dialogStates.success = false;
+              this.showFeedbackDialog = false;
+              this.dialog = false;
+              this.close();
+            }, 4000);
           }
         }, (error) => {
-        this.feedbackCode = "e0003";
-        this.dialogStates.error = true;
-        this.dialogStates.warning = false;
-        this.dialogStates.success = false;
-        this.showFeedbackDialog = true;
-        setTimeout(() => {
-          this.feedbackCode = "";
-          this.dialogStates.error = false;
+          this.feedbackCode = "e0003";
+          this.dialogStates.error = true;
           this.dialogStates.warning = false;
           this.dialogStates.success = false;
-          this.showFeedbackDialog = false;
-          this.dialog = false;
-          this.close();
-        }, 4000);
+          this.showFeedbackDialog = true;
+          setTimeout(() => {
+            this.feedbackCode = "";
+            this.dialogStates.error = false;
+            this.dialogStates.warning = false;
+            this.dialogStates.success = false;
+            this.showFeedbackDialog = false;
+            this.dialog = false;
+            this.close();
+          }, 4000);
         });
       } else if (this.deleteSingle) {
         this.HttpService.deleteCampaign(this.idCampaignDelete, this.token).subscribe((response) => {

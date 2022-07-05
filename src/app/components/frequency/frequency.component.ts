@@ -96,8 +96,10 @@ export class FrequencyComponent implements OnInit {
             this.lasted = frequencies.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < frequencies.length; a++) {
               const frequency = frequencies[a];
-              let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
-              let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
+              let onlyDateCreated = this.commonService.formatedDate(frequency.createdAt);
+              let onlyDateUpdated = this.commonService.formatedDate(frequency.updatedAt);
+              let created = frequency.createdAt ? onlyDateCreated + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = frequency.updatedAt ? onlyDateUpdated + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
               let item: Frequency = {
                 createdAt: {
                   value: frequency.createdAt ? frequency.createdAt : "",

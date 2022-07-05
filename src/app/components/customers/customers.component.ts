@@ -99,8 +99,10 @@ export class CustomersComponent implements OnInit {
             this.lasted = customers.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < customers.length; a++) {
               const customer = customers[a];
-              let created = customer.createdAt ? moment(customer.createdAt).format(this.formatDate) + " " + customer.createdAt.split("T")[1].split(".")[0] : "";
-              let updated = customer.updatedAt ? moment(customer.updatedAt).format(this.formatDate) + " " + customer.updatedAt.split("T")[1].split(".")[0] : "";
+              let onlyDateCreated = this.commonService.formatedDate(customer.createdAt);
+              let onlyDateUpdated = this.commonService.formatedDate(customer.updatedAt);
+              let created = customer.createdAt ? onlyDateCreated + " " + customer.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = customer.updatedAt ? onlyDateUpdated + " " + customer.updatedAt.split("T")[1].split(".")[0] : "";
               let item: Customer = {
                 Apellidos: customer.Apellidos ? customer.Apellidos : "",
                 createdAt: {
@@ -209,8 +211,10 @@ export class CustomersComponent implements OnInit {
           let frequenciesFormat: Frequency[] = [];
           for (let a = 0; a < frequencies.length; a++) {
             const frequency: any | Frequency = frequencies[a];
-            let created = frequency.createdAt ? moment(frequency.createdAt).format(this.formatDate) + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
-            let updated = frequency.updatedAt ? moment(frequency.updatedAt).format(this.formatDate) + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
+            let onlyDateCreated = this.commonService.formatedDate(frequency.createdAt);
+            let onlyDateUpdated = this.commonService.formatedDate(frequency.updatedAt);
+            let created = frequency.createdAt ? onlyDateCreated + " " + frequency.createdAt.split("T")[1].split(".")[0] : "";
+            let updated = frequency.updatedAt ? onlyDateUpdated + " " + frequency.updatedAt.split("T")[1].split(".")[0] : "";
             let item: Frequency = {
               createdAt: created,
               CampanaId: frequency.CampanaId ? frequency.CampanaId : "",

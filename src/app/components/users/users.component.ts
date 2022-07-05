@@ -95,8 +95,10 @@ export class UsersComponent implements OnInit {
             this.lasted = users.length < this.size && this.actualPage != 1 ? true : false;
             for (let a = 0; a < users.length; a++) {
               const user = users[a];
-              let created = user.createdAt ? moment(user.createdAt).format(this.formatDate) + " " + user.createdAt.split("T")[1].split(".")[0] : "";
-              let updated = user.updatedAt ? moment(user.updatedAt).format(this.formatDate) + " " + user.updatedAt.split("T")[1].split(".")[0] : "";
+              let onlyDateCreated = this.commonService.formatedDate(user.createdAt);
+              let onlyDateUpdated = this.commonService.formatedDate(user.updatedAt);
+              let created = user.createdAt ? onlyDateCreated + " " + user.createdAt.split("T")[1].split(".")[0] : "";
+              let updated = user.updatedAt ? onlyDateUpdated + " " + user.updatedAt.split("T")[1].split(".")[0] : "";
               let item: User = {
                 createdAt: {
                   value: user.createdAt ? user.createdAt : "",
