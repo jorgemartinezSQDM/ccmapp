@@ -13,7 +13,7 @@
       <div class="listFilters" *ngIf="showFilters" [ngClass]="{date: modeFilterDate, columns: modeFilterColumns}">
         <div id="forId" class="filter">
           <p class="name norm">Columnas</p>
-          <app-select-option class="appSelectOption" [default]="'una párametro'" [options]="filters"
+          <app-select-option class="appSelectOption" [default]="'un párametro'" [options]="filters"
             (select)="getSelect($event)" (event)="onOffModeFilterColumns($event);">
           </app-select-option>
         </div>
