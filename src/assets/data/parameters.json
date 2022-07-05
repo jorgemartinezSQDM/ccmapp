@@ -169,14 +169,14 @@
     },
     {
       "id": "CampanaId",
-      "name": "Id de la camapaña",
+      "name": "Id de la campaña",
       "iconAscendent": "",
       "iconDecendent": "",
       "order": false
     },
     {
       "id": "Campanas_Nombre",
-      "name": "Nombre de la camapaña",
+      "name": "Nombre de la campaña",
       "iconAscendent": "",
       "iconDecendent": "",
       "order": false

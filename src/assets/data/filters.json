@@ -89,12 +89,12 @@
     {
       "id": "CampanaId",
       "icon": "",
-      "value": "Id de la camapaña"
+      "value": "Id de la campaña"
     },
     {
       "id": "Campanas_Nombre",
       "icon": "",
-      "value": "Nombre de la camapaña"
+      "value": "Nombre de la campaña"
     },
     {
       "id": "ToquesDia",
