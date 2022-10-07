@@ -53,7 +53,7 @@ export class CustomersComponent implements OnInit {
   customers: Customer[] = []
   token: string = ''
   actualPage: any = 1;
-  size = 100;
+  size = 10000; //Limite de registros a mostrar por pagina
   pagination: boolean = true;
   lasted: boolean = false;
   showFrequency!: boolean;
